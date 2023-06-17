@@ -17,6 +17,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Icon.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icon.bmp" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\GwensGame\abettor-of-splorr\src\AOS.Presentation\AOS.Presentation.vbproj" />
     <ProjectReference Include="..\YTM.Application\YTM.Application.vbproj" />
   </ItemGroup>
