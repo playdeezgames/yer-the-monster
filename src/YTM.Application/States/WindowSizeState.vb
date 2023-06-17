@@ -1,7 +1,7 @@
 ﻿Friend Class WindowSizeState
     Inherits BaseMenuState
-
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Private _saveConfig As Action
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean), saveConfig As Action)
         MyBase.New(
             parent,
             setState,
@@ -20,6 +20,7 @@
                 Scale10Text
             },
             GoBackText)
+        _saveConfig = saveConfig
     End Sub
     Protected Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
@@ -30,6 +31,7 @@
                 Dim width = CInt(tokens(0))
                 Dim height = CInt(tokens(1))
                 Parent.Size = (width, height)
+                _saveConfig()
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

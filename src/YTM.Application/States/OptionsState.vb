@@ -1,6 +1,7 @@
 ﻿Friend Class OptionsState
     Inherits BaseMenuState
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Private _saveConfig As Action
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean), saveConfig As Action)
         MyBase.New(
             parent,
             setState,
@@ -12,6 +13,7 @@
                 SetVolumeText
             },
             GoBackText)
+        _saveConfig = saveConfig
     End Sub
     Protected Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem

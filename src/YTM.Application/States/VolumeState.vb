@@ -1,7 +1,7 @@
 ﻿Friend Class VolumeState
     Inherits BaseMenuState
-
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Private _saveConfig As Action
+    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean), saveConfig As Action)
         MyBase.New(
             parent,
             setState,
@@ -20,6 +20,7 @@
                 Volume10Text
             },
             GoBackText)
+        _saveConfig = saveConfig
     End Sub
 
     Protected Overrides Sub HandleMenuItem(menuItem As String)
@@ -27,39 +28,33 @@
             Case GoBackText
                 SetState(GameState.Options)
             Case Volume0Text
-                Parent.Volume = 0.0F
-                PlaySfx(Sfx.PlayerHit)
+                SetVolume(0.0F)
             Case Volume1Text
-                Parent.Volume = 0.1F
-                PlaySfx(Sfx.PlayerHit)
+                SetVolume(0.1F)
             Case Volume2Text
-                Parent.Volume = 0.2F
-                PlaySfx(Sfx.PlayerHit)
+                SetVolume(0.2F)
             Case Volume3Text
-                Parent.Volume = 0.3F
-                PlaySfx(Sfx.PlayerHit)
+                SetVolume(0.3F)
             Case Volume4Text
-                Parent.Volume = 0.4F
-                PlaySfx(Sfx.PlayerHit)
+                SetVolume(0.4F)
             Case Volume5Text
-                Parent.Volume = 0.5F
-                PlaySfx(Sfx.PlayerHit)
+                SetVolume(0.5F)
             Case Volume6Text
-                Parent.Volume = 0.6F
-                PlaySfx(Sfx.PlayerHit)
+                SetVolume(0.6F)
             Case Volume7Text
-                Parent.Volume = 0.7F
-                PlaySfx(Sfx.PlayerHit)
+                SetVolume(0.7F)
             Case Volume8Text
-                Parent.Volume = 0.8F
-                PlaySfx(Sfx.PlayerHit)
+                SetVolume(0.8F)
             Case Volume9Text
-                Parent.Volume = 0.9F
-                PlaySfx(Sfx.PlayerHit)
+                SetVolume(0.9F)
             Case Volume10Text
-                Parent.Volume = 1.0F
-                PlaySfx(Sfx.PlayerHit)
+                SetVolume(1.0F)
         End Select
+    End Sub
+    Private Sub SetVolume(newVolume As Single)
+        Parent.Volume = newVolume
+        PlaySfx(Sfx.PlayerHit)
+        _saveConfig()
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)

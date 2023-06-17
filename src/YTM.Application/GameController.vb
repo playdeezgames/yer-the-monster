@@ -9,11 +9,14 @@ Public Class GameController
         SetState(GameState.Splash, New SplashState(Me, AddressOf SetCurrentState))
         SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.ConfirmQuit, New ConfirmQuitState(Me, AddressOf SetCurrentState))
-        SetState(GameState.Options, New OptionsState(Me, AddressOf SetCurrentState))
-        SetState(GameState.WindowSize, New WindowSizeState(Me, AddressOf SetCurrentState))
-        SetState(GameState.Volume, New VolumeState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Options, New OptionsState(Me, AddressOf SetCurrentState, AddressOf SaveConfig))
+        SetState(GameState.WindowSize, New WindowSizeState(Me, AddressOf SetCurrentState, AddressOf SaveConfig))
+        SetState(GameState.Volume, New VolumeState(Me, AddressOf SetCurrentState, AddressOf SaveConfig))
         SetState(GameState.About, New AboutState(Me, AddressOf SetCurrentState))
 
         SetCurrentState(GameState.Splash, True)
+    End Sub
+    Private Sub SaveConfig()
+        _configSink(Size, FullScreen, Volume)
     End Sub
 End Class
