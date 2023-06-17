@@ -13,4 +13,7 @@
             fonts(entry.Key) = New Font(JsonSerializer.Deserialize(Of FontData)(File.ReadAllText(entry.Value)))
         Next
     End Sub
+    Friend Function GetFont(gameFont As GameFont) As Font
+        Return fonts(gameFont)
+    End Function
 End Module

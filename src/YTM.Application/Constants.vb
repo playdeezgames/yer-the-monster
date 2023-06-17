@@ -1,4 +1,4 @@
 ﻿Public Module Constants
-    Public Const ViewWidth = 640
-    Public Const ViewHeight = 360
+    Public Const ViewWidth = 320
+    Public Const ViewHeight = 200
 End Module
