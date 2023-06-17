@@ -11,6 +11,13 @@
                 MenuItemIndex = (MenuItemIndex + MenuItems.Length - 1) Mod MenuItems.Length
             Case Command.Down
                 MenuItemIndex = (MenuItemIndex + 1) Mod MenuItems.Length
+            Case Command.A
+                Select Case MenuItems(MenuItemIndex)
+                    Case QuitText
+                        SetState(GameState.ConfirmQuit)
+                End Select
+            Case Command.B
+                SetState(GameState.ConfirmQuit)
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))

@@ -7,4 +7,7 @@
     Friend Const AboutText = "About..."
     Friend Const QuitText = "Quit"
     Friend Const MainMenuTitle = "Main Menu:"
+    Friend Const ConfirmQuitTitle = "Are you sure you want to quit?"
+    Friend Const NoText = "No"
+    Friend Const YesText = "Yes"
 End Module

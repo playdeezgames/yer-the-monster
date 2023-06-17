@@ -6,6 +6,7 @@ Public Class GameController
         Initialize()
         SetState(GameState.Splash, New SplashState(Me, AddressOf SetCurrentState))
         SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.ConfirmQuit, New ConfirmQuitState(Me, AddressOf SetCurrentState))
         SetCurrentState(GameState.Splash, True)
     End Sub
 End Class
