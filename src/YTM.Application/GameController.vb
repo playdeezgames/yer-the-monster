@@ -12,6 +12,7 @@ Public Class GameController
         SetState(GameState.Options, New OptionsState(Me, AddressOf SetCurrentState))
         SetState(GameState.WindowSize, New WindowSizeState(Me, AddressOf SetCurrentState))
         SetState(GameState.Volume, New VolumeState(Me, AddressOf SetCurrentState))
+        SetState(GameState.About, New AboutState(Me, AddressOf SetCurrentState))
 
         SetCurrentState(GameState.Splash, True)
     End Sub

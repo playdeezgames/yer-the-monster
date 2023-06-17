@@ -1,5 +1,10 @@
 ﻿Public Module Constants
+    Friend Const About1Text = "Written by TheGrumpyGameDev. Developed mostly while "
+    Friend Const About2Text = "streaming, with ""help"" from his audience of mal-"
+    Friend Const About3Text = "contents and ne'er-do-wells for TheCaptainCoder's "
+    Friend Const About4Text = "Learn You a Game Jam: Pixel Edition, June 17-27 2023"
     Friend Const AboutText = "About..."
+    Friend Const AboutTitle = "About YTM:"
     Friend Const ConfirmQuitTitle = "Are you sure you want to quit?"
     Friend Const EmbarkText = "Embark!"
     Friend Const GoBackText = "Go Back"

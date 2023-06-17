@@ -5,4 +5,5 @@
     Options
     WindowSize
     Volume
+    About
 End Enum

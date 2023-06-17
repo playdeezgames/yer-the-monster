@@ -11,6 +11,8 @@
                 SetState(GameState.ConfirmQuit)
             Case OptionsText
                 SetState(GameState.Options)
+            Case AboutText
+                SetState(GameState.About)
             Case Else
                 Throw New NotImplementedException()
         End Select
