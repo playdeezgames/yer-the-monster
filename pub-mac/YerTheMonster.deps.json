@@ -9,6 +9,8 @@
     ".NETCoreApp,Version=v6.0/osx-x64": {
       "YerTheMonster/1.0.0": {
         "dependencies": {
+          "AOS.Presentation": "1.0.0",
+          "YTM.Application": "1.0.0",
           "runtimepack.Microsoft.NETCore.App.Runtime.osx-x64": "6.0.16"
         },
         "runtime": {
@@ -722,6 +724,44 @@
             "fileVersion": "0.0.0.0"
           }
         }
+      },
+      "MonoGame.Framework.DesktopGL/3.8.1.303": {
+        "runtime": {
+          "lib/net6.0/MonoGame.Framework.dll": {
+            "assemblyVersion": "3.8.1.303",
+            "fileVersion": "3.8.1.303"
+          }
+        },
+        "native": {
+          "runtimes/osx/native/libSDL2.dylib": {
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx/native/libopenal.1.dylib": {
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "AOS.Presentation/1.0.0": {
+        "dependencies": {
+          "AOS.UI": "1.0.0",
+          "MonoGame.Framework.DesktopGL": "3.8.1.303"
+        },
+        "runtime": {
+          "AOS.Presentation.dll": {}
+        }
+      },
+      "AOS.UI/1.0.0": {
+        "runtime": {
+          "AOS.UI.dll": {}
+        }
+      },
+      "YTM.Application/1.0.0": {
+        "dependencies": {
+          "AOS.UI": "1.0.0"
+        },
+        "runtime": {
+          "YTM.Application.dll": {}
+        }
       }
     }
   },
@@ -733,6 +773,28 @@
     },
     "runtimepack.Microsoft.NETCore.App.Runtime.osx-x64/6.0.16": {
       "type": "runtimepack",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MonoGame.Framework.DesktopGL/3.8.1.303": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-eGYhqn0n1olk8MNYeE9EuBmoNNECN1T18rPMaQpkzsEQ0H3nVyFPXC+uCo78v5pi5juQpJ3PSFnSkjzZJ1U58A==",
+      "path": "monogame.framework.desktopgl/3.8.1.303",
+      "hashPath": "monogame.framework.desktopgl.3.8.1.303.nupkg.sha512"
+    },
+    "AOS.Presentation/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "AOS.UI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "YTM.Application/1.0.0": {
+      "type": "project",
       "serviceable": false,
       "sha512": ""
     }
