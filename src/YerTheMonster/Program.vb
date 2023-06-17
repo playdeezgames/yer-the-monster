@@ -79,13 +79,13 @@ Module Program
     End Function
     Private Function CommandTransformer(keys As Keys) As Command?
         Select Case keys
-            Case Keys.Up
+            Case Keys.Up, Keys.NumPad8
                 Return Command.Up
-            Case Keys.Down
+            Case Keys.Down, Keys.NumPad2
                 Return Command.Down
-            Case Keys.Right
+            Case Keys.Right, Keys.NumPad6
                 Return Command.Right
-            Case Keys.Left
+            Case Keys.Left, Keys.NumPad4
                 Return Command.Left
             Case Keys.Space, Keys.Enter
                 Return Command.A
