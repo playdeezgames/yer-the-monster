@@ -10,6 +10,9 @@ Public Class GameController
         SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.ConfirmQuit, New ConfirmQuitState(Me, AddressOf SetCurrentState))
         SetState(GameState.Options, New OptionsState(Me, AddressOf SetCurrentState))
+        SetState(GameState.WindowSize, New WindowSizeState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Volume, New VolumeState(Me, AddressOf SetCurrentState))
+
         SetCurrentState(GameState.Splash, True)
     End Sub
 End Class

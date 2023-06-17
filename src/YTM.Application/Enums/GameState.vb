@@ -3,4 +3,6 @@
     MainMenu
     ConfirmQuit
     Options
+    WindowSize
+    Volume
 End Enum
