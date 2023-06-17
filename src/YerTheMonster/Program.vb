@@ -1,3 +1,5 @@
+Imports System.IO
+Imports System.Text.Json
 Imports AOS.UI
 Imports Microsoft.Xna.Framework
 Imports Microsoft.Xna.Framework.Graphics
@@ -5,11 +7,37 @@ Imports Microsoft.Xna.Framework.Input
 
 Module Program
     Sub Main(args As String())
-        Dim gameController As New GameController((ScreenWidth, ScreenHeight), False, 1.0F)
-        Using host As New Host(Of Hue, Command, Sfx)("Yer, The Monster", gameController, (ViewWidth, ViewHeight), AddressOf BufferCreator, AddressOf CommandTransformer, AddressOf GamePadTransformer, sfxFileNames)
+        Dim config As YTMConfig = ReadConfig()
+        Dim gameController As New GameController(
+            (config.WindowWidth, config.WindowHeight),
+            config.FullScreen,
+            config.SfxVolume)
+        Using host As New Host(Of Hue, Command, Sfx)(
+            "Yer, The Monster",
+            gameController,
+            (ViewWidth, ViewHeight),
+            AddressOf BufferCreator,
+            AddressOf CommandTransformer,
+            AddressOf GamePadTransformer,
+            sfxFileNames)
             host.Run()
         End Using
     End Sub
+
+    Private Function ReadConfig() As YTMConfig
+        Try
+            Return JsonSerializer.Deserialize(Of YTMConfig)(File.ReadAllText("config.json"))
+        Catch ex As Exception
+            Return New YTMConfig() With
+            {
+                .FullScreen = False,
+                .SfxVolume = 0.5,
+                .WindowHeight = DefaultScreenHeight,
+                .WindowWidth = DefaultScreenWidth
+            }
+        End Try
+    End Function
+
     Private Function GamePadTransformer(oldState As GamePadState, newState As GamePadState) As Command()
         Dim results As New List(Of Command)
         If newState.IsButtonDown(Buttons.A) AndAlso Not oldState.IsButtonDown(Buttons.A) Then
