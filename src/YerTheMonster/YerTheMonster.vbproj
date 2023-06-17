@@ -1,10 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>YerTheMonster</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
     <OptionStrict>On</OptionStrict>
+    <ImportedNamespaces>AOS.Presentation=False,YTM.Application=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,YerTheMonster=True</ImportedNamespaces>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -14,5 +15,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\GwensGame\abettor-of-splorr\src\AOS.Presentation\AOS.Presentation.vbproj" />
+    <ProjectReference Include="..\YTM.Application\YTM.Application.vbproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Import Include="AOS.Presentation" />
+    <Import Include="YTM.Application" />
+  </ItemGroup>
 
 </Project>
