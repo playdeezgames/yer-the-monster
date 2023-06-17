@@ -56,7 +56,7 @@ Module Program
                 Return Command.Right
             Case Keys.Left
                 Return Command.Left
-            Case Keys.Space
+            Case Keys.Space, Keys.Enter
                 Return Command.A
             Case Keys.Escape
                 Return Command.B

@@ -5,6 +5,10 @@
     End Sub
 
     Public Overrides Sub HandleCommand(command As Command)
+        Select Case command
+            Case Command.A
+                SetState(GameState.MainMenu)
+        End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
