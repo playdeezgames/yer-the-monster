@@ -2,4 +2,5 @@
     Splash
     MainMenu
     ConfirmQuit
+    Options
 End Enum

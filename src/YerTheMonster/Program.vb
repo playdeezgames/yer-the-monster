@@ -11,7 +11,8 @@ Module Program
         Dim gameController As New GameController(
             (config.WindowWidth, config.WindowHeight),
             config.FullScreen,
-            config.SfxVolume)
+            config.SfxVolume,
+            AddressOf SaveConfig)
         Using host As New Host(Of Hue, Command, Sfx)(
             "Yer, The Monster",
             gameController,
@@ -23,10 +24,10 @@ Module Program
             host.Run()
         End Using
     End Sub
-
+    Private Const ConfigFileName = "config.json"
     Private Function ReadConfig() As YTMConfig
         Try
-            Return JsonSerializer.Deserialize(Of YTMConfig)(File.ReadAllText("config.json"))
+            Return JsonSerializer.Deserialize(Of YTMConfig)(File.ReadAllText(ConfigFileName))
         Catch ex As Exception
             Return New YTMConfig() With
             {
@@ -37,7 +38,9 @@ Module Program
             }
         End Try
     End Function
-
+    Private Sub SaveConfig(windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single)
+        File.WriteAllText(ConfigFileName, JsonSerializer.Serialize(New YTMConfig With {.SfxVolume = volume, .WindowHeight = windowSize.Item2, .WindowWidth = windowSize.Item1, .FullScreen = fullScreen}))
+    End Sub
     Private Function GamePadTransformer(oldState As GamePadState, newState As GamePadState) As Command()
         Dim results As New List(Of Command)
         If newState.IsButtonDown(Buttons.A) AndAlso Not oldState.IsButtonDown(Buttons.A) Then

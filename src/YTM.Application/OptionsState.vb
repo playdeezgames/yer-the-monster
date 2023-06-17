@@ -1,6 +1,6 @@
-﻿Friend Class MainMenuState
+﻿Friend Class OptionsState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
-    Private ReadOnly MenuItems() As String = {EmbarkText, LoadText, OptionsText, AboutText, QuitText}
+    Private ReadOnly MenuItems() As String = {GoBackText, ToggleFullScreenText, SetWindowSizeText, SetVolumeText}
     Private MenuItemIndex As Integer = 0
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
@@ -14,16 +14,18 @@
             Case Command.A
                 HandleMenuItem(MenuItems(MenuItemIndex))
             Case Command.B
-                HandleMenuItem(QuitText)
+                HandleMenuItem(GoBackText)
         End Select
     End Sub
 
     Private Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
-            Case QuitText
-                SetState(GameState.ConfirmQuit)
-            Case OptionsText
-                SetState(GameState.Options)
+            Case GoBackText
+                SetState(GameState.MainMenu)
+            Case ToggleFullScreenText
+                Parent.FullScreen = Not Parent.FullScreen
+            Case Else
+                Throw New NotImplementedException
         End Select
     End Sub
 
@@ -31,7 +33,7 @@
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         With font
-            .WriteText(displayBuffer, (0, 0), MainMenuTitle, Hue.White)
+            .WriteText(displayBuffer, (0, 0), OptionsTitle, Hue.White)
             Dim y = font.Height
             For index = 0 To MenuItems.Length - 1
                 .WriteText(displayBuffer, (0, y), MenuItems(index), If(index = MenuItemIndex, Hue.Magenta, Hue.Cyan))
