@@ -23,4 +23,8 @@
     <Import Include="YTM.Data" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Text.Json" Version="7.0.3" />
+  </ItemGroup>
+
 </Project>

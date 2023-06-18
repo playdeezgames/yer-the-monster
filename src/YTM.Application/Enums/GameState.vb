@@ -9,4 +9,5 @@
     Embark
     Load
     Neutral
+    GameMenu
 End Enum

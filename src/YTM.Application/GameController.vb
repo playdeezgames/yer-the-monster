@@ -6,6 +6,13 @@ Public Class GameController
         _configSink = configSink
         _configSink(Me.Size, Me.FullScreen, Me.Volume)
         Initialize()
+        CreateBoilerplateStates()
+        SetState(GameState.Neutral, New NeutralState(Me, AddressOf SetCurrentState))
+
+        SetCurrentState(GameState.Splash, True)
+    End Sub
+
+    Private Sub CreateBoilerplateStates()
         SetState(GameState.Splash, New SplashState(Me, AddressOf SetCurrentState))
         SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState))
         SetState(GameState.ConfirmQuit, New ConfirmQuitState(Me, AddressOf SetCurrentState))
@@ -15,9 +22,8 @@ Public Class GameController
         SetState(GameState.About, New AboutState(Me, AddressOf SetCurrentState))
         SetState(GameState.Embark, New EmbarkState(Me, AddressOf SetCurrentState))
         SetState(GameState.Load, New LoadState(Me, AddressOf SetCurrentState))
-
-        SetCurrentState(GameState.Splash, True)
     End Sub
+
     Private Sub SaveConfig()
         _configSink(Size, FullScreen, Volume)
     End Sub

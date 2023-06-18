@@ -9,4 +9,9 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         Throw New NotImplementedException()
     End Sub
+    Public Overrides Sub OnStart()
+        MyBase.OnStart()
+        Context.Embark()
+        SetState(GameState.Neutral)
+    End Sub
 End Class
