@@ -9,6 +9,7 @@ Public Class GameController
         CreateBoilerplateStates()
         SetState(GameState.Neutral, New NeutralState(Me, AddressOf SetCurrentState))
         SetState(GameState.GameMenu, New GameMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Abandon, New ConfirmAbandonState(Me, AddressOf SetCurrentState))
 
         SetCurrentState(GameState.Splash, True)
     End Sub

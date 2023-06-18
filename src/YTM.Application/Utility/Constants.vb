@@ -6,6 +6,7 @@
     Friend Const About4Text = "Learn You a Game Jam: Pixel Edition, June 17-27 2023"
     Friend Const AboutText = "About..."
     Friend Const AboutTitle = "About YTM:"
+    Friend Const ConfirmAbandonTitle = "Are you sure you want to abandon the game?"
     Friend Const ConfirmQuitTitle = "Are you sure you want to quit?"
     Friend Const ContinueGameText = "Continue Game"
     Friend Const EmbarkText = "Embark!"

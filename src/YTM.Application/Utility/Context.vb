@@ -13,6 +13,9 @@
     Friend Sub LoadFromSlot(index As Integer)
         World = Business.World.Load(SlotFilename(index))
     End Sub
+    Friend Sub Abandon()
+        World = Nothing
+    End Sub
     Function DoesSaveExist(index As Integer) As Boolean
         Return File.Exists(SlotFilename(index))
     End Function
