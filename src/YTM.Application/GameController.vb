@@ -8,8 +8,6 @@ Public Class GameController
         Initialize()
         CreateBoilerplateStates()
         SetState(GameState.Neutral, New NeutralState(Me, AddressOf SetCurrentState))
-        SetState(GameState.GameMenu, New GameMenuState(Me, AddressOf SetCurrentState))
-        SetState(GameState.Abandon, New ConfirmAbandonState(Me, AddressOf SetCurrentState))
 
         SetCurrentState(GameState.Splash, True)
     End Sub
@@ -24,6 +22,9 @@ Public Class GameController
         SetState(GameState.About, New AboutState(Me, AddressOf SetCurrentState))
         SetState(GameState.Embark, New EmbarkState(Me, AddressOf SetCurrentState))
         SetState(GameState.Load, New LoadState(Me, AddressOf SetCurrentState))
+        SetState(GameState.GameMenu, New GameMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Abandon, New ConfirmAbandonState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Save, New SaveState(Me, AddressOf SetCurrentState))
     End Sub
 
     Private Sub SaveConfig()

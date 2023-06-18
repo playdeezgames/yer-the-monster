@@ -10,7 +10,7 @@
             Case QuitText
                 SetState(GameState.ConfirmQuit)
             Case OptionsText
-                SetState(GameState.Options)
+                SetStates(GameState.Options, GameState.MainMenu)
             Case AboutText
                 SetState(GameState.About)
             Case EmbarkText

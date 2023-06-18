@@ -20,7 +20,7 @@
             Case SaveGameText
                 SetState(GameState.Save)
             Case OptionsText
-                'TODO: push options state
+                SetStates(GameState.Options, GameState.GameMenu)
             Case AbandonGameText
                 SetState(GameState.Abandon)
         End Select

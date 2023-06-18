@@ -18,7 +18,7 @@
     Protected Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case GoBackText
-                SetState(GameState.MainMenu)
+                PopState()
             Case ToggleFullScreenText
                 Parent.FullScreen = Not Parent.FullScreen
             Case SetWindowSizeText
