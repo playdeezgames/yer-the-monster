@@ -13,6 +13,10 @@
                 SetState(GameState.Options)
             Case AboutText
                 SetState(GameState.About)
+            Case EmbarkText
+                SetState(GameState.Embark)
+            Case LoadText
+                SetState(GameState.Load)
             Case Else
                 Throw New NotImplementedException()
         End Select

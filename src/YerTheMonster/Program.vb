@@ -98,6 +98,7 @@ Module Program
     Private ReadOnly sfxFileNames As IReadOnlyDictionary(Of Sfx, String) =
         New Dictionary(Of Sfx, String) From
         {
-            {Sfx.PlayerHit, "Content/PlayerHit.wav"}
+            {Sfx.PlayerHit, "Content/PlayerHit.wav"},
+            {Sfx.Shucks, "Content/Shucks.wav"}
         }
 End Module

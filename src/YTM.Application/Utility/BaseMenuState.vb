@@ -1,9 +1,14 @@
 ﻿Friend MustInherit Class BaseMenuState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
-    Private ReadOnly MenuItems As String()
-    Private MenuItemIndex As Integer = 0
-    Private ReadOnly CancelMenuItem As String
-    Private ReadOnly Title As String
+    Private ReadOnly _menuItems As String()
+    Private _menuItemIndex As Integer = 0
+    Private ReadOnly _cancelMenuItem As String
+    Private ReadOnly _title As String
+    Protected ReadOnly Property MenuItemIndex As Integer
+        Get
+            Return _menuItemIndex
+        End Get
+    End Property
     Public Sub New(
                   parent As IGameController(Of Hue, Command, Sfx),
                   setState As Action(Of GameState?, Boolean),
@@ -11,20 +16,20 @@
                   menuItems As String(),
                   cancelMenuItem As String)
         MyBase.New(parent, setState)
-        Me.Title = title
-        Me.MenuItems = menuItems
-        Me.CancelMenuItem = cancelMenuItem
+        Me._title = title
+        Me._menuItems = menuItems
+        Me._cancelMenuItem = cancelMenuItem
     End Sub
     Public Overrides Sub HandleCommand(command As Command)
         Select Case command
             Case Command.Up
-                MenuItemIndex = (MenuItemIndex + MenuItems.Length - 1) Mod MenuItems.Length
+                _menuItemIndex = (_menuItemIndex + _menuItems.Length - 1) Mod _menuItems.Length
             Case Command.Down
-                MenuItemIndex = (MenuItemIndex + 1) Mod MenuItems.Length
+                _menuItemIndex = (_menuItemIndex + 1) Mod _menuItems.Length
             Case Command.A
-                HandleMenuItem(MenuItems(MenuItemIndex))
+                HandleMenuItem(_menuItems(_menuItemIndex))
             Case Command.B
-                HandleMenuItem(CancelMenuItem)
+                HandleMenuItem(_cancelMenuItem)
         End Select
     End Sub
     Protected MustOverride Sub HandleMenuItem(menuItem As String)
@@ -32,10 +37,10 @@
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         With font
-            .WriteText(displayBuffer, (0, 0), Title, Hue.White)
+            .WriteText(displayBuffer, (0, 0), _title, Hue.White)
             Dim y = font.Height
-            For index = 0 To MenuItems.Length - 1
-                .WriteText(displayBuffer, (0, y), MenuItems(index), If(index = MenuItemIndex, Hue.Magenta, Hue.Cyan))
+            For index = 0 To _menuItems.Length - 1
+                .WriteText(displayBuffer, (0, y), _menuItems(index), If(index = _menuItemIndex, Hue.Magenta, Hue.Cyan))
                 y += font.Height
             Next
         End With

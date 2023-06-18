@@ -6,4 +6,7 @@
     WindowSize
     Volume
     About
+    Embark
+    Load
+    Neutral
 End Enum

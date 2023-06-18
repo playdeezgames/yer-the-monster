@@ -13,6 +13,8 @@ Public Class GameController
         SetState(GameState.WindowSize, New WindowSizeState(Me, AddressOf SetCurrentState, AddressOf SaveConfig))
         SetState(GameState.Volume, New VolumeState(Me, AddressOf SetCurrentState, AddressOf SaveConfig))
         SetState(GameState.About, New AboutState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Embark, New EmbarkState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Load, New LoadState(Me, AddressOf SetCurrentState))
 
         SetCurrentState(GameState.Splash, True)
     End Sub
