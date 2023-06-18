@@ -4,7 +4,7 @@
     <RootNamespace>YTM.Application</RootNamespace>
     <TargetFramework>netstandard2.1</TargetFramework>
     <OptionStrict>On</OptionStrict>
-    <ImportedNamespaces>AOS.UI=False,System.IO=False,System.Text.Json=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,YTM.Application=True</ImportedNamespaces>
+    <ImportedNamespaces>AOS.UI=False,System.IO=False,System.Text.Json=False,YTM.Business=False,YTM.Data=False,YTM.Initializer=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,YTM.Application=True</ImportedNamespaces>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -17,12 +17,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\GwensGame\abettor-of-splorr\src\AOS.UI\AOS.UI.vbproj" />
+    <ProjectReference Include="..\YTM.Initializer\YTM.Initializer.vbproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Import Include="AOS.UI" />
     <Import Include="System.IO" />
     <Import Include="System.Text.Json" />
+    <Import Include="YTM.Business" />
+    <Import Include="YTM.Data" />
+    <Import Include="YTM.Initializer" />
   </ItemGroup>
 
   <ItemGroup>
