@@ -8,6 +8,7 @@ Public Class GameController
         Initialize()
         CreateBoilerplateStates()
         SetState(GameState.Neutral, New NeutralState(Me, AddressOf SetCurrentState))
+        SetState(GameState.GameMenu, New GameMenuState(Me, AddressOf SetCurrentState))
 
         SetCurrentState(GameState.Splash, True)
     End Sub

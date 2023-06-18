@@ -1,4 +1,5 @@
 ﻿Public Module Constants
+    Friend Const AbandonGameText = "Abandon Game"
     Friend Const About1Text = "Written by TheGrumpyGameDev. Developed mostly while "
     Friend Const About2Text = "streaming, with ""help"" from his audience of mal-"
     Friend Const About3Text = "contents and ne'er-do-wells for TheCaptainCoder's "
@@ -6,7 +7,9 @@
     Friend Const AboutText = "About..."
     Friend Const AboutTitle = "About YTM:"
     Friend Const ConfirmQuitTitle = "Are you sure you want to quit?"
+    Friend Const ContinueGameText = "Continue Game"
     Friend Const EmbarkText = "Embark!"
+    Friend Const GameMenuTitle = "Game Menu:"
     Friend Const GoBackText = "Go Back"
     Friend Const LoadText = "Load..."
     Friend Const LoadTitle = "Load:"
@@ -15,6 +18,7 @@
     Friend Const OptionsText = "Options..."
     Friend Const OptionsTitle = "Options:"
     Friend Const QuitText = "Quit"
+    Friend Const SaveGameText = "Save..."
     Friend Const SaveSlotDoesNotExistText = "Save slot does not exist!"
     Friend Const SaveSlotExistsText = "Save slot exists!"
     Friend Const Scale1Text = "640x400"

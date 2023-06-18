@@ -10,4 +10,6 @@
     Load
     Neutral
     GameMenu
+    Save
+    Abandon
 End Enum
