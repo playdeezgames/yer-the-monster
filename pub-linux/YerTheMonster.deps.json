@@ -774,10 +774,33 @@
       "YTM.Application/1.0.0": {
         "dependencies": {
           "AOS.UI": "1.0.0",
-          "System.Text.Json": "7.0.3"
+          "System.Text.Json": "7.0.3",
+          "YTM.Initializer": "1.0.0"
         },
         "runtime": {
           "YTM.Application.dll": {}
+        }
+      },
+      "YTM.Business/1.0.0": {
+        "dependencies": {
+          "System.Text.Json": "7.0.3",
+          "YTM.Data": "1.0.0"
+        },
+        "runtime": {
+          "YTM.Business.dll": {}
+        }
+      },
+      "YTM.Data/1.0.0": {
+        "runtime": {
+          "YTM.Data.dll": {}
+        }
+      },
+      "YTM.Initializer/1.0.0": {
+        "dependencies": {
+          "YTM.Business": "1.0.0"
+        },
+        "runtime": {
+          "YTM.Initializer.dll": {}
         }
       }
     }
@@ -832,6 +855,21 @@
       "sha512": ""
     },
     "YTM.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "YTM.Business/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "YTM.Data/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "YTM.Initializer/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
