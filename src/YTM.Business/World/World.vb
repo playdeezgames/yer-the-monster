@@ -60,4 +60,21 @@ Public Class World
         location.AddCharacter(result)
         Return result
     End Function
+
+    Public Function CreateItem(itemType As String) As IItem Implements IWorld.CreateItem
+        Dim data As New ItemData With
+            {
+                .ItemType = itemType,
+                .Recycled = False
+            }
+        Dim itemId = WorldData.Items.FindIndex(Function(x) x.Recycled)
+        If itemId < 0 Then
+            itemId = WorldData.Items.Count
+            WorldData.Items.Add(data)
+        Else
+            WorldData.Items(itemId) = data
+        End If
+        Dim result = New Item(WorldData, itemId)
+        Return result
+    End Function
 End Class

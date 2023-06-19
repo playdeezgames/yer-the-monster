@@ -19,4 +19,8 @@
             Return New Location(WorldData, CharacterData.LocationId)
         End Get
     End Property
+
+    Public Sub AddItem(item As IItem) Implements ICharacter.AddItem
+        CharacterData.ItemIds.Add(item.Id)
+    End Sub
 End Class
