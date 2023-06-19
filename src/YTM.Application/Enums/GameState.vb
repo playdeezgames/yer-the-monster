@@ -12,4 +12,5 @@
     GameMenu
     Save
     Abandon
+    ActionMenu
 End Enum

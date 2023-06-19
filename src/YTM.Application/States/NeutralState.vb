@@ -7,6 +7,8 @@
         Select Case command
             Case Command.B
                 SetState(GameState.GameMenu)
+            Case Command.A
+                SetState(GameState.ActionMenu)
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
