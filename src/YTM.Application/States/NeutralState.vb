@@ -21,8 +21,7 @@
             y += font.Height
             .WriteText(displayBuffer, (0, y), $"Location: {avatar.Location.Name}", Hue.White)
 
-            displayBuffer.Fill((0, ViewHeight - font.Height), (ViewWidth, font.Height), Hue.Magenta)
-            .WriteText(displayBuffer, (0, ViewHeight - font.Height), "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black)
+            ShowStatusBar(displayBuffer, font, "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.White)
         End With
     End Sub
 End Class

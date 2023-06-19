@@ -26,6 +26,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property Items As IEnumerable(Of IItem) Implements ICharacter.Items
+        Get
+            Return CharacterData.ItemIds.Select(Function(x) New Item(WorldData, x))
+        End Get
+    End Property
+
     Public Sub AddItem(item As IItem) Implements ICharacter.AddItem
         CharacterData.ItemIds.Add(item.Id)
     End Sub

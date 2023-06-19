@@ -16,7 +16,7 @@
             Case GoBackText
                 SetState(GameState.Neutral)
             Case InventoryText
-                'SetState(GameState.Inventory)
+                SetState(GameState.Inventory)
             Case Else
                 Throw New NotImplementedException
         End Select
@@ -29,9 +29,9 @@
             Select Case MenuItemText
                 Case InventoryText
                     If avatar.HasItems Then
-                        .WriteText(displayBuffer, (0, ViewHeight - font.Height), "View Yer's Items", Hue.White)
+                        ShowStatusBar(displayBuffer, font, "View Yer's Items", Hue.Black, Hue.White)
                     Else
-                        .WriteText(displayBuffer, (0, ViewHeight - font.Height), "Yer has no Items", Hue.Magenta)
+                        ShowStatusBar(displayBuffer, font, "Yer has no Items", Hue.Black, Hue.Magenta)
                     End If
             End Select
         End With

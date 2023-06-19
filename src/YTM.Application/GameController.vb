@@ -9,6 +9,7 @@ Public Class GameController
         CreateBoilerplateStates()
         SetState(GameState.Neutral, New NeutralState(Me, AddressOf SetCurrentState))
         SetState(GameState.ActionMenu, New ActionMenuState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Inventory, New InventoryState(Me, AddressOf SetCurrentState))
 
         SetCurrentState(GameState.Splash, True)
     End Sub

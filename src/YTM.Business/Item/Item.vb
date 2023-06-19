@@ -9,4 +9,13 @@
             Return ItemId
         End Get
     End Property
+
+    Public Property Name As String Implements IItem.Name
+        Get
+            Return ItemData.Name
+        End Get
+        Set(value As String)
+            ItemData.Name = value
+        End Set
+    End Property
 End Class
