@@ -12,8 +12,14 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
+        Dim avatar = World.Avatar
+        Dim y = 0
         With font
-            .WriteText(displayBuffer, (0, 0), "Yer playing the game!", Hue.White)
+            .WriteText(displayBuffer, (0, y), $"Name: {avatar.Name}", Hue.White)
+            y += font.Height
+            .WriteText(displayBuffer, (0, y), $"Location: {avatar.Location.Name}", Hue.White)
+
+            .WriteText(displayBuffer, (0, ViewHeight - font.Height), "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.White)
         End With
     End Sub
 End Class
