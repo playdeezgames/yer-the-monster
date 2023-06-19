@@ -13,4 +13,5 @@
     Save
     Abandon
     ActionMenu
+    Inventory
 End Enum

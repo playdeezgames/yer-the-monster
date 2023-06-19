@@ -13,6 +13,7 @@
     Friend Const EmbarkText = "Embark!"
     Friend Const GameMenuTitle = "Game Menu:"
     Friend Const GoBackText = "Go Back"
+    Friend Const InventoryText = "Inventory"
     Friend Const LoadText = "Load..."
     Friend Const LoadTitle = "Load From Slot:"
     Friend Const MainMenuTitle = "Main Menu:"

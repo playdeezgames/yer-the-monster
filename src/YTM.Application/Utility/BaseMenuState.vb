@@ -9,6 +9,11 @@
             Return _menuItemIndex
         End Get
     End Property
+    Protected ReadOnly Property MenuItemText As String
+        Get
+            Return _menuItems(MenuItemIndex)
+        End Get
+    End Property
     Public Sub New(
                   parent As IGameController(Of Hue, Command, Sfx),
                   setState As Action(Of GameState?, Boolean),
@@ -27,7 +32,7 @@
             Case Command.Down
                 _menuItemIndex = (_menuItemIndex + 1) Mod _menuItems.Length
             Case Command.A
-                HandleMenuItem(_menuItems(_menuItemIndex))
+                HandleMenuItem(MenuItemText)
             Case Command.B
                 HandleMenuItem(_cancelMenuItem)
         End Select

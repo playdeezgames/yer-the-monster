@@ -20,6 +20,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property HasItems As Boolean Implements ICharacter.HasItems
+        Get
+            Return CharacterData.ItemIds.Any
+        End Get
+    End Property
+
     Public Sub AddItem(item As IItem) Implements ICharacter.AddItem
         CharacterData.ItemIds.Add(item.Id)
     End Sub
