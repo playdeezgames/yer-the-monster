@@ -22,4 +22,7 @@
     Private Function SlotFilename(index As Integer) As String
         Return $"slot{index}.json"
     End Function
+    Function UIFont() As Font
+        Return Fonts.GetFont(GameFont.Font5x7)
+    End Function
 End Module

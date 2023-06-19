@@ -21,4 +21,19 @@
                 Throw New NotImplementedException()
         End Select
     End Sub
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+        MyBase.Render(displayBuffer)
+        Select Case MenuItemText
+            Case EmbarkText
+                Utility.ShowStatusBar(displayBuffer, UIFont, "Start a new game!", Hue.Black, Hue.White)
+            Case LoadText
+                Utility.ShowStatusBar(displayBuffer, UIFont, "Continue a game!", Hue.Black, Hue.White)
+            Case QuitText
+                Utility.ShowStatusBar(displayBuffer, UIFont, "I'll miss you! <3", Hue.Black, Hue.White)
+            Case AboutText
+                Utility.ShowStatusBar(displayBuffer, UIFont, "Learn all the things about this fine game!", Hue.Black, Hue.White)
+            Case OptionsText
+                Utility.ShowStatusBar(displayBuffer, UIFont, "Change Window Size and Volume!", Hue.Black, Hue.White)
+        End Select
+    End Sub
 End Class
