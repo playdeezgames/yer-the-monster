@@ -7,8 +7,9 @@ Public Module WorldInitializer
         world.Avatar = yer
     End Sub
     Private Function CreateItem(world As IWorld, itemType As String) As IItem
+        Dim descriptor = ItemTypes.Descriptors(itemType)
         Dim item = world.CreateItem(ItemTypes.Nihil)
-        item.Name = itemType
+        item.Name = descriptor.Name
         Return item
     End Function
 End Module
