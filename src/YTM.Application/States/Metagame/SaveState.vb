@@ -28,7 +28,7 @@
         MyBase.Render(displayBuffer)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         If MenuItemIndex > 0 AndAlso Context.DoesSaveExist(MenuItemIndex) Then
-            font.WriteText(displayBuffer, (0, ViewHeight - font.Height), "Will overwrite!", Hue.Magenta)
+            ShowStatusBar(displayBuffer, font, "Will overwrite!", Hue.Black, Hue.Magenta)
         End If
     End Sub
 End Class

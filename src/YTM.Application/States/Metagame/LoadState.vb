@@ -33,9 +33,9 @@
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         If MenuItemIndex > 0 Then
             If DoesSaveExist(MenuItemIndex) Then
-                font.WriteText(displayBuffer, (0, ViewHeight - font.Height), SaveSlotExistsText, Hue.Cyan)
+                ShowStatusBar(displayBuffer, font, SaveSlotExistsText, Hue.Black, Hue.White)
             Else
-                font.WriteText(displayBuffer, (0, ViewHeight - font.Height), SaveSlotDoesNotExistText, Hue.Magenta)
+                ShowStatusBar(displayBuffer, font, SaveSlotDoesNotExistText, Hue.Black, Hue.Magenta)
             End If
         End If
     End Sub
