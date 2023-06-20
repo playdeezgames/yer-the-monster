@@ -8,6 +8,7 @@
         Return world.CreateLocation(locationType, name)
     End Function
     Friend Function CreateCharacter(location As ILocation, characterType As String, name As String) As ICharacter
-        Return location.World.CreateCharacter(characterType, name, location)
+        Dim descriptor = characterType.ToCharacterTypeDescriptor()
+        Return location.World.CreateCharacter(characterType, name, location, descriptor.Statistics)
     End Function
 End Module

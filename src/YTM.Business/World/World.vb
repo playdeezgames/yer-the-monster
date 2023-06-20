@@ -53,13 +53,18 @@ Public Class World
         Return New Location(WorldData, locationId)
     End Function
 
-    Public Function CreateCharacter(characterType As String, name As String, location As ILocation) As ICharacter Implements IWorld.CreateCharacter
+    Public Function CreateCharacter(
+                                   characterType As String,
+                                   name As String,
+                                   location As ILocation,
+                                   statistics As IReadOnlyDictionary(Of String, Integer)) As ICharacter Implements IWorld.CreateCharacter
         Dim data As New CharacterData With
             {
                 .CharacterType = characterType,
                 .Name = name,
                 .Recycled = False,
-                .LocationId = location.Id
+                .LocationId = location.Id,
+                .Statistics = statistics.ToDictionary(Function(x) x.Key, Function(x) x.Value)
             }
         Dim characterId = WorldData.Characters.FindIndex(Function(x) x.Recycled)
         If characterId < 0 Then
