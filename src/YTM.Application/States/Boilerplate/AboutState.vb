@@ -16,5 +16,6 @@
             .WriteText(displayBuffer, (0, font.Height * 6), About3Text, Hue.Magenta)
             .WriteText(displayBuffer, (0, font.Height * 8), About4Text, Hue.Magenta)
         End With
+        ShowStatusBar(displayBuffer, font, "Space/(A) - Return to Main Menu", Hue.Black, Hue.White)
     End Sub
 End Class
