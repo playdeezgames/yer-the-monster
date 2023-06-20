@@ -3,15 +3,18 @@
     Private _menuItems As New List(Of (String, String))
     Private _menuItemIndex As Integer
     Private ReadOnly _statusBarText As String
+    Private ReadOnly _headerText As String
     Private ReadOnly _cancelGameState As GameState
     Public Sub New(
                   parent As IGameController(Of Hue, Command, Sfx),
                   setState As Action(Of GameState?, Boolean),
+                  headerText As String,
                   statusBarText As String,
                   cancelGameState As GameState)
         MyBase.New(parent, setState)
         _statusBarText = statusBarText
         _cancelGameState = cancelGameState
+        _headerText = headerText
     End Sub
     Public Overrides Sub HandleCommand(command As Command)
         Select Case command
@@ -38,6 +41,7 @@
             index += 1
             y += font.Height
         Next
+        ShowHeader(displayBuffer, font, _headerText, Hue.White, Hue.Black)
         ShowStatusBar(displayBuffer, font, _statusBarText, Hue.Black, Hue.White)
     End Sub
     Public Overrides Sub OnStart()

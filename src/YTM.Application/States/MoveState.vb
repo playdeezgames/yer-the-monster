@@ -1,7 +1,7 @@
 ﻿Friend Class MoveState
     Inherits BasePickerState
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
-        MyBase.New(parent, setState, "Space/(A) - Go! | Esc/(B) - Cancel", GameState.ActionMenu)
+        MyBase.New(parent, setState, "Move Which Way?", "Space/(A) - Go! | Esc/(B) - Cancel", GameState.ActionMenu)
     End Sub
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         Select Case value.Item2
