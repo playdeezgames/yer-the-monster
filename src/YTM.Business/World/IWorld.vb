@@ -4,4 +4,5 @@ Public Interface IWorld
     Function CreateCharacter(characterType As String, name As String, location As ILocation) As ICharacter
     Property Avatar As ICharacter
     Function CreateItem(itemType As String, name As String) As IItem
+    ReadOnly Property Locations As IEnumerable(Of ILocation)
 End Interface

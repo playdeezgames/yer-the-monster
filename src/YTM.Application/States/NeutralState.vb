@@ -20,6 +20,9 @@
             .WriteText(displayBuffer, (0, y), $"Name: {avatar.Name}", Hue.White)
             y += font.Height
             .WriteText(displayBuffer, (0, y), $"Location: {avatar.Location.Name}", Hue.White)
+            y += font.Height
+            Dim exits = avatar.Location.Routes
+            .WriteText(displayBuffer, (0, y), $"Exits: {String.Join(", ", exits.Select(Function(x) x.Direction.ToDirectionDescriptor.Name).ToArray)}", Hue.White)
 
             ShowStatusBar(displayBuffer, font, "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.White)
         End With

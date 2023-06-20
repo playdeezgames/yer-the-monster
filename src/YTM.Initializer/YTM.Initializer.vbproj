@@ -4,7 +4,7 @@
     <RootNamespace>YTM.Initializer</RootNamespace>
     <TargetFramework>netstandard2.1</TargetFramework>
     <OptionStrict>On</OptionStrict>
-    <ImportedNamespaces>YTM.Business=False,YTM.Data=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,YTM.Initializer=True</ImportedNamespaces>
+    <ImportedNamespaces>SPLORR.Game=False,YTM.Business=False,YTM.Data=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,YTM.Initializer=True</ImportedNamespaces>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,10 +16,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\GwensGame\abettor-of-splorr\src\SPLORR.Game\SPLORR.Game.vbproj" />
     <ProjectReference Include="..\YTM.Business\YTM.Business.vbproj" />
   </ItemGroup>
 
   <ItemGroup>
+    <Import Include="SPLORR.Game" />
     <Import Include="YTM.Business" />
     <Import Include="YTM.Data" />
   </ItemGroup>

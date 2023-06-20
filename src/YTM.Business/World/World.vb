@@ -21,6 +21,16 @@ Public Class World
         End Set
     End Property
 
+    Public ReadOnly Property Locations As IEnumerable(Of ILocation) Implements IWorld.Locations
+        Get
+            Dim result As New List(Of ILocation)
+            For index = 0 To WorldData.Locations.Count - 1
+                result.Add(New Location(WorldData, index))
+            Next
+            Return result
+        End Get
+    End Property
+
     Public Sub Save(filename As String) Implements IWorld.Save
         File.WriteAllText(filename, JsonSerializer.Serialize(WorldData))
     End Sub

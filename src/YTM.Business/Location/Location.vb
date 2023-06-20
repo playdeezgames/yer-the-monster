@@ -22,7 +22,32 @@
         End Get
     End Property
 
+    Public ReadOnly Property LocationType As String Implements ILocation.LocationType
+        Get
+            Return LocationData.LocationType
+        End Get
+    End Property
+
+    Public ReadOnly Property Routes As IEnumerable(Of IRoute) Implements ILocation.Routes
+        Get
+            Return LocationData.Routes.Keys.Select(Function(x) New Route(WorldData, LocationId, x))
+        End Get
+    End Property
+
     Public Sub AddCharacter(character As ICharacter) Implements ILocation.AddCharacter
         LocationData.CharacterIds.Add(character.Id)
     End Sub
+
+    Public Function CreateRoute(direction As String, routeType As String, destination As ILocation) As IRoute Implements ILocation.CreateRoute
+        LocationData.Routes(direction) = New RouteData With
+            {
+                .RouteType = routeType,
+                .DestinationId = destination.Id
+            }
+        Return New Route(WorldData, LocationId, direction)
+    End Function
+
+    Public Function HasRoute(direction As String) As Boolean Implements ILocation.HasRoute
+        Return LocationData.Routes.ContainsKey(direction)
+    End Function
 End Class
