@@ -14,10 +14,13 @@
             Return CharacterData.Name
         End Get
     End Property
-    Public ReadOnly Property Location As ILocation Implements ICharacter.Location
+    Public Property Location As ILocation Implements ICharacter.Location
         Get
             Return New Location(WorldData, CharacterData.LocationId)
         End Get
+        Set(value As ILocation)
+            CharacterData.LocationId = value.Id
+        End Set
     End Property
 
     Public ReadOnly Property HasItems As Boolean Implements ICharacter.HasItems

@@ -34,6 +34,15 @@
         End Get
     End Property
 
+    Public ReadOnly Property Route(direction As String) As IRoute Implements ILocation.Route
+        Get
+            If Not HasRoute(direction) Then
+                Return Nothing
+            End If
+            Return New Route(WorldData, LocationId, direction)
+        End Get
+    End Property
+
     Public Sub AddCharacter(character As ICharacter) Implements ILocation.AddCharacter
         LocationData.CharacterIds.Add(character.Id)
     End Sub

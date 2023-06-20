@@ -7,6 +7,9 @@
         Select Case value.Item2
             Case NeverMindText
                 SetState(GameState.ActionMenu)
+            Case Else
+                World.Avatar.Move(value.Item2)
+                SetState(GameState.Neutral)
         End Select
     End Sub
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))

@@ -18,11 +18,9 @@
                     Dim nextRow = row + descriptor.DeltaY.Value
                     If nextColumn >= SwampColumns Then
                         nextColumn -= SwampColumns
-                        nextRow += 1
                     End If
                     If nextColumn < 0 Then
                         nextColumn += SwampColumns
-                        nextRow -= 1
                     End If
                     If nextRow >= SwampRows Then
                         nextRow -= SwampRows

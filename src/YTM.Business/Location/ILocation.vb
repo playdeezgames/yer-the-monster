@@ -7,4 +7,5 @@
     ReadOnly Property LocationType As String
     Function HasRoute(direction As String) As Boolean
     ReadOnly Property Routes As IEnumerable(Of IRoute)
+    ReadOnly Property Route(direction As String) As IRoute
 End Interface
