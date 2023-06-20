@@ -1,4 +1,5 @@
 ﻿Public Class CharacterData
+    Public Property CharacterType As String
     Public Property Name As String
     Public Property Recycled As Boolean
     Public Property LocationId As Integer

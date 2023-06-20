@@ -16,6 +16,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property World As IWorld Implements ILocation.World
+        Get
+            Return New World(WorldData)
+        End Get
+    End Property
+
     Public Sub AddCharacter(character As ICharacter) Implements ILocation.AddCharacter
         LocationData.CharacterIds.Add(character.Id)
     End Sub

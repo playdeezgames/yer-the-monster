@@ -32,9 +32,10 @@ Public Class World
         End Try
     End Function
 
-    Public Function CreateLocation(name As String) As ILocation Implements IWorld.CreateLocation
+    Public Function CreateLocation(locationType As String, name As String) As ILocation Implements IWorld.CreateLocation
         Dim data As New LocationData With
             {
+                .LocationType = locationType,
                 .Name = name
             }
         Dim locationId = WorldData.Locations.Count
@@ -42,9 +43,10 @@ Public Class World
         Return New Location(WorldData, locationId)
     End Function
 
-    Public Function CreateCharacter(name As String, location As ILocation) As ICharacter Implements IWorld.CreateCharacter
+    Public Function CreateCharacter(characterType As String, name As String, location As ILocation) As ICharacter Implements IWorld.CreateCharacter
         Dim data As New CharacterData With
             {
+                .CharacterType = characterType,
                 .Name = name,
                 .Recycled = False,
                 .LocationId = location.Id
@@ -61,10 +63,11 @@ Public Class World
         Return result
     End Function
 
-    Public Function CreateItem(itemType As String) As IItem Implements IWorld.CreateItem
+    Public Function CreateItem(itemType As String, name As String) As IItem Implements IWorld.CreateItem
         Dim data As New ItemData With
             {
                 .ItemType = itemType,
+                .Name = name,
                 .Recycled = False
             }
         Dim itemId = WorldData.Items.FindIndex(Function(x) x.Recycled)

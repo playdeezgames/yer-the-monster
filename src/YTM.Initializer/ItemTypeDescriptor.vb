@@ -1,6 +1,6 @@
 ﻿Friend Class ItemTypeDescriptor
-    ReadOnly Property Name As String
+    ReadOnly Property ItemName As String
     Sub New(name As String)
-        Me.Name = name
+        Me.ItemName = name
     End Sub
 End Class
