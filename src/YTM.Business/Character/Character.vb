@@ -35,6 +35,15 @@
         End Get
     End Property
 
+    Public Property Statistic(statisticType As String) As Integer Implements ICharacter.Statistic
+        Get
+            Return CharacterData.Statistics(statisticType)
+        End Get
+        Set(value As Integer)
+            CharacterData.Statistics(statisticType) = value
+        End Set
+    End Property
+
     Public Sub AddItem(item As IItem) Implements ICharacter.AddItem
         CharacterData.ItemIds.Add(item.Id)
     End Sub

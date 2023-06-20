@@ -19,6 +19,12 @@
         With font
             .WriteText(displayBuffer, (0, y), $"Name: {avatar.Name}", Hue.White)
             y += font.Height
+            .WriteText(displayBuffer, (0, y), $"Health: {avatar.Health}/{avatar.MaximumHealth}", Hue.White)
+            y += font.Height
+            .WriteText(displayBuffer, (0, y), $"Satiety: {avatar.Satiety}/{avatar.MaximumSatiety}", Hue.White)
+            y += font.Height
+            .WriteText(displayBuffer, (0, y), $"Energy: {avatar.Energy}/{avatar.MaximumEnergy}", Hue.White)
+            y += font.Height
             .WriteText(displayBuffer, (0, y), $"Location: {avatar.Location.Name}", Hue.White)
             y += font.Height
             Dim exits = avatar.Location.Routes
