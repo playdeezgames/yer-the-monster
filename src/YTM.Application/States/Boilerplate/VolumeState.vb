@@ -59,6 +59,6 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
-        font.WriteText(displayBuffer, (0, ViewHeight - font.Height), $"Current Volume: {Parent.Volume * 100.0F:F0}%", Hue.White)
+        ShowStatusBar(displayBuffer, font, $"Current Volume: {Parent.Volume * 100.0F:F0}%", Hue.Black, Hue.White)
     End Sub
 End Class
