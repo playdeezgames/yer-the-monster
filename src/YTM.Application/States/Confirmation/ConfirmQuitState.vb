@@ -29,5 +29,10 @@
             .WriteText(displayBuffer, (0, font.Height), NoText, If(Confirmation, Hue.Cyan, Hue.Magenta))
             .WriteText(displayBuffer, (0, font.Height * 2), YesText, If(Confirmation, Hue.Magenta, Hue.Cyan))
         End With
+        If Confirmation Then
+            ShowStatusBar(displayBuffer, font, "Please don't go!", Hue.Black, Hue.Magenta)
+        Else
+            ShowStatusBar(displayBuffer, font, "You'll stay?", Hue.Black, Hue.White)
+        End If
     End Sub
 End Class
