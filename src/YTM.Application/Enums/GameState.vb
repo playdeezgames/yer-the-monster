@@ -14,4 +14,5 @@
     Abandon
     ActionMenu
     Inventory
+    Move
 End Enum

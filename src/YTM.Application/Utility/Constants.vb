@@ -17,6 +17,8 @@
     Friend Const LoadText = "Load..."
     Friend Const LoadTitle = "Load From Slot:"
     Friend Const MainMenuTitle = "Main Menu:"
+    Friend Const MoveText = "Move..."
+    Friend Const NeverMindText = "Never Mind"
     Friend Const NoText = "No"
     Friend Const OptionsText = "Options..."
     Friend Const OptionsTitle = "Options:"

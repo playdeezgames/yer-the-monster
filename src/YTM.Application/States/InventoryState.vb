@@ -1,6 +1,4 @@
-﻿Imports System.Runtime.CompilerServices
-
-Friend Class InventoryState
+﻿Friend Class InventoryState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
     Private _menuItems As New List(Of (String, String))
     Private _menuItemIndex As Integer

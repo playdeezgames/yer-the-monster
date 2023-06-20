@@ -7,6 +7,7 @@
             ActionMenuTitle,
             {
                 GoBackText,
+                MoveText,
                 InventoryText
             },
             GoBackText)
@@ -17,6 +18,8 @@
                 SetState(GameState.Neutral)
             Case InventoryText
                 SetState(GameState.Inventory)
+            Case MoveText
+                SetState(GameState.Move)
             Case Else
                 Throw New NotImplementedException
         End Select
@@ -29,6 +32,8 @@
             Select Case MenuItemText
                 Case GoBackText
                     ShowStatusBar(displayBuffer, font, "Never mind...", Hue.Black, Hue.White)
+                Case MoveText
+                    ShowStatusBar(displayBuffer, font, "I gotta get out of this place!", Hue.Black, Hue.White)
                 Case InventoryText
                     If avatar.HasItems Then
                         ShowStatusBar(displayBuffer, font, "View Yer's Items", Hue.Black, Hue.White)
