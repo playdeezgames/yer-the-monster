@@ -27,8 +27,14 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
-        If MenuItemIndex > 0 AndAlso Context.DoesSaveExist(MenuItemIndex) Then
-            ShowStatusBar(displayBuffer, font, "Will overwrite!", Hue.Black, Hue.Magenta)
+        If MenuItemIndex > 0 Then
+            If Context.DoesSaveExist(MenuItemIndex) Then
+                ShowStatusBar(displayBuffer, font, "Will overwrite!", Hue.Black, Hue.Magenta)
+            Else
+                ShowStatusBar(displayBuffer, font, "This slot is empty!", Hue.Black, Hue.White)
+            End If
+        Else
+            ShowStatusBar(displayBuffer, font, "On second thought...", Hue.Black, Hue.White)
         End If
     End Sub
 End Class

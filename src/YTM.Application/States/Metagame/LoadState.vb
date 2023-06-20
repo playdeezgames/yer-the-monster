@@ -37,6 +37,8 @@
             Else
                 ShowStatusBar(displayBuffer, font, SaveSlotDoesNotExistText, Hue.Black, Hue.Magenta)
             End If
+        Else
+            ShowStatusBar(displayBuffer, font, "On second thought...", Hue.Black, Hue.White)
         End If
     End Sub
 End Class
