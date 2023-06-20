@@ -25,4 +25,24 @@
                 SetState(GameState.Abandon)
         End Select
     End Sub
+    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+        MyBase.Render(displayBuffer)
+        ShowStatusBar(displayBuffer, Context.UIFont, _table(MenuItemText), Hue.Black, _hueTable(MenuItemText))
+    End Sub
+    Private ReadOnly _table As IReadOnlyDictionary(Of String, String) =
+        New Dictionary(Of String, String) From
+        {
+                {ContinueGameText, "Get back to the action!"},
+                {SaveGameText, "For save scumming!"},
+                {OptionsText, "Change Window Size and Volume!"},
+                {AbandonGameText, "Don't you dare!"}
+        }
+    Private ReadOnly _hueTable As IReadOnlyDictionary(Of String, Hue) =
+        New Dictionary(Of String, Hue) From
+        {
+                {ContinueGameText, Hue.White},
+                {SaveGameText, Hue.White},
+                {OptionsText, Hue.White},
+                {AbandonGameText, Hue.Magenta}
+        }
 End Class

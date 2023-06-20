@@ -27,6 +27,8 @@
         Dim avatar = World.Avatar
         With font
             Select Case MenuItemText
+                Case GoBackText
+                    ShowStatusBar(displayBuffer, font, "Never mind...", Hue.Black, Hue.White)
                 Case InventoryText
                     If avatar.HasItems Then
                         ShowStatusBar(displayBuffer, font, "View Yer's Items", Hue.Black, Hue.White)
