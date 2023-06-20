@@ -900,6 +900,11 @@
           "AOS.UI.dll": {}
         }
       },
+      "SPLORR.Game/1.0.0": {
+        "runtime": {
+          "SPLORR.Game.dll": {}
+        }
+      },
       "YTM.Application/1.0.0": {
         "dependencies": {
           "AOS.UI": "1.0.0",
@@ -926,6 +931,7 @@
       },
       "YTM.Initializer/1.0.0": {
         "dependencies": {
+          "SPLORR.Game": "1.0.0",
           "YTM.Business": "1.0.0"
         },
         "runtime": {
@@ -979,6 +985,11 @@
       "sha512": ""
     },
     "AOS.UI/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "SPLORR.Game/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
