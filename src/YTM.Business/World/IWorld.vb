@@ -9,4 +9,7 @@ Public Interface IWorld
     Property Avatar As ICharacter
     Function CreateItem(itemType As String, name As String) As IItem
     ReadOnly Property Locations As IEnumerable(Of ILocation)
+    ReadOnly Property HasMessages As Boolean
+    Sub NextMessage()
+    ReadOnly Property CurrentMessage As IMessage
 End Interface

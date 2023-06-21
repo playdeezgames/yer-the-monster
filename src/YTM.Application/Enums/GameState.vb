@@ -16,4 +16,5 @@
     Inventory
     Move
     Dead
+    Message
 End Enum

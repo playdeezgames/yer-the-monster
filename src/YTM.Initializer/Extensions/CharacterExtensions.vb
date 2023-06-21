@@ -5,6 +5,7 @@ Public Module CharacterExtensions
     Public Sub Move(character As ICharacter, direction As String)
         character.ApplyHunger(1)
         character.Location = character.Location.Route(direction).Destination
+        character.AddMessage($"{character.Name} moves {direction.ToDirectionDescriptor.Name}!")
     End Sub
     <Extension>
     Friend Sub ApplyHunger(character As ICharacter, hunger As Integer)

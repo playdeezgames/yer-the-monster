@@ -47,4 +47,14 @@
     Public Sub AddItem(item As IItem) Implements ICharacter.AddItem
         CharacterData.ItemIds.Add(item.Id)
     End Sub
+
+    Public Sub AddMessage(ParamArray lines() As String) Implements ICharacter.AddMessage
+        If WorldData.AvatarCharacterId.HasValue AndAlso WorldData.AvatarCharacterId.Value = Id Then
+            WorldData.Messages.Add(
+                New MessageData With
+                {
+                    .Lines = lines.ToList
+                })
+        End If
+    End Sub
 End Class

@@ -31,9 +31,29 @@ Public Class World
         End Get
     End Property
 
+    Public ReadOnly Property HasMessages As Boolean Implements IWorld.HasMessages
+        Get
+            Return WorldData.Messages.Any
+        End Get
+    End Property
+
+    Public ReadOnly Property CurrentMessage As IMessage Implements IWorld.CurrentMessage
+        Get
+            If Not HasMessages Then
+                Return Nothing
+            End If
+            Return New Message(WorldData)
+        End Get
+    End Property
+
     Public Sub Save(filename As String) Implements IWorld.Save
         File.WriteAllText(filename, JsonSerializer.Serialize(WorldData))
     End Sub
+
+    Public Sub NextMessage() Implements IWorld.NextMessage
+        WorldData.Messages.RemoveAt(0)
+    End Sub
+
     Public Shared Function Load(filename As String) As IWorld
         Try
             Return New World(JsonSerializer.Deserialize(Of WorldData)(File.ReadAllText(filename)))

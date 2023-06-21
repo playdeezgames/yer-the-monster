@@ -35,9 +35,14 @@
     End Sub
     Public Overrides Sub OnStart()
         MyBase.OnStart()
+        If World.HasMessages Then
+            SetState(GameState.Message)
+            Return
+        End If
         Dim avatar = World.Avatar
         If avatar.IsDead Then
             SetState(GameState.Dead)
+            Return
         End If
     End Sub
 End Class

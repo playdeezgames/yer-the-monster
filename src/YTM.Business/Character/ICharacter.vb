@@ -6,4 +6,5 @@
     ReadOnly Property HasItems As Boolean
     ReadOnly Property Items As IEnumerable(Of IItem)
     Property Statistic(statisticType As String) As Integer
+    Sub AddMessage(ParamArray lines As String())
 End Interface

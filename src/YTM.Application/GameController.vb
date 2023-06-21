@@ -12,6 +12,7 @@ Public Class GameController
         SetState(GameState.Inventory, New InventoryState(Me, AddressOf SetCurrentState))
         SetState(GameState.Move, New MoveState(Me, AddressOf SetCurrentState))
         SetState(GameState.Dead, New DeadState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Message, New MessageState(Me, AddressOf SetCurrentState))
 
         SetCurrentState(GameState.Splash, True)
     End Sub
