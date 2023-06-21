@@ -2,8 +2,19 @@
 
 Public Module CharacterExtensions
     <Extension>
-    Public Sub Move(character As ICharacter, direction As String)
+    Public Sub Move(character As ICharacter, deltaX As Integer, deltaY As Integer)
+        Dim mapCell = character.MapCell
+        Dim nextColumn = mapCell.Column + deltaX
+        Dim nextRow = mapCell.Row + deltaY
+        Dim map = mapCell.Map
+        If nextColumn < 0 OrElse nextRow < 0 OrElse nextColumn >= map.Columns OrElse nextRow >= map.Rows Then
+            Return
+        End If
         character.ApplyHunger(1)
+        mapCell.Character = Nothing
+        mapCell = map.Cell(nextColumn, nextRow)
+        mapCell.Character = character
+        character.MapCell = mapCell
     End Sub
     <Extension>
     Friend Sub ApplyHunger(character As ICharacter, hunger As Integer)

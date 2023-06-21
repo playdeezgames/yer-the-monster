@@ -16,4 +16,5 @@
     Inventory
     Dead
     Message
+    Navigation
 End Enum

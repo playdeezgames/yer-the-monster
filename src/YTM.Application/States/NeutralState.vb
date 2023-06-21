@@ -4,36 +4,10 @@
         MyBase.New(parent, setState)
     End Sub
     Public Overrides Sub HandleCommand(command As Command)
-        Select Case command
-            Case Command.B
-                SetState(GameState.GameMenu)
-            Case Command.A
-                SetState(GameState.ActionMenu)
-        End Select
+        Throw New NotImplementedException()
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim avatar = World.Avatar
-        Dim avatarColumn = avatar.MapCell.Column
-        Dim avatarRow = avatar.MapCell.Row
-        Dim map = avatar.MapCell.Map
-        Dim ytmFont = Fonts.GetFont(GameFont.YTM)
-        For column = 0 To map.Columns - 1
-            For row = 0 To map.Rows - 1
-                Dim x = CenterMapCellX + (column - avatarColumn) * MapCellWidth
-                Dim y = CenterMapCellY + (row - avatarRow) * MapCellHeight
-                Dim mapCell = map.Cell(column, row)
-                Dim terrainDescriptor = mapCell.TerrainType.ToTerrainTypeDescriptor
-                ytmFont.WriteText(displayBuffer, (x, y), terrainDescriptor.Character, terrainDescriptor.Hue)
-                Dim character = mapCell.Character
-                If character IsNot Nothing Then
-                    Dim characterDescriptor = character.CharacterType.ToCharacterTypeDescriptor
-                    ytmFont.WriteText(displayBuffer, (x, y), characterDescriptor.Character, characterDescriptor.Hue)
-                End If
-            Next
-        Next
-        ShowHeader(displayBuffer, UIFont, map.DisplayName, Hue.White, Hue.Black)
-        ShowStatusBar(displayBuffer, UIFont, "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.White)
+        Throw New NotImplementedException
     End Sub
     Public Overrides Sub OnStart()
         MyBase.OnStart()
@@ -46,5 +20,6 @@
             SetState(GameState.Dead)
             Return
         End If
+        SetState(GameState.Navigation)
     End Sub
 End Class
