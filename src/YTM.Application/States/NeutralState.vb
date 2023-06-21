@@ -33,4 +33,11 @@
             ShowStatusBar(displayBuffer, font, "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.White)
         End With
     End Sub
+    Public Overrides Sub OnStart()
+        MyBase.OnStart()
+        Dim avatar = World.Avatar
+        If avatar.IsDead Then
+            SetState(GameState.Dead)
+        End If
+    End Sub
 End Class

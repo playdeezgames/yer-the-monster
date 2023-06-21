@@ -48,4 +48,8 @@ Public Module CharacterExtensions
     Public Function MaximumEnergy(character As ICharacter) As Integer
         Return character.Statistic(StatisticTypes.MaximumEnergy)
     End Function
+    <Extension>
+    Public Function IsDead(character As ICharacter) As Boolean
+        Return character.Health <= 0
+    End Function
 End Module

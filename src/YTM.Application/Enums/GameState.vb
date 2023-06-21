@@ -15,4 +15,5 @@
     ActionMenu
     Inventory
     Move
+    Dead
 End Enum
