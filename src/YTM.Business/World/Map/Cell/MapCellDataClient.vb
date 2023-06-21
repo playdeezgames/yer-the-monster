@@ -8,10 +8,10 @@
             Return MapData.MapCells(Index)
         End Get
     End Property
-    Protected Sub New(worldData As WorldData, mapName As String, column As Integer, row As Integer)
-        MyBase.New(worldData, mapName)
+    Protected Sub New(worldData As WorldData, mapId As Integer, column As Integer, row As Integer)
+        MyBase.New(worldData, mapId)
         Me.Column = column
         Me.Row = row
-        Me.Index = column + row * worldData.Maps(mapName).Columns
+        Me.Index = column + row * worldData.Maps(mapId).Columns
     End Sub
 End Class

@@ -1,15 +1,15 @@
 ﻿Friend Class Map
     Inherits MapDataClient
     Implements IMap
-    Public Sub New(worldData As WorldData, mapName As String)
-        MyBase.New(worldData, mapName)
+    Public Sub New(worldData As WorldData, mapId As Integer)
+        MyBase.New(worldData, mapId)
     End Sub
     Public ReadOnly Property Cell(column As Integer, row As Integer) As IMapCell Implements IMap.Cell
         Get
             If column < 0 OrElse row < 0 OrElse column >= Columns OrElse row >= Rows Then
                 Return Nothing
             End If
-            Return New MapCell(WorldData, MapName, column, row)
+            Return New MapCell(WorldData, MapId, column, row)
         End Get
     End Property
 
@@ -25,9 +25,9 @@
         End Get
     End Property
 
-    Public ReadOnly Property Name As String Implements IMap.Name
+    Public ReadOnly Property Id As Integer Implements IMap.Id
         Get
-            Return Me.MapName
+            Return Me.MapId
         End Get
     End Property
 

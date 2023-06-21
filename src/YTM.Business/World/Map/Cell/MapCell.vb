@@ -1,12 +1,12 @@
 ﻿Friend Class MapCell
     Inherits MapCellDataClient
     Implements IMapCell
-    Sub New(worldData As WorldData, mapName As String, column As Integer, row As Integer)
-        MyBase.New(worldData, mapName, column, row)
+    Sub New(worldData As WorldData, mapId As Integer, column As Integer, row As Integer)
+        MyBase.New(worldData, mapId, column, row)
     End Sub
     Public ReadOnly Property Map As IMap Implements IMapCell.Map
         Get
-            Return New Map(WorldData, MapName)
+            Return New Map(WorldData, MapId)
         End Get
     End Property
 

@@ -62,7 +62,7 @@ Public Class World
                 .Name = name,
                 .Recycled = False,
                 .Statistics = statistics.ToDictionary(Function(x) x.Key, Function(x) x.Value),
-                .MapName = mapCell.Map.Name,
+                .MapId = mapCell.Map.Id,
                 .Column = mapCell.Column,
                 .Row = mapCell.Row
             }
@@ -97,7 +97,7 @@ Public Class World
     End Function
 
     Public Function CreateMap(
-                             mapName As String,
+                             mapTypeName As String,
                              displayName As String,
                              columns As Integer,
                              rows As Integer,
@@ -113,7 +113,8 @@ Public Class World
                              .CharacterId = Nothing
                              })
         End While
-        WorldData.Maps(mapName) = map
-        Return New Map(WorldData, mapName)
+        Dim mapId = WorldData.Maps.Count
+        WorldData.Maps.Add(map)
+        Return New Map(WorldData, mapId)
     End Function
 End Class

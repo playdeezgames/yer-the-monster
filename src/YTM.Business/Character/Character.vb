@@ -37,10 +37,10 @@
 
     Public Property MapCell As IMapCell Implements ICharacter.MapCell
         Get
-            Return New MapCell(WorldData, CharacterData.MapName, CharacterData.Column, CharacterData.Row)
+            Return New MapCell(WorldData, CharacterData.MapId, CharacterData.Column, CharacterData.Row)
         End Get
         Set(value As IMapCell)
-            CharacterData.MapName = value.Map.Name
+            CharacterData.MapId = value.Map.Id
             CharacterData.Column = value.Column
             CharacterData.Row = value.Row
         End Set

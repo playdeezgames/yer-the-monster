@@ -1,4 +1,4 @@
-﻿Friend Class MapDescriptor
+﻿Friend Class MapTypeDescriptor
     ReadOnly Property Columns As Integer
     ReadOnly Property Rows As Integer
     ReadOnly Property DefaultTerrain As String
