@@ -98,6 +98,7 @@ Public Class World
             WorldData.Characters(characterId) = data
         End If
         Dim result = New Character(WorldData, characterId)
+        mapCell.Character = result
         location.AddCharacter(result)
         Return result
     End Function

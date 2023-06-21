@@ -7,4 +7,5 @@
     ReadOnly Property Items As IEnumerable(Of IItem)
     Property Statistic(statisticType As String) As Integer
     Sub AddMessage(ParamArray lines As String())
+    Property MapCell As IMapCell
 End Interface

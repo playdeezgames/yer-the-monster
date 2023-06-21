@@ -44,6 +44,17 @@
         End Set
     End Property
 
+    Public Property MapCell As IMapCell Implements ICharacter.MapCell
+        Get
+            Return New MapCell(WorldData, CharacterData.MapName, CharacterData.Column, CharacterData.Row)
+        End Get
+        Set(value As IMapCell)
+            CharacterData.MapName = value.Map.Name
+            CharacterData.Column = value.Column
+            CharacterData.Row = value.Row
+        End Set
+    End Property
+
     Public Sub AddItem(item As IItem) Implements ICharacter.AddItem
         CharacterData.ItemIds.Add(item.Id)
     End Sub
