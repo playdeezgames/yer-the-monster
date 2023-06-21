@@ -77,6 +77,7 @@ Public Class World
                                    characterType As String,
                                    name As String,
                                    location As ILocation,
+                                   mapCell As IMapCell,
                                    statistics As IReadOnlyDictionary(Of String, Integer)) As ICharacter Implements IWorld.CreateCharacter
         Dim data As New CharacterData With
             {
@@ -84,7 +85,10 @@ Public Class World
                 .Name = name,
                 .Recycled = False,
                 .LocationId = location.Id,
-                .Statistics = statistics.ToDictionary(Function(x) x.Key, Function(x) x.Value)
+                .Statistics = statistics.ToDictionary(Function(x) x.Key, Function(x) x.Value),
+                .MapName = mapCell.Map.Name,
+                .Column = mapCell.Column,
+                .Row = mapCell.Row
             }
         Dim characterId = WorldData.Characters.FindIndex(Function(x) x.Recycled)
         If characterId < 0 Then
@@ -128,7 +132,10 @@ Public Class World
                 .Columns = columns
             }
         While map.MapCells.Count < columns * rows
-            map.MapCells.Add(New MapCellData With {.TerrainType = defaultTerrain})
+            map.MapCells.Add(New MapCellData With {
+                             .TerrainType = defaultTerrain,
+                             .CharacterId = Nothing
+                             })
         End While
         WorldData.Maps(mapName) = map
         Return New Map(WorldData, mapName)

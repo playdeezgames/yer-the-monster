@@ -6,7 +6,7 @@
         Dim oldLair = CreateLocation(world, LocationTypes.Lair, "Yer's Lair")
         oldSwampLocation.CreateRoute(Directions.Inward, RouteTypes.LairEntrance, oldLair)
         oldLair.CreateRoute(Directions.Outward, RouteTypes.LairEntrance, oldSwampLocation)
-        Dim yer = CreateCharacter(oldLair, CharacterTypes.Monster, "Yer")
+        Dim yer = CreateCharacter(oldLair, lairMap.Cell(lairMap.Columns \ 2, lairMap.Rows \ 2), CharacterTypes.Monster, "Yer")
         Dim nihil = CreateItem(world, ItemTypes.Nihil)
         yer.AddItem(nihil)
         world.Avatar = yer

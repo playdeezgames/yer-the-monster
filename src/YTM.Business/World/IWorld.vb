@@ -5,6 +5,7 @@ Public Interface IWorld
                             characterType As String,
                             name As String,
                             location As ILocation,
+                            mapCell As IMapCell,
                             statistics As IReadOnlyDictionary(Of String, Integer)) As ICharacter
     Property Avatar As ICharacter
     Function CreateItem(itemType As String, name As String) As IItem
