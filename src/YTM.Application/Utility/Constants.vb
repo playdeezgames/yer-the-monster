@@ -4,6 +4,7 @@
     Friend Const About2Text = "streaming, with ""help"" from his audience of mal-"
     Friend Const About3Text = "contents and ne'er-do-wells for TheCaptainCoder's "
     Friend Const About4Text = "Learn You a Game Jam: Pixel Edition, June 17-27 2023"
+    Friend Const About5Text = "Art: https://vurmux.itch.io/urizen-onebit-tilesets"
     Friend Const AboutText = "About..."
     Friend Const AboutTitle = "About YTM:"
     Friend Const ActionMenuTitle = "Actions:"
