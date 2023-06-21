@@ -12,7 +12,7 @@
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim font = Fonts.GetFont(GameFont.Font5x7)
+        Dim font = UIFont()
         With font
             .WriteText(displayBuffer, (0, 0), "A Game in VB.NET About", Hue.Magenta)
             .WriteText(displayBuffer, (0, font.Height), "Yer, the Monster,", Hue.Magenta)
@@ -21,6 +21,10 @@
             .WriteText(displayBuffer, (0, font.Height * 6), "For ""Learn You a Game Jam: Pixel Edition""", Hue.White)
 
             ShowStatusBar(displayBuffer, font, "Space/(A)", Hue.Black, Hue.White)
+        End With
+        font = Fonts.GetFont(GameFont.YTM)
+        With font
+            .WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(" ") \ 2, ViewHeight \ 2 - font.Height \ 2), " ", Hue.Cyan)
         End With
     End Sub
 End Class

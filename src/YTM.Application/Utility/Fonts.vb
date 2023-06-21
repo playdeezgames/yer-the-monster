@@ -5,7 +5,8 @@
             {GameFont.Font3x5, "Content/CyFont3x5.json"},
             {GameFont.Font4x6, "Content/CyFont4x6.json"},
             {GameFont.Font5x7, "Content/CyFont5x7.json"},
-            {GameFont.Font8x8, "Content/CyFont8x8.json"}
+            {GameFont.Font8x8, "Content/CyFont8x8.json"},
+            {GameFont.YTM, "Content/ytm.json"}
         }
     Private fonts As New Dictionary(Of GameFont, Font)
     Friend Sub Load()

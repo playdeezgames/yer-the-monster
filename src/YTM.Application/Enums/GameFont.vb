@@ -3,4 +3,5 @@
     Font4x6
     Font5x7
     Font8x8
+    YTM
 End Enum
