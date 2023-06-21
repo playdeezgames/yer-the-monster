@@ -27,7 +27,13 @@
 
     Public ReadOnly Property Name As String Implements IMap.Name
         Get
-            Throw New NotImplementedException()
+            Return Me.MapName
+        End Get
+    End Property
+
+    Public ReadOnly Property DisplayName As String Implements IMap.DisplayName
+        Get
+            Return MapData.DisplayName
         End Get
     End Property
 End Class

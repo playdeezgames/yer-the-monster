@@ -8,4 +8,5 @@
     Property Statistic(statisticType As String) As Integer
     Sub AddMessage(ParamArray lines As String())
     Property MapCell As IMapCell
+    ReadOnly Property CharacterType As String
 End Interface

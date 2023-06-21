@@ -13,25 +13,27 @@
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim font = Fonts.GetFont(GameFont.Font5x7)
         Dim avatar = World.Avatar
-        Dim y = 0
-        With font
-            .WriteText(displayBuffer, (0, y), $"Name: {avatar.Name}", Hue.White)
-            y += font.Height
-            .WriteText(displayBuffer, (0, y), $"Health: {avatar.Health}/{avatar.MaximumHealth}", Hue.White)
-            y += font.Height
-            .WriteText(displayBuffer, (0, y), $"Satiety: {avatar.Satiety}/{avatar.MaximumSatiety}", Hue.White)
-            y += font.Height
-            .WriteText(displayBuffer, (0, y), $"Energy: {avatar.Energy}/{avatar.MaximumEnergy}", Hue.White)
-            y += font.Height
-            .WriteText(displayBuffer, (0, y), $"Location: {avatar.Location.Name}", Hue.White)
-            y += font.Height
-            Dim exits = avatar.Location.Routes
-            .WriteText(displayBuffer, (0, y), $"Exits: {String.Join(", ", exits.Select(Function(x) x.Direction.ToDirectionDescriptor.Name).ToArray)}", Hue.White)
-
-            ShowStatusBar(displayBuffer, font, "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.White)
-        End With
+        Dim avatarColumn = avatar.MapCell.Column
+        Dim avatarRow = avatar.MapCell.Row
+        Dim map = avatar.MapCell.Map
+        Dim ytmFont = Fonts.GetFont(GameFont.YTM)
+        For column = 0 To map.Columns - 1
+            For row = 0 To map.Rows - 1
+                Dim x = CenterMapCellX + (column - avatarColumn) * MapCellWidth
+                Dim y = CenterMapCellY + (row - avatarRow) * MapCellHeight
+                Dim mapCell = map.Cell(column, row)
+                Dim terrainDescriptor = mapCell.TerrainType.ToTerrainTypeDescriptor
+                ytmFont.WriteText(displayBuffer, (x, y), terrainDescriptor.Character, terrainDescriptor.Hue)
+                Dim character = mapCell.Character
+                If character IsNot Nothing Then
+                    Dim characterDescriptor = character.CharacterType.ToCharacterTypeDescriptor
+                    ytmFont.WriteText(displayBuffer, (x, y), characterDescriptor.Character, characterDescriptor.Hue)
+                End If
+            Next
+        Next
+        ShowHeader(displayBuffer, UIFont, map.DisplayName, Hue.White, Hue.Black)
+        ShowStatusBar(displayBuffer, UIFont, "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.White)
     End Sub
     Public Overrides Sub OnStart()
         MyBase.OnStart()

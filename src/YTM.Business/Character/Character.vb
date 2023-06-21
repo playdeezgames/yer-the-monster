@@ -55,6 +55,12 @@
         End Set
     End Property
 
+    Public ReadOnly Property CharacterType As String Implements ICharacter.CharacterType
+        Get
+            Return CharacterData.CharacterType
+        End Get
+    End Property
+
     Public Sub AddItem(item As IItem) Implements ICharacter.AddItem
         CharacterData.ItemIds.Add(item.Id)
     End Sub

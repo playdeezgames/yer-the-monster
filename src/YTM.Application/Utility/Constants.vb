@@ -61,4 +61,8 @@
     Friend Const Volume10Text = "100%"
     Friend Const WindowSizeTitle = "Window Size:"
     Friend Const YesText = "Yes"
+    Friend Const MapCellWidth = 12
+    Friend Const MapCellHeight = 12
+    Friend Const CenterMapCellX = ViewWidth \ 2 - MapCellWidth \ 2
+    Friend Const CenterMapCellY = ViewHeight \ 2 - MapCellHeight \ 2
 End Module

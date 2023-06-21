@@ -5,7 +5,7 @@
     <RootNamespace>YerTheMonster</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
     <OptionStrict>On</OptionStrict>
-    <ImportedNamespaces>AOS.Presentation=False,YTM.Application=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,YerTheMonster=True</ImportedNamespaces>
+    <ImportedNamespaces>AOS.Presentation=False,YTM.Application=False,YTM.Initializer=False,Microsoft.VisualBasic=True,System=True,System.Collections=True,System.Collections.Generic=True,System.Diagnostics=True,System.Linq=True,System.Xml.Linq=True,System.Threading.Tasks=True,YerTheMonster=True</ImportedNamespaces>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -63,6 +63,7 @@
   <ItemGroup>
     <Import Include="AOS.Presentation" />
     <Import Include="YTM.Application" />
+    <Import Include="YTM.Initializer" />
   </ItemGroup>
 
 </Project>

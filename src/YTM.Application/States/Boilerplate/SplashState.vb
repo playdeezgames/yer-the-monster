@@ -23,8 +23,5 @@
             ShowStatusBar(displayBuffer, font, "Space/(A)", Hue.Black, Hue.White)
         End With
         font = Fonts.GetFont(GameFont.YTM)
-        With font
-            .WriteText(displayBuffer, (ViewWidth \ 2 - font.TextWidth(" ") \ 2, ViewHeight \ 2 - font.Height \ 2), " ", Hue.Cyan)
-        End With
     End Sub
 End Class
