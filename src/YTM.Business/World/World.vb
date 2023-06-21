@@ -115,4 +115,22 @@ Public Class World
         Dim result = New Item(WorldData, itemId)
         Return result
     End Function
+
+    Public Function CreateMap(
+                             mapName As String,
+                             displayName As String,
+                             columns As Integer,
+                             rows As Integer,
+                             defaultTerrain As String) As IMap Implements IWorld.CreateMap
+        Dim map = New MapData With
+            {
+                .DisplayName = displayName,
+                .Columns = columns
+            }
+        While map.MapCells.Count < columns * rows
+            map.MapCells.Add(New MapCellData With {.TerrainType = defaultTerrain})
+        End While
+        WorldData.Maps(mapName) = map
+        Return New Map(WorldData, mapName)
+    End Function
 End Class

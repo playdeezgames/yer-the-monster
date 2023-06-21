@@ -12,4 +12,5 @@ Public Interface IWorld
     ReadOnly Property HasMessages As Boolean
     Sub NextMessage()
     ReadOnly Property CurrentMessage As IMessage
+    Function CreateMap(mapName As String, displayName As String, columns As Integer, rows As Integer, defaultTerrain As String) As IMap
 End Interface

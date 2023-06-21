@@ -2,6 +2,8 @@
     Const SwampColumns = 8
     Const SwampRows = 8
     Friend Sub Initialize(world As IWorld)
+        Dim mapDescriptor = MapNames.Swamp.ToMapDescriptor
+        Dim swampMap = world.CreateMap(MapNames.Swamp, "The Swamp", MapDescriptor.Columns, MapDescriptor.Rows, MapDescriptor.DefaultTerrain)
         Dim locations(SwampColumns - 1, SwampRows - 1) As ILocation
         For column = 0 To SwampColumns - 1
             For row = 0 To SwampRows - 1
