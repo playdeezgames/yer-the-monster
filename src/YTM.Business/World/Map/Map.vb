@@ -36,4 +36,10 @@
             Return MapData.DisplayName
         End Get
     End Property
+
+    Public ReadOnly Property World As IWorld Implements IMap.World
+        Get
+            Return New World(WorldData)
+        End Get
+    End Property
 End Class

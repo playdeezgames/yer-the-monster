@@ -20,17 +20,6 @@ Public Class World
             WorldData.AvatarCharacterId = value.Id
         End Set
     End Property
-
-    Public ReadOnly Property Locations As IEnumerable(Of ILocation) Implements IWorld.Locations
-        Get
-            Dim result As New List(Of ILocation)
-            For index = 0 To WorldData.Locations.Count - 1
-                result.Add(New Location(WorldData, index))
-            Next
-            Return result
-        End Get
-    End Property
-
     Public ReadOnly Property HasMessages As Boolean Implements IWorld.HasMessages
         Get
             Return WorldData.Messages.Any
@@ -62,21 +51,9 @@ Public Class World
         End Try
     End Function
 
-    Public Function CreateLocation(locationType As String, name As String) As ILocation Implements IWorld.CreateLocation
-        Dim data As New LocationData With
-            {
-                .LocationType = locationType,
-                .Name = name
-            }
-        Dim locationId = WorldData.Locations.Count
-        WorldData.Locations.Add(data)
-        Return New Location(WorldData, locationId)
-    End Function
-
     Public Function CreateCharacter(
                                    characterType As String,
                                    name As String,
-                                   location As ILocation,
                                    mapCell As IMapCell,
                                    statistics As IReadOnlyDictionary(Of String, Integer)) As ICharacter Implements IWorld.CreateCharacter
         Dim data As New CharacterData With
@@ -84,7 +61,6 @@ Public Class World
                 .CharacterType = characterType,
                 .Name = name,
                 .Recycled = False,
-                .LocationId = location.Id,
                 .Statistics = statistics.ToDictionary(Function(x) x.Key, Function(x) x.Value),
                 .MapName = mapCell.Map.Name,
                 .Column = mapCell.Column,
@@ -99,7 +75,6 @@ Public Class World
         End If
         Dim result = New Character(WorldData, characterId)
         mapCell.Character = result
-        location.AddCharacter(result)
         Return result
     End Function
 

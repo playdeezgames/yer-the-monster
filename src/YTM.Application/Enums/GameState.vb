@@ -14,7 +14,6 @@
     Abandon
     ActionMenu
     Inventory
-    Move
     Dead
     Message
 End Enum

@@ -7,7 +7,6 @@
             ActionMenuTitle,
             {
                 GoBackText,
-                MoveText,
                 InventoryText
             },
             GoBackText)
@@ -18,8 +17,6 @@
                 SetState(GameState.Neutral)
             Case InventoryText
                 SetState(GameState.Inventory)
-            Case MoveText
-                SetState(GameState.Move)
             Case Else
                 Throw New NotImplementedException
         End Select
