@@ -12,7 +12,7 @@ Public Module CharacterExtensions
         End If
         Dim nextMapCell = map.Cell(nextColumn, nextRow)
         If Not nextMapCell.TerrainType.ToTerrainTypeDescriptor.Tenable Then
-            'TODO: bump
+            nextMapCell.Bump(character)
             Return
         End If
         character.ApplyHunger(1)
