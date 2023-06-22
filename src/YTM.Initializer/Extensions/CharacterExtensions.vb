@@ -10,9 +10,14 @@ Public Module CharacterExtensions
         If nextColumn < 0 OrElse nextRow < 0 OrElse nextColumn >= map.Columns OrElse nextRow >= map.Rows Then
             Return
         End If
+        Dim nextMapCell = map.Cell(nextColumn, nextRow)
+        If Not nextMapCell.TerrainType.ToTerrainTypeDescriptor.Tenable Then
+            'TODO: bump
+            Return
+        End If
         character.ApplyHunger(1)
         mapCell.Character = Nothing
-        mapCell = map.Cell(nextColumn, nextRow)
+        mapCell = nextMapCell
         mapCell.Character = character
         character.MapCell = mapCell
     End Sub
