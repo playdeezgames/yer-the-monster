@@ -68,6 +68,11 @@
                     Dim characterDescriptor = character.CharacterType.ToCharacterTypeDescriptor
                     ytmFont.WriteText(displayBuffer, (x, y), characterDescriptor.Character, characterDescriptor.Hue)
                 End If
+                Dim item = mapCell.Item
+                If item IsNot Nothing Then
+                    Dim itemDescriptor = item.ItemType.ToItemTypeDescriptor
+                    ytmFont.WriteText(displayBuffer, (x, y), itemDescriptor.Character, itemDescriptor.Hue)
+                End If
             Next
         Next
 

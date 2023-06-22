@@ -12,4 +12,5 @@ Public Interface IWorld
     ReadOnly Property CurrentMessage As IMessage
     Function CreateMap(mapName As String, displayName As String, columns As Integer, rows As Integer, defaultTerrain As String) As IMap
     Function CreateEffect(effectType As String) As IEffect
+    ReadOnly Property Maps As IEnumerable(Of IMap)
 End Interface

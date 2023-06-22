@@ -57,6 +57,28 @@
         End Set
     End Property
 
+    Public ReadOnly Property HasItem As Boolean Implements IMapCell.HasItem
+        Get
+            Return MapCellData.ItemId.HasValue
+        End Get
+    End Property
+
+    Public Property Item As IItem Implements IMapCell.Item
+        Get
+            If MapCellData.ItemId.HasValue Then
+                Return New Item(WorldData, MapCellData.ItemId.Value)
+            End If
+            Return Nothing
+        End Get
+        Set(value As IItem)
+            If value Is Nothing Then
+                MapCellData.ItemId = Nothing
+                Return
+            End If
+            MapCellData.ItemId = value.Id
+        End Set
+    End Property
+
     Private ReadOnly Property IMapCell_Column As Integer Implements IMapCell.Column
         Get
             Return Column

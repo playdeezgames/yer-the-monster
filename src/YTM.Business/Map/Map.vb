@@ -54,4 +54,10 @@
             Return result
         End Get
     End Property
+
+    Public ReadOnly Property MapType As String Implements IMap.MapType
+        Get
+            Return MapData.MapType
+        End Get
+    End Property
 End Class

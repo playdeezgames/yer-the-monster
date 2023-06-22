@@ -35,6 +35,16 @@ Public Class World
         End Get
     End Property
 
+    Public ReadOnly Property Maps As IEnumerable(Of IMap) Implements IWorld.Maps
+        Get
+            Dim result As New List(Of IMap)
+            For index = 0 To WorldData.Maps.Count - 1
+                result.Add(New Map(WorldData, index))
+            Next
+            Return result
+        End Get
+    End Property
+
     Public Sub Save(filename As String) Implements IWorld.Save
         File.WriteAllText(filename, JsonSerializer.Serialize(WorldData))
     End Sub
@@ -104,6 +114,7 @@ Public Class World
                              defaultTerrain As String) As IMap Implements IWorld.CreateMap
         Dim map = New MapData With
             {
+                .MapType = mapTypeName,
                 .DisplayName = displayName,
                 .Columns = columns
             }

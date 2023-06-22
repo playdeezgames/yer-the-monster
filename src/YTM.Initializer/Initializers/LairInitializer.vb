@@ -9,7 +9,7 @@
             ")))))"
         }
     Friend Function Initialize(world As IWorld) As IMap
-        Dim mapDescriptor = MapTypes.Lair.ToMapDescriptor
+        Dim mapDescriptor = MapTypes.Lair.ToMapTypeDescriptor
         Dim lairMap = world.CreateMap(MapTypes.Lair, "Yer's Lair", mapDescriptor.Columns, mapDescriptor.Rows, mapDescriptor.DefaultTerrain)
         Dim row = 0
         For Each line In lines

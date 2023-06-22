@@ -7,4 +7,6 @@
     ReadOnly Property HasEffect As Boolean
     Property Effect As IEffect
     Sub Bump(character As ICharacter)
+    ReadOnly Property HasItem As Boolean
+    Property Item As IItem
 End Interface
