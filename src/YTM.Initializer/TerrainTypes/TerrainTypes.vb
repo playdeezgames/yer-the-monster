@@ -4,10 +4,12 @@ Public Module TerrainTypes
     Friend Const Empty = "Empty"
     Friend Const Wall = "Wall"
     Friend Const UpStairs = "UpStairs"
+    Friend Const DownStairs = "DownStairs"
     Private ReadOnly Descriptors As IReadOnlyDictionary(Of String, TerrainTypeDescriptor) =
         New Dictionary(Of String, TerrainTypeDescriptor) From
         {
             {Empty, New TerrainTypeDescriptor("!"c, Hue.Cyan, True)},
+            {DownStairs, New TerrainTypeDescriptor("'"c, Hue.Magenta, False)},
             {UpStairs, New TerrainTypeDescriptor("("c, Hue.Magenta, False)},
             {Wall, New TerrainTypeDescriptor(")"c, Hue.White, False)}
         }

@@ -4,4 +4,6 @@
     ReadOnly Property Map As IMap
     Property Character As ICharacter
     Property TerrainType As String
+    ReadOnly Property HasEffect As Boolean
+    Property Effect As IEffect
 End Interface

@@ -35,6 +35,28 @@
         End Set
     End Property
 
+    Public ReadOnly Property HasEffect As Boolean Implements IMapCell.HasEffect
+        Get
+            Return MapCellData.EffectId.HasValue
+        End Get
+    End Property
+
+    Public Property Effect As IEffect Implements IMapCell.Effect
+        Get
+            If HasEffect Then
+                Return New Business.Effect(WorldData, MapCellData.EffectId.Value)
+            End If
+            Return Nothing
+        End Get
+        Set(value As IEffect)
+            If value Is Nothing Then
+                MapCellData.EffectId = Nothing
+                Return
+            End If
+            MapCellData.EffectId = value.Id
+        End Set
+    End Property
+
     Private ReadOnly Property IMapCell_Column As Integer Implements IMapCell.Column
         Get
             Return Column

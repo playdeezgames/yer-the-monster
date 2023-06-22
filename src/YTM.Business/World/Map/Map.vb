@@ -42,4 +42,16 @@
             Return New World(WorldData)
         End Get
     End Property
+
+    Public ReadOnly Property Cells As IEnumerable(Of IMapCell) Implements IMap.Cells
+        Get
+            Dim result As New List(Of IMapCell)
+            For row = 0 To Rows - 1
+                For column = 0 To Columns - 1
+                    result.Add(New MapCell(WorldData, Id, column, row))
+                Next
+            Next
+            Return result
+        End Get
+    End Property
 End Class

@@ -117,4 +117,14 @@ Public Class World
         WorldData.Maps.Add(map)
         Return New Map(WorldData, mapId)
     End Function
+
+    Public Function CreateEffect(effectType As String) As IEffect Implements IWorld.CreateEffect
+        Dim effect As New EffectData With
+            {
+                .EffectType = effectType
+            }
+        Dim effectId = WorldData.Effects.Count
+        WorldData.Effects.Add(effect)
+        Return New Effect(WorldData, effectId)
+    End Function
 End Class

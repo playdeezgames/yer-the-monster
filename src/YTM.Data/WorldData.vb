@@ -4,4 +4,5 @@ Public Class WorldData
     Public Property Items As New List(Of ItemData)
     Public Property Messages As New List(Of MessageData)
     Public Property Maps As New List(Of MapData)
+    Public Property Effects As New List(Of EffectData)
 End Class
