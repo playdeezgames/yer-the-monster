@@ -68,4 +68,22 @@
             Return Row
         End Get
     End Property
+
+    Public Sub Bump(character As ICharacter) Implements IMapCell.Bump
+        Dim effect = Me.Effect
+        If effect Is Nothing Then
+            Return
+        End If
+        Select Case effect.EffectType
+            Case EffectTypes.Teleport
+                DoTeleport(character, effect.GetTeleport())
+            Case Else
+                Throw New NotImplementedException
+        End Select
+    End Sub
+    Private Sub DoTeleport(character As ICharacter, mapCell As IMapCell)
+        character.MapCell.Character = Nothing
+        character.MapCell = mapCell
+        mapCell.Character = character
+    End Sub
 End Class

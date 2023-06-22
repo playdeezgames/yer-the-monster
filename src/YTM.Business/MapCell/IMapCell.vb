@@ -6,4 +6,5 @@
     Property TerrainType As String
     ReadOnly Property HasEffect As Boolean
     Property Effect As IEffect
+    Sub Bump(character As ICharacter)
 End Interface

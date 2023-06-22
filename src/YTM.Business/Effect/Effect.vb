@@ -9,6 +9,13 @@
             Return EffectId
         End Get
     End Property
+
+    Public ReadOnly Property EffectType As String Implements IEffect.EffectType
+        Get
+            Return EffectData.EffectType
+        End Get
+    End Property
+
     Public Sub SetTeleport(destination As IMapCell) Implements IEffect.SetTeleport
         EffectData.Teleport = New TeleportData With
             {
@@ -17,4 +24,12 @@
                 .DestinationRow = destination.Row
             }
     End Sub
+
+    Public Function GetTeleport() As IMapCell Implements IEffect.GetTeleport
+        Dim teleport = EffectData.Teleport
+        If teleport Is Nothing Then
+            Return Nothing
+        End If
+        Return New MapCell(WorldData, teleport.DestinationMapId, teleport.DestinationColumn, teleport.DestinationRow)
+    End Function
 End Class
