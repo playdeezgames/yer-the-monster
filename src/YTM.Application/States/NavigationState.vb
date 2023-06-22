@@ -14,12 +14,16 @@
                 SetState(GameState.ActionMenu)
             Case Command.Up
                 avatar.Move(0, -1)
+                SetState(GameState.Neutral)
             Case Command.Down
                 avatar.Move(0, 1)
+                SetState(GameState.Neutral)
             Case Command.Left
                 avatar.Move(-1, 0)
+                SetState(GameState.Neutral)
             Case Command.Right
                 avatar.Move(1, 0)
+                SetState(GameState.Neutral)
         End Select
     End Sub
 
