@@ -10,11 +10,16 @@ Public Module TerrainTypes
         New Dictionary(Of String, TerrainTypeDescriptor) From
         {
             {Empty, New TerrainTypeDescriptor("!"c, Hue.Cyan, True)},
-            {Lair, New TerrainTypeDescriptor("!"c, Hue.Cyan, True)},
+            {Lair, New TerrainTypeDescriptor("!"c, Hue.Cyan, True, onEnter:=AddressOf OnEnterLair)},
             {DownStairs, New TerrainTypeDescriptor("'"c, Hue.Magenta, False)},
             {UpStairs, New TerrainTypeDescriptor("("c, Hue.Magenta, False)},
             {Wall, New TerrainTypeDescriptor(")"c, Hue.White, False)}
         }
+
+    Private Sub OnEnterLair(character As ICharacter)
+        character.SetEnergy(character.Energy + 1)
+    End Sub
+
     <Extension>
     Public Function ToTerrainTypeDescriptor(terrainType As String) As TerrainTypeDescriptor
         Return Descriptors(terrainType)

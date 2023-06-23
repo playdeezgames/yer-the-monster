@@ -20,6 +20,12 @@ Public Module CharacterExtensions
         mapCell = nextMapCell
         mapCell.Character = character
         character.MapCell = mapCell
+        character.OnEnter()
+    End Sub
+    <Extension>
+    Friend Sub OnEnter(character As ICharacter)
+        Dim mapCell = character.MapCell
+        mapCell.TerrainType.ToTerrainTypeDescriptor.OnEnter?.Invoke(character)
     End Sub
     <Extension>
     Friend Sub ApplyHunger(character As ICharacter, hunger As Integer)
