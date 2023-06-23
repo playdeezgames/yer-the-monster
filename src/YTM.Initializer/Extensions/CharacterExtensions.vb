@@ -60,6 +60,10 @@ Public Module CharacterExtensions
         Return character.Statistic(StatisticTypes.Energy)
     End Function
     <Extension>
+    Public Sub SetEnergy(character As ICharacter, energy As Integer)
+        character.Statistic(StatisticTypes.Energy) = Math.Clamp(energy, 0, character.MaximumEnergy)
+    End Sub
+    <Extension>
     Public Function MaximumEnergy(character As ICharacter) As Integer
         Return character.Statistic(StatisticTypes.MaximumEnergy)
     End Function
@@ -74,6 +78,12 @@ Public Module CharacterExtensions
             Return
         End If
         Dim item = character.MapCell.Item
+        Dim energy = item.PickUpEnergyCost
+        If character.Energy < energy Then
+            character.AddMessage("Not enough energy!")
+            Return
+        End If
+        character.SetEnergy(character.Energy - energy)
         character.MapCell.Item = Nothing
         character.AddItem(item)
         character.AddMessage($"You pick up the {item.Name}.")
