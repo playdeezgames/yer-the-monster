@@ -14,6 +14,8 @@ Public Class GameController
         SetState(GameState.Message, New MessageState(Me, AddressOf SetCurrentState))
         SetState(GameState.Navigation, New NavigationState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickUpItem, New PickUpItemState(Me, AddressOf SetCurrentState))
+        SetState(GameState.ChooseInventoryItem, New ChooseInventoryItemState(Me, AddressOf SetCurrentState))
+        SetState(GameState.InteractInventoryItem, New InteractInventoryItemState(Me, AddressOf SetCurrentState))
 
         SetCurrentState(GameState.Splash, True)
     End Sub

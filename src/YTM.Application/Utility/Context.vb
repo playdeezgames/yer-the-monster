@@ -1,5 +1,8 @@
 ﻿Friend Module Context
     Friend Property World As IWorld
+    Friend Property ItemName As String
+    Friend Property ItemId As Integer
+
     Friend Sub Initialize()
         Fonts.Load()
     End Sub

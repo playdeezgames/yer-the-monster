@@ -1,25 +1,23 @@
-﻿Friend Class InventoryState
+﻿Friend Class InteractInventoryItemState
     Inherits BasePickerState
+
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
-        MyBase.New(parent, setState, "Yer's Inventory", "Space/(A) - Select | Esc/(B) - Go Back", GameState.Neutral)
+        MyBase.New(parent, setState, "<placeholder>", "Space/(A) - Select | Esc/(B) - Go Back", GameState.ChooseInventoryItem)
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         Select Case value.Item2
             Case NeverMindText
-                SetState(GameState.Neutral)
-            Case Else
-                Context.ItemName = value.Item2
-                SetState(GameState.ChooseInventoryItem)
+                SetState(GameState.Inventory)
         End Select
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
+        HeaderText = Context.ItemName
         Dim result As New List(Of (String, String)) From
             {
                 (NeverMindText, NeverMindText)
             }
-        result.AddRange(World.Avatar.Items.GroupBy(Function(x) x.Name).Select(Function(x) ($"{x.Key}(x{x.Count})", x.Key)))
         Return result
     End Function
 End Class
