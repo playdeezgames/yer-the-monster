@@ -2,6 +2,7 @@
 
 Public Module TerrainTypes
     Friend Const Empty = "Empty"
+    Friend Const Lair = "Lair"
     Friend Const Wall = "Wall"
     Friend Const UpStairs = "UpStairs"
     Friend Const DownStairs = "DownStairs"
@@ -9,6 +10,7 @@ Public Module TerrainTypes
         New Dictionary(Of String, TerrainTypeDescriptor) From
         {
             {Empty, New TerrainTypeDescriptor("!"c, Hue.Cyan, True)},
+            {Lair, New TerrainTypeDescriptor("!"c, Hue.Cyan, True)},
             {DownStairs, New TerrainTypeDescriptor("'"c, Hue.Magenta, False)},
             {UpStairs, New TerrainTypeDescriptor("("c, Hue.Magenta, False)},
             {Wall, New TerrainTypeDescriptor(")"c, Hue.White, False)}

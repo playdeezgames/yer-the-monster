@@ -2,12 +2,19 @@
     Private ReadOnly lines As IReadOnlyList(Of String) =
         New List(Of String) From
         {
-            ")))))",
-            ")!!!)",
-            ")!(!)",
-            ")!!!)",
-            ")))))"
+            "#####",
+            "#...#",
+            "#.^.#",
+            "#...#",
+            "#####"
         }
+    Private ReadOnly table As IReadOnlyDictionary(Of Char, String) = New Dictionary(Of Char, String) From
+        {
+            {"."c, TerrainTypes.Lair},
+            {"#"c, TerrainTypes.Wall},
+            {"^"c, TerrainTypes.UpStairs}
+        }
+
     Friend Function Initialize(world As IWorld) As IMap
         Dim mapDescriptor = MapTypes.Lair.ToMapTypeDescriptor
         Dim lairMap = world.CreateMap(MapTypes.Lair, "Yer's Lair", mapDescriptor.Columns, mapDescriptor.Rows, mapDescriptor.DefaultTerrain)
@@ -15,7 +22,7 @@
         For Each line In lines
             Dim column = 0
             For Each character In line
-                lairMap.Cell(column, row).TerrainType = TerrainTypes.LookUpTerrainTypeByCharacter(character)
+                lairMap.Cell(column, row).TerrainType = table(character)
                 column += 1
             Next
             row += 1
