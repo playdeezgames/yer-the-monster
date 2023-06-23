@@ -17,4 +17,5 @@
     Dead
     Message
     Navigation
+    PickUpItem
 End Enum

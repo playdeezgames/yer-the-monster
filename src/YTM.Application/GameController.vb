@@ -13,6 +13,7 @@ Public Class GameController
         SetState(GameState.Dead, New DeadState(Me, AddressOf SetCurrentState))
         SetState(GameState.Message, New MessageState(Me, AddressOf SetCurrentState))
         SetState(GameState.Navigation, New NavigationState(Me, AddressOf SetCurrentState))
+        SetState(GameState.PickUpItem, New PickUpItemState(Me, AddressOf SetCurrentState))
 
         SetCurrentState(GameState.Splash, True)
     End Sub

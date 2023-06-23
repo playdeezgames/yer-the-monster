@@ -23,6 +23,7 @@
     Friend Const NoText = "No"
     Friend Const OptionsText = "Options..."
     Friend Const OptionsTitle = "Options:"
+    Friend Const PickUpItemText = "Pick Up Item"
     Friend Const QuitText = "Quit"
     Friend Const SaveGameText = "Save..."
     Friend Const SaveSlotDoesNotExistText = "Save slot does not exist!"

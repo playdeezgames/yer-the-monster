@@ -67,4 +67,15 @@ Public Module CharacterExtensions
     Public Function IsDead(character As ICharacter) As Boolean
         Return character.Health <= 0
     End Function
+    <Extension>
+    Public Sub PickUpItem(character As ICharacter)
+        If Not character.MapCell.HasItem Then
+            character.AddMessage("There is nothing to pick up!")
+            Return
+        End If
+        Dim item = character.MapCell.Item
+        character.MapCell.Item = Nothing
+        character.AddItem(item)
+        character.AddMessage($"You pick up the {item.Name}.")
+    End Sub
 End Module

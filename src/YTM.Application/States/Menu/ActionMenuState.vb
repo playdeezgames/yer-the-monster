@@ -7,7 +7,8 @@
             ActionMenuTitle,
             {
                 GoBackText,
-                InventoryText
+                InventoryText,
+                PickUpItemText
             },
             GoBackText)
     End Sub
@@ -18,7 +19,7 @@
             Case InventoryText
                 SetState(GameState.Inventory)
             Case Else
-                Throw New NotImplementedException
+                SetState(GameState.PickUpItem)
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
@@ -36,6 +37,12 @@
                         ShowStatusBar(displayBuffer, font, "View Yer's Items", Hue.Black, Hue.White)
                     Else
                         ShowStatusBar(displayBuffer, font, "Yer has no Items", Hue.Black, Hue.Magenta)
+                    End If
+                Case PickUpItemText
+                    If avatar.MapCell.HasItem Then
+                        ShowStatusBar(displayBuffer, font, avatar.MapCell.Item.Name, Hue.Black, Hue.White)
+                    Else
+                        ShowStatusBar(displayBuffer, font, "Nothing to pick up!", Hue.Black, Hue.Magenta)
                     End If
             End Select
         End With
