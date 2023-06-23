@@ -65,4 +65,8 @@
                 })
         End If
     End Sub
+
+    Public Sub RemoveItem(item As IItem) Implements ICharacter.RemoveItem
+        CharacterData.ItemIds.Remove(item.Id)
+    End Sub
 End Class

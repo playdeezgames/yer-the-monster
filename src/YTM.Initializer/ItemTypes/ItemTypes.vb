@@ -32,7 +32,10 @@ Public Module ItemTypes
         }
 
     Private Sub EatBigShroom(character As ICharacter, item As IItem)
-        Throw New NotImplementedException()
+        character.SetSatiety(character.Satiety + 20)
+        character.RemoveItem(item)
+        character.AddMessage($"{character.Name} eats {item.Name}.")
+        item.Recycle()
     End Sub
 
     Friend ReadOnly Property All As IEnumerable(Of String)

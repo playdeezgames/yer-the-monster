@@ -8,4 +8,5 @@
     Sub AddMessage(ParamArray lines As String())
     Property MapCell As IMapCell
     ReadOnly Property CharacterType As String
+    Sub RemoveItem(item As IItem)
 End Interface

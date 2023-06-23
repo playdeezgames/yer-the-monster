@@ -2,6 +2,10 @@
 
 Public Module CharacterExtensions
     <Extension>
+    Public Sub UseItem(character As ICharacter, item As IItem, verbType As String)
+        item.ItemType.ToItemTypeDescriptor.Verbs(verbType).Invoke(character, item)
+    End Sub
+    <Extension>
     Public Sub Move(character As ICharacter, deltaX As Integer, deltaY As Integer)
         Dim mapCell = character.MapCell
         Dim nextColumn = mapCell.Column + deltaX
