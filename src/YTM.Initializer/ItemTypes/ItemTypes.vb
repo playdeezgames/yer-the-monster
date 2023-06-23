@@ -6,9 +6,35 @@ Public Module ItemTypes
     Friend ReadOnly Descriptors As IReadOnlyDictionary(Of String, ItemTypeDescriptor) =
         New Dictionary(Of String, ItemTypeDescriptor) From
         {
-            {Nihil, New ItemTypeDescriptor("Nothing", "!"c, Hue.Cyan, Array.Empty(Of String))},
-            {BigShroom, New ItemTypeDescriptor("Big Shroom", "$"c, Hue.Magenta, {TerrainTypes.Empty})}
+            {
+                Nihil,
+                New ItemTypeDescriptor(
+                    "Nothing",
+                    "!"c,
+                    Hue.Cyan,
+                    Array.Empty(Of String),
+                    New Dictionary(Of String, Action(Of ICharacter, IItem)))
+            },
+            {
+                BigShroom,
+                New ItemTypeDescriptor(
+                    "Big Shroom",
+                    "$"c,
+                    Hue.Magenta,
+                    {
+                        TerrainTypes.Empty
+                    },
+                    New Dictionary(Of String, Action(Of ICharacter, IItem)) From
+                    {
+                        {VerbTypes.Eat, AddressOf EatBigShroom}
+                    })
+            }
         }
+
+    Private Sub EatBigShroom(character As ICharacter, item As IItem)
+        Throw New NotImplementedException()
+    End Sub
+
     Friend ReadOnly Property All As IEnumerable(Of String)
         Get
             Return Descriptors.Keys

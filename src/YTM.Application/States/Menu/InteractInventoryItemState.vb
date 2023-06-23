@@ -14,10 +14,14 @@
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
         HeaderText = Context.ItemName
+        Dim item = World.Item(Context.ItemId)
         Dim result As New List(Of (String, String)) From
             {
                 (NeverMindText, NeverMindText)
             }
+        For Each verb In item.AvailableVerbs
+            result.Add((verb.ToVerbTypeDescriptor.Name, verb))
+        Next
         Return result
     End Function
 End Class
