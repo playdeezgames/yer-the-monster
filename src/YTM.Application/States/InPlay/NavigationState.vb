@@ -63,15 +63,17 @@
                 Dim mapCell = map.Cell(column, row)
                 Dim terrainDescriptor = mapCell.TerrainType.ToTerrainTypeDescriptor
                 ytmFont.WriteText(displayBuffer, (x, y), terrainDescriptor.Character, terrainDescriptor.Hue)
-                Dim character = mapCell.Character
-                If character IsNot Nothing Then
-                    Dim characterDescriptor = character.CharacterType.ToCharacterTypeDescriptor
-                    ytmFont.WriteText(displayBuffer, (x, y), characterDescriptor.Character, characterDescriptor.Hue)
-                End If
+
                 Dim item = mapCell.Item
                 If item IsNot Nothing Then
                     Dim itemDescriptor = item.ItemType.ToItemTypeDescriptor
                     ytmFont.WriteText(displayBuffer, (x, y), itemDescriptor.Character, itemDescriptor.Hue)
+                End If
+
+                Dim character = mapCell.Character
+                If character IsNot Nothing Then
+                    Dim characterDescriptor = character.CharacterType.ToCharacterTypeDescriptor
+                    ytmFont.WriteText(displayBuffer, (x, y), characterDescriptor.Character, characterDescriptor.Hue)
                 End If
             Next
         Next
