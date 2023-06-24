@@ -15,6 +15,7 @@ Public Module ItemTypes
                     Array.Empty(Of String),
                     New Dictionary(Of String, Action(Of ICharacter, IItem)) From
                     {
+                        {VerbTypes.Drop, AddressOf DropNothing},
                         {VerbTypes.Eat, AddressOf EatNothing}
                     })
             },
@@ -29,10 +30,29 @@ Public Module ItemTypes
                     },
                     New Dictionary(Of String, Action(Of ICharacter, IItem)) From
                     {
-                        {VerbTypes.Eat, AddressOf EatBigShroom}
+                        {VerbTypes.Eat, AddressOf EatBigShroom},
+                        {VerbTypes.Drop, AddressOf StandardDrop}
                     })
             }
         }
+
+    Private Sub DropNothing(character As ICharacter, item As IItem)
+        character.AddMessage(
+            "It is nothing....",
+            "",
+            "...",
+            "",
+            "If you dropped it, then what would you have?")
+    End Sub
+
+    Private Sub StandardDrop(character As ICharacter, item As IItem)
+        If character.MapCell.HasItem Then
+            character.AddMessage($"{character.Name} cannot drop {item.Name} here.")
+            Return
+        End If
+        character.MapCell.Item = item
+        character.RemoveItem(item)
+    End Sub
 
     Private Sub EatNothing(character As ICharacter, item As IItem)
         character.AddMessage($"{character.Name} eats {item.Name}.")
