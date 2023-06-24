@@ -4,9 +4,8 @@
         MyBase.New(
             parent,
             setState,
-            SaveGameTitle,
+            "",
             {
-                GoBackText,
                 Slot1Text,
                 Slot2Text,
                 Slot3Text,
@@ -15,26 +14,28 @@
             },
             GoBackText)
     End Sub
+    Private ReadOnly Property SlotIndex As Integer
+        Get
+            Return MenuItemIndex + 1
+        End Get
+    End Property
     Protected Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
             Case GoBackText
                 SetState(GameState.GameMenu)
             Case Else
-                Context.SaveToSlot(MenuItemIndex)
+                Context.SaveToSlot(SlotIndex)
                 SetState(GameState.GameMenu)
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
-        If MenuItemIndex > 0 Then
-            If Context.DoesSaveExist(MenuItemIndex) Then
-                ShowStatusBar(displayBuffer, font, "Will overwrite!", Hue.Black, Hue.Red)
-            Else
-                ShowStatusBar(displayBuffer, font, "This slot is empty!", Hue.Black, Hue.LightGray)
-            End If
+        If Context.DoesSaveExist(SlotIndex) Then
+            ShowHeader(displayBuffer, font, "Will overwrite!", Hue.Black, Hue.Red)
         Else
-            ShowStatusBar(displayBuffer, font, "On second thought...", Hue.Black, Hue.LightGray)
+            ShowHeader(displayBuffer, font, "This slot is empty!", Hue.Black, Hue.LightGray)
         End If
+        ShowStatusBar(displayBuffer, font, ControlsText("Save/Overwrite", "Cancel"), Hue.Black, Hue.LightGray)
     End Sub
 End Class

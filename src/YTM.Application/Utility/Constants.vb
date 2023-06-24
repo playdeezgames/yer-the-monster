@@ -28,7 +28,6 @@
     Friend Const SaveGameText = "Save..."
     Friend Const SaveSlotDoesNotExistText = "Save slot does not exist!"
     Friend Const SaveSlotExistsText = "Save slot exists!"
-    Friend Const SaveGameTitle = "Save To Slot:"
     Friend Const Scale1Text = "640x360"
     Friend Const Scale2Text = "1280x720"
     Friend Const Scale3Text = "1920x1080"

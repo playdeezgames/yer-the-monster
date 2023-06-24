@@ -6,7 +6,6 @@
             setState,
             LoadTitle,
             {
-                GoBackText,
                 Slot1Text,
                 Slot2Text,
                 Slot3Text,
