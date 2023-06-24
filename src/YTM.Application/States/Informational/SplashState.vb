@@ -14,9 +14,9 @@
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = UIFont()
         With font
-            .WriteText(displayBuffer, (0, 0), "A Game in VB.NET About", Hue.Magenta)
-            .WriteText(displayBuffer, (0, font.Height), "Yer, the Monster,", Hue.Magenta)
-            .WriteText(displayBuffer, (0, font.Height * 2), "and Starting with Nothing", Hue.Magenta)
+            .WriteText(displayBuffer, (0, 0), "A Game in VB.NET About", Hue.Purple)
+            .WriteText(displayBuffer, (0, font.Height), "Yer, the Monster,", Hue.Purple)
+            .WriteText(displayBuffer, (0, font.Height * 2), "and Starting with Nothing", Hue.Purple)
             .WriteText(displayBuffer, (0, font.Height * 4), "A Production of TheGrumpyGameDev", Hue.Cyan)
             .WriteText(displayBuffer, (0, font.Height * 6), "For ""Learn You a Game Jam: Pixel Edition""", Hue.White)
 

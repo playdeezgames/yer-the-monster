@@ -11,7 +11,7 @@ Public Module ItemTypes
                 New ItemTypeDescriptor(
                     "Nothing",
                     "!"c,
-                    Hue.Cyan,
+                    Hue.Black,
                     Array.Empty(Of String),
                     New Dictionary(Of String, Action(Of ICharacter, IItem)))
             },
@@ -20,7 +20,7 @@ Public Module ItemTypes
                 New ItemTypeDescriptor(
                     "Big Shroom",
                     "$"c,
-                    Hue.Magenta,
+                    Hue.Red,
                     {
                         TerrainTypes.Empty
                     },

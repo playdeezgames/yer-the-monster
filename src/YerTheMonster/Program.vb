@@ -70,10 +70,22 @@ Module Program
     Private ReadOnly hueTable As IReadOnlyDictionary(Of Hue, Color) =
         New Dictionary(Of Hue, Color) From
         {
-            {Hue.Black, Color.Black},
-            {Hue.Cyan, Color.Cyan},
-            {Hue.Magenta, Color.Magenta},
-            {Hue.White, Color.White}
+            {Hue.Black, New Color(0, 0, 0)},
+            {Hue.Cyan, New Color(41, 208, 208)},
+            {Hue.Purple, New Color(129, 38, 192)},
+            {Hue.White, New Color(255, 255, 255)},
+            {Hue.Orange, New Color(255, 146, 51)},
+            {Hue.Brown, New Color(129, 74, 25)},
+            {Hue.Red, New Color(173, 35, 35)},
+            {Hue.Blue, New Color(42, 75, 215)},
+            {Hue.DarkGray, New Color(87, 87, 87)},
+            {Hue.LightGray, New Color(160, 160, 160)},
+            {Hue.LightGreen, New Color(129, 197, 122)},
+            {Hue.LightBlue, New Color(157, 175, 255)},
+            {Hue.Yellow, New Color(255, 238, 51)},
+            {Hue.Tan, New Color(233, 222, 187)},
+            {Hue.Pink, New Color(255, 205, 243)},
+            {Hue.Green, New Color(29, 105, 20)}
         }
     Private Function TransformHue(hue As Hue) As Color
         Return hueTable(hue)

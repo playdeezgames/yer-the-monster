@@ -17,7 +17,9 @@
                 Scale7Text,
                 Scale8Text,
                 Scale9Text,
-                Scale10Text
+                Scale10Text,
+                Scale11Text,
+                Scale12Text
             },
             GoBackText)
         _saveConfig = saveConfig

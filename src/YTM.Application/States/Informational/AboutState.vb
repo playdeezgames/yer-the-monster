@@ -11,11 +11,11 @@
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         With font
             .WriteText(displayBuffer, (0, 0), AboutTitle, Hue.White)
-            .WriteText(displayBuffer, (0, font.Height * 2), About1Text, Hue.Magenta)
-            .WriteText(displayBuffer, (0, font.Height * 4), About2Text, Hue.Magenta)
-            .WriteText(displayBuffer, (0, font.Height * 6), About3Text, Hue.Magenta)
-            .WriteText(displayBuffer, (0, font.Height * 8), About4Text, Hue.Magenta)
-            .WriteText(displayBuffer, (0, font.Height * 12), About5Text, Hue.Magenta)
+            .WriteText(displayBuffer, (0, font.Height * 2), About1Text, Hue.Purple)
+            .WriteText(displayBuffer, (0, font.Height * 4), About2Text, Hue.Purple)
+            .WriteText(displayBuffer, (0, font.Height * 6), About3Text, Hue.Purple)
+            .WriteText(displayBuffer, (0, font.Height * 8), About4Text, Hue.Purple)
+            .WriteText(displayBuffer, (0, font.Height * 12), About5Text, Hue.Purple)
         End With
         ShowStatusBar(displayBuffer, font, "Space/(A) - Return to Main Menu", Hue.Black, Hue.White)
     End Sub

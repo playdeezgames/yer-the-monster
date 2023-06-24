@@ -45,7 +45,7 @@
             .WriteText(displayBuffer, (0, 0), _title, Hue.White)
             Dim y = font.Height
             For index = 0 To _menuItems.Length - 1
-                .WriteText(displayBuffer, (0, y), _menuItems(index), If(index = _menuItemIndex, Hue.Magenta, Hue.Cyan))
+                .WriteText(displayBuffer, (0, y), _menuItems(index), If(index = _menuItemIndex, Hue.Purple, Hue.Cyan))
                 y += font.Height
             Next
         End With

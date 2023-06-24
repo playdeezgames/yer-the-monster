@@ -9,11 +9,11 @@ Public Module TerrainTypes
     Private ReadOnly Descriptors As IReadOnlyDictionary(Of String, TerrainTypeDescriptor) =
         New Dictionary(Of String, TerrainTypeDescriptor) From
         {
-            {Empty, New TerrainTypeDescriptor("!"c, Hue.Cyan, True)},
-            {Lair, New TerrainTypeDescriptor("!"c, Hue.Cyan, True, onEnter:=AddressOf OnEnterLair)},
-            {DownStairs, New TerrainTypeDescriptor("'"c, Hue.Magenta, False)},
-            {UpStairs, New TerrainTypeDescriptor("("c, Hue.Magenta, False)},
-            {Wall, New TerrainTypeDescriptor(")"c, Hue.White, False)}
+            {Empty, New TerrainTypeDescriptor("!"c, Hue.Green, True)},
+            {Lair, New TerrainTypeDescriptor("!"c, Hue.Green, True, onEnter:=AddressOf OnEnterLair)},
+            {DownStairs, New TerrainTypeDescriptor("'"c, Hue.DarkGray, False)},
+            {UpStairs, New TerrainTypeDescriptor("("c, Hue.DarkGray, False)},
+            {Wall, New TerrainTypeDescriptor(")"c, Hue.DarkGray, False)}
         }
 
     Private Sub OnEnterLair(character As ICharacter)

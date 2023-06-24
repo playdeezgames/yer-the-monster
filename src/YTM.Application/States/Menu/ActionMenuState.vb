@@ -36,13 +36,13 @@
                     If avatar.HasItems Then
                         ShowStatusBar(displayBuffer, font, "View Yer's Items", Hue.Black, Hue.White)
                     Else
-                        ShowStatusBar(displayBuffer, font, "Yer has no Items", Hue.Black, Hue.Magenta)
+                        ShowStatusBar(displayBuffer, font, "Yer has no Items", Hue.Black, Hue.Purple)
                     End If
                 Case PickUpItemText
                     If avatar.MapCell.HasItem Then
                         ShowStatusBar(displayBuffer, font, avatar.MapCell.Item.Name, Hue.Black, Hue.White)
                     Else
-                        ShowStatusBar(displayBuffer, font, "Nothing to pick up!", Hue.Black, Hue.Magenta)
+                        ShowStatusBar(displayBuffer, font, "Nothing to pick up!", Hue.Black, Hue.Purple)
                     End If
             End Select
         End With

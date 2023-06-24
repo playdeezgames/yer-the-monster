@@ -9,7 +9,7 @@ Public Module CharacterTypes
                 Monster,
                 New CharacterTypeDescriptor(
                     " "c,
-                    Hue.White,
+                    Hue.LightGreen,
                     New Dictionary(Of String, Integer) From
                     {
                         {StatisticTypes.MaximumHealth, 100},

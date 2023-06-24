@@ -43,6 +43,6 @@
                 {ContinueGameText, Hue.White},
                 {SaveGameText, Hue.White},
                 {OptionsText, Hue.White},
-                {AbandonGameText, Hue.Magenta}
+                {AbandonGameText, Hue.Purple}
         }
 End Class

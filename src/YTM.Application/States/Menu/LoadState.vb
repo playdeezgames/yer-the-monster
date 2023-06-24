@@ -35,7 +35,7 @@
             If DoesSaveExist(MenuItemIndex) Then
                 ShowStatusBar(displayBuffer, font, SaveSlotExistsText, Hue.Black, Hue.White)
             Else
-                ShowStatusBar(displayBuffer, font, SaveSlotDoesNotExistText, Hue.Black, Hue.Magenta)
+                ShowStatusBar(displayBuffer, font, SaveSlotDoesNotExistText, Hue.Black, Hue.Purple)
             End If
         Else
             ShowStatusBar(displayBuffer, font, "On second thought...", Hue.Black, Hue.White)

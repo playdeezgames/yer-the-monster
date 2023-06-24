@@ -36,7 +36,7 @@
         Dim index = 0
         For Each menuItem In _menuItems
             Dim x = ViewWidth \ 2 - font.TextWidth(menuItem.Item1) \ 2
-            Dim h = If(index = _menuItemIndex, Hue.Magenta, Hue.Cyan)
+            Dim h = If(index = _menuItemIndex, Hue.Purple, Hue.Cyan)
             font.WriteText(displayBuffer, (x, y), menuItem.Item1, h)
             index += 1
             y += font.Height
