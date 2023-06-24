@@ -30,8 +30,8 @@
         End Select
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+        Title = _table(MenuItemText)
         MyBase.Render(displayBuffer)
-        ShowHeader(displayBuffer, Context.UIFont, _table(MenuItemText), Hue.Black, Hue.LightGray)
         ShowStatusBar(displayBuffer, Context.UIFont, ControlsText("Select", "Cancel"), Hue.Black, Hue.LightGray)
     End Sub
     Private ReadOnly _table As IReadOnlyDictionary(Of String, String) =
