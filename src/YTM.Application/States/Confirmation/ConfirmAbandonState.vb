@@ -31,7 +31,7 @@
         If Confirmation Then
             ShowStatusBar(displayBuffer, font, "You can't! You mustn't!", Hue.Black, Hue.Red)
         Else
-            ShowStatusBar(displayBuffer, font, "There's so much left to do!", Hue.Black, Hue.Green)
+            ShowStatusBar(displayBuffer, font, "There's so much left to do!", Hue.Black, Hue.LightGray)
         End If
     End Sub
 End Class

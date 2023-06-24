@@ -29,20 +29,20 @@
         With font
             Select Case MenuItemText
                 Case GoBackText
-                    ShowStatusBar(displayBuffer, font, "Never mind...", Hue.Black, Hue.White)
+                    ShowStatusBar(displayBuffer, font, "Never mind...", Hue.Black, Hue.LightGray)
                 Case MoveText
-                    ShowStatusBar(displayBuffer, font, "I gotta get out of this place!", Hue.Black, Hue.White)
+                    ShowStatusBar(displayBuffer, font, "I gotta get out of this place!", Hue.Black, Hue.LightGray)
                 Case InventoryText
                     If avatar.HasItems Then
-                        ShowStatusBar(displayBuffer, font, "View Yer's Items", Hue.Black, Hue.White)
+                        ShowStatusBar(displayBuffer, font, "View Yer's Items", Hue.Black, Hue.LightGray)
                     Else
-                        ShowStatusBar(displayBuffer, font, "Yer has no Items", Hue.Black, Hue.Purple)
+                        ShowStatusBar(displayBuffer, font, "Yer has no Items", Hue.Black, Hue.Red)
                     End If
                 Case PickUpItemText
                     If avatar.MapCell.HasItem Then
-                        ShowStatusBar(displayBuffer, font, avatar.MapCell.Item.Name, Hue.Black, Hue.White)
+                        ShowStatusBar(displayBuffer, font, avatar.MapCell.Item.Name, Hue.Black, Hue.LightGray)
                     Else
-                        ShowStatusBar(displayBuffer, font, "Nothing to pick up!", Hue.Black, Hue.Purple)
+                        ShowStatusBar(displayBuffer, font, "Nothing to pick up!", Hue.Black, Hue.Red)
                     End If
             End Select
         End With

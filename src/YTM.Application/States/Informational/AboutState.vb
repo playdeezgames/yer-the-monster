@@ -10,13 +10,13 @@
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         With font
-            .WriteText(displayBuffer, (0, 0), AboutTitle, Hue.White)
-            .WriteText(displayBuffer, (0, font.Height * 2), About1Text, Hue.Purple)
-            .WriteText(displayBuffer, (0, font.Height * 4), About2Text, Hue.Purple)
-            .WriteText(displayBuffer, (0, font.Height * 6), About3Text, Hue.Purple)
-            .WriteText(displayBuffer, (0, font.Height * 8), About4Text, Hue.Purple)
-            .WriteText(displayBuffer, (0, font.Height * 12), About5Text, Hue.Purple)
+            .WriteText(displayBuffer, (0, 0), AboutTitle, Hue.Orange)
+            .WriteText(displayBuffer, (0, font.Height * 2), About1Text, Hue.Tan)
+            .WriteText(displayBuffer, (0, font.Height * 4), About2Text, Hue.Tan)
+            .WriteText(displayBuffer, (0, font.Height * 6), About3Text, Hue.Tan)
+            .WriteText(displayBuffer, (0, font.Height * 8), About4Text, Hue.Tan)
+            .WriteText(displayBuffer, (0, font.Height * 12), About5Text, Hue.Tan)
         End With
-        ShowStatusBar(displayBuffer, font, "Space/(A) - Return to Main Menu", Hue.Black, Hue.White)
+        ShowStatusBar(displayBuffer, font, "Space/(A) - Return to Main Menu", Hue.Black, Hue.LightGray)
     End Sub
 End Class

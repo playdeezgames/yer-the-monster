@@ -19,9 +19,9 @@
         Dim font = UIFont()
         Dim y = 0
         For Each line In message.Lines
-            font.WriteText(displayBuffer, (0, y), line, Hue.White)
+            font.WriteText(displayBuffer, (0, y), line, Hue.LightGray)
             y += font.Height
         Next
-        ShowStatusBar(displayBuffer, font, "Space/(A) - Continue", Hue.Black, Hue.White)
+        ShowStatusBar(displayBuffer, font, "Space/(A) - Continue", Hue.Black, Hue.LightGray)
     End Sub
 End Class

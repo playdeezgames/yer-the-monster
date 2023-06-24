@@ -33,12 +33,12 @@
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         If MenuItemIndex > 0 Then
             If DoesSaveExist(MenuItemIndex) Then
-                ShowStatusBar(displayBuffer, font, SaveSlotExistsText, Hue.Black, Hue.White)
+                ShowStatusBar(displayBuffer, font, SaveSlotExistsText, Hue.Black, Hue.LightGray)
             Else
-                ShowStatusBar(displayBuffer, font, SaveSlotDoesNotExistText, Hue.Black, Hue.Purple)
+                ShowStatusBar(displayBuffer, font, SaveSlotDoesNotExistText, Hue.Black, Hue.Red)
             End If
         Else
-            ShowStatusBar(displayBuffer, font, "On second thought...", Hue.Black, Hue.White)
+            ShowStatusBar(displayBuffer, font, "On second thought...", Hue.Black, Hue.LightGray)
         End If
     End Sub
 End Class

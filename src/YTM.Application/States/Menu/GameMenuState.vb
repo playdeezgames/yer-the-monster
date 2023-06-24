@@ -40,9 +40,9 @@
     Private ReadOnly _hueTable As IReadOnlyDictionary(Of String, Hue) =
         New Dictionary(Of String, Hue) From
         {
-                {ContinueGameText, Hue.White},
-                {SaveGameText, Hue.White},
-                {OptionsText, Hue.White},
-                {AbandonGameText, Hue.Purple}
+                {ContinueGameText, Hue.LightGray},
+                {SaveGameText, Hue.LightGray},
+                {OptionsText, Hue.LightGray},
+                {AbandonGameText, Hue.Red}
         }
 End Class

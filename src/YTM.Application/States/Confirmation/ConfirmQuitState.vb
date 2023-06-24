@@ -32,7 +32,7 @@
         If Confirmation Then
             ShowStatusBar(displayBuffer, font, "Please don't go!", Hue.Black, Hue.Red)
         Else
-            ShowStatusBar(displayBuffer, font, "You'll stay?", Hue.Black, Hue.Green)
+            ShowStatusBar(displayBuffer, font, "You'll stay?", Hue.Black, Hue.LightGray)
         End If
     End Sub
 End Class

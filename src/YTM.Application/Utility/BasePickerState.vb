@@ -36,13 +36,13 @@
         Dim index = 0
         For Each menuItem In _menuItems
             Dim x = ViewWidth \ 2 - font.TextWidth(menuItem.Item1) \ 2
-            Dim h = If(index = _menuItemIndex, Hue.Purple, Hue.Cyan)
+            Dim h = If(index = _menuItemIndex, Hue.LightBlue, Hue.Blue)
             font.WriteText(displayBuffer, (x, y), menuItem.Item1, h)
             index += 1
             y += font.Height
         Next
-        ShowHeader(displayBuffer, font, HeaderText, Hue.White, Hue.Black)
-        ShowStatusBar(displayBuffer, font, _statusBarText, Hue.Black, Hue.White)
+        ShowHeader(displayBuffer, font, HeaderText, Hue.Orange, Hue.Black)
+        ShowStatusBar(displayBuffer, font, _statusBarText, Hue.Black, Hue.LightGray)
     End Sub
     Public Overrides Sub OnStart()
         _menuItems = InitializeMenuItems()

@@ -32,7 +32,7 @@
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         MyBase.Render(displayBuffer)
-        ShowStatusBar(displayBuffer, Context.UIFont, _table(MenuItemText), Hue.Black, Hue.White)
+        ShowStatusBar(displayBuffer, Context.UIFont, _table(MenuItemText), Hue.Black, Hue.LightGray)
     End Sub
     Private ReadOnly _table As IReadOnlyDictionary(Of String, String) =
         New Dictionary(Of String, String) From

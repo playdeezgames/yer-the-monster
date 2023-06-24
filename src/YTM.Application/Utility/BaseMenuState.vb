@@ -42,10 +42,10 @@
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         With font
-            .WriteText(displayBuffer, (0, 0), _title, Hue.White)
+            .WriteText(displayBuffer, (0, 0), _title, Hue.Orange)
             Dim y = font.Height
             For index = 0 To _menuItems.Length - 1
-                .WriteText(displayBuffer, (0, y), _menuItems(index), If(index = _menuItemIndex, Hue.Purple, Hue.Cyan))
+                .WriteText(displayBuffer, (0, y), _menuItems(index), If(index = _menuItemIndex, Hue.LightBlue, Hue.Blue))
                 y += font.Height
             Next
         End With
