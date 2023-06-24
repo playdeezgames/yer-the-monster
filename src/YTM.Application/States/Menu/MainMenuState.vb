@@ -25,15 +25,15 @@
         MyBase.Render(displayBuffer)
         Select Case MenuItemText
             Case EmbarkText
-                Utility.ShowHeader(displayBuffer, UIFont, "Start a new game!", Hue.Black, Hue.LightGray)
+                Title = "Start a new game!"
             Case LoadText
-                Utility.ShowHeader(displayBuffer, UIFont, "Continue a game!", Hue.Black, Hue.LightGray)
+                Title = "Continue a game!"
             Case QuitText
-                Utility.ShowHeader(displayBuffer, UIFont, "I'll miss you! <3", Hue.Black, Hue.Red)
+                Title = "I'll miss you! <3"
             Case AboutText
-                Utility.ShowHeader(displayBuffer, UIFont, "Learn all the things about this fine game!", Hue.Black, Hue.LightGray)
+                Title = "Learn all the things about this fine game!"
             Case OptionsText
-                Utility.ShowHeader(displayBuffer, UIFont, "Change Window Size and Volume!", Hue.Black, Hue.LightGray)
+                Title = "Change Window Size and Volume!"
         End Select
         ShowStatusBar(displayBuffer, UIFont, ControlsText("Select", "Quit Game"), Hue.Black, Hue.LightGray)
     End Sub
