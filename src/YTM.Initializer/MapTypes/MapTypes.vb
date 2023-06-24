@@ -6,7 +6,15 @@ Friend Module MapTypes
     Private ReadOnly Descriptors As IReadOnlyDictionary(Of String, MapTypeDescriptor) =
         New Dictionary(Of String, MapTypeDescriptor) From
         {
-            {MapTypes.Lair, New MapTypeDescriptor(5, 5, TerrainTypes.Lair, New Dictionary(Of String, Integer))},
+            {
+                MapTypes.Lair,
+                New MapTypeDescriptor(
+                    5,
+                    5,
+                    TerrainTypes.Lair,
+                    New Dictionary(Of String, Integer),
+                    New Dictionary(Of String, Integer))
+            },
             {
                 MapTypes.Swamp,
                 New MapTypeDescriptor(
@@ -16,6 +24,10 @@ Friend Module MapTypes
                     New Dictionary(Of String, Integer) From
                     {
                         {ItemTypes.BigShroom, 100}
+                    },
+                    New Dictionary(Of String, Integer) From
+                    {
+                        {TerrainTypes.DeadTree, 100}
                     })
             }
         }
