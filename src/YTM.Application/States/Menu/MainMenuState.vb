@@ -3,7 +3,7 @@
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
-            setState, MainMenuTitle, {EmbarkText, LoadText, OptionsText, AboutText, QuitText}, QuitText)
+            setState, MainMenuTitle, {EmbarkText, LoadText, OptionsText, AboutText}, QuitText)
     End Sub
     Protected Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem
@@ -25,15 +25,16 @@
         MyBase.Render(displayBuffer)
         Select Case MenuItemText
             Case EmbarkText
-                Utility.ShowStatusBar(displayBuffer, UIFont, "Start a new game!", Hue.Black, Hue.LightGray)
+                Utility.ShowHeader(displayBuffer, UIFont, "Start a new game!", Hue.Black, Hue.LightGray)
             Case LoadText
-                Utility.ShowStatusBar(displayBuffer, UIFont, "Continue a game!", Hue.Black, Hue.LightGray)
+                Utility.ShowHeader(displayBuffer, UIFont, "Continue a game!", Hue.Black, Hue.LightGray)
             Case QuitText
-                Utility.ShowStatusBar(displayBuffer, UIFont, "I'll miss you! <3", Hue.Black, Hue.Red)
+                Utility.ShowHeader(displayBuffer, UIFont, "I'll miss you! <3", Hue.Black, Hue.Red)
             Case AboutText
-                Utility.ShowStatusBar(displayBuffer, UIFont, "Learn all the things about this fine game!", Hue.Black, Hue.LightGray)
+                Utility.ShowHeader(displayBuffer, UIFont, "Learn all the things about this fine game!", Hue.Black, Hue.LightGray)
             Case OptionsText
-                Utility.ShowStatusBar(displayBuffer, UIFont, "Change Window Size and Volume!", Hue.Black, Hue.LightGray)
+                Utility.ShowHeader(displayBuffer, UIFont, "Change Window Size and Volume!", Hue.Black, Hue.LightGray)
         End Select
+        ShowStatusBar(displayBuffer, UIFont, ControlsText("Select", "Quit Game"), Hue.Black, Hue.LightGray)
     End Sub
 End Class
