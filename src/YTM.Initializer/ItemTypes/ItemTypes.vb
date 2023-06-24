@@ -13,7 +13,10 @@ Public Module ItemTypes
                     "!"c,
                     Hue.Black,
                     Array.Empty(Of String),
-                    New Dictionary(Of String, Action(Of ICharacter, IItem)))
+                    New Dictionary(Of String, Action(Of ICharacter, IItem)) From
+                    {
+                        {VerbTypes.Eat, AddressOf EatNothing}
+                    })
             },
             {
                 BigShroom,
@@ -30,6 +33,11 @@ Public Module ItemTypes
                     })
             }
         }
+
+    Private Sub EatNothing(character As ICharacter, item As IItem)
+        character.AddMessage($"{character.Name} eats {item.Name}.")
+        character.ApplyHunger(2)
+    End Sub
 
     Private Sub EatBigShroom(character As ICharacter, item As IItem)
         character.SetSatiety(character.Satiety + 20)
