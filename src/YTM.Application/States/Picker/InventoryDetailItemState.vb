@@ -1,8 +1,8 @@
-﻿Friend Class InteractInventoryItemState
+﻿Friend Class InventoryDetailItemState
     Inherits BasePickerState
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
-        MyBase.New(parent, setState, "<placeholder>", "Space/(A) - Select | Esc/(B) - Go Back", GameState.ChooseInventoryItem)
+        MyBase.New(parent, setState, "<placeholder>", "Space/(A) - Select | Esc/(B) - Go Back", GameState.Inventory)
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))

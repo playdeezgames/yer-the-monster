@@ -7,7 +7,7 @@
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         Context.ItemName = value.Item2
         Context.ItemId = World.Avatar.Items.First(Function(x) x.Name = value.Item2).Id
-        SetState(GameState.InteractInventoryItem)
+        SetState(GameState.InventoryDetail)
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))

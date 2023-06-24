@@ -18,6 +18,5 @@
     Message
     Navigation
     PickUpItem
-    ChooseInventoryItem
-    InteractInventoryItem
+    InventoryDetail
 End Enum
