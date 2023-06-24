@@ -50,7 +50,6 @@
     Friend Const ToggleFullScreenText = "Toggle Full Screen"
     Public Const ViewHeight = 180
     Public Const ViewWidth = 320
-    Friend Const VolumeTitle = "Volume:"
     Friend Const Volume0Text = "0%"
     Friend Const Volume1Text = "10%"
     Friend Const Volume2Text = "20%"

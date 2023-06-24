@@ -3,7 +3,7 @@
     Private ReadOnly _menuItems As String()
     Private _menuItemIndex As Integer = 0
     Private ReadOnly _cancelMenuItem As String
-    Private ReadOnly _title As String
+    Protected Property Title As String
     Protected ReadOnly Property MenuItemIndex As Integer
         Get
             Return _menuItemIndex
@@ -21,7 +21,7 @@
                   menuItems As String(),
                   cancelMenuItem As String)
         MyBase.New(parent, setState)
-        Me._title = title
+        Me.Title = title
         Me._menuItems = menuItems
         Me._cancelMenuItem = cancelMenuItem
     End Sub
@@ -42,7 +42,7 @@
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         With font
-            .WriteText(displayBuffer, (0, 0), _title, Hue.Orange)
+            .WriteText(displayBuffer, (0, 0), Title, Hue.Orange)
             Dim y = font.Height
             For index = 0 To _menuItems.Length - 1
                 .WriteText(displayBuffer, (0, y), _menuItems(index), If(index = _menuItemIndex, Hue.LightBlue, Hue.Blue))
