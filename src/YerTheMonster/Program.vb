@@ -1,3 +1,4 @@
+Imports System.ComponentModel.Design
 Imports System.IO
 Imports System.Runtime.InteropServices
 Imports System.Text.Json
@@ -42,27 +43,26 @@ Module Program
     Private Sub SaveConfig(windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single)
         File.WriteAllText(ConfigFileName, JsonSerializer.Serialize(New YTMConfig With {.SfxVolume = volume, .WindowHeight = windowSize.Item2, .WindowWidth = windowSize.Item1, .FullScreen = fullScreen}))
     End Sub
+    Private ReadOnly _nextCommandTimes As New Dictionary(Of Command, DateTimeOffset)
+    Private Sub CheckForGamePadCommand(commands As HashSet(Of Command), isPressed As Boolean, command As Command)
+        If isPressed Then
+            If Not _nextCommandTimes.ContainsKey(command) OrElse DateTimeOffset.Now > _nextCommandTimes(command) Then
+                commands.Add(command)
+                _nextCommandTimes(command) = DateTimeOffset.Now.AddSeconds(0.5)
+            End If
+        Else
+            _nextCommandTimes.Remove(command)
+        End If
+    End Sub
     Private Function GamePadTransformer(oldState As GamePadState, newState As GamePadState) As Command()
-        Dim results As New List(Of Command)
-        If newState.IsButtonDown(Buttons.A) AndAlso Not oldState.IsButtonDown(Buttons.A) Then
-            results.Add(Command.A)
-        End If
-        If newState.IsButtonDown(Buttons.B) AndAlso Not oldState.IsButtonDown(Buttons.B) Then
-            results.Add(Command.B)
-        End If
-        If newState.DPad.Up = ButtonState.Pressed AndAlso oldState.DPad.Up = ButtonState.Released Then
-            results.Add(Command.Up)
-        End If
-        If newState.DPad.Down = ButtonState.Pressed AndAlso oldState.DPad.Down = ButtonState.Released Then
-            results.Add(Command.Down)
-        End If
-        If newState.DPad.Left = ButtonState.Pressed AndAlso oldState.DPad.Left = ButtonState.Released Then
-            results.Add(Command.Left)
-        End If
-        If newState.DPad.Right = ButtonState.Pressed AndAlso oldState.DPad.Right = ButtonState.Released Then
-            results.Add(Command.Right)
-        End If
-        Return results.ToArray
+        Dim result As New HashSet(Of Command)
+        CheckForGamePadCommand(result, newState.IsButtonDown(Buttons.A), Command.A)
+        CheckForGamePadCommand(result, newState.IsButtonDown(Buttons.B), Command.B)
+        CheckForGamePadCommand(result, newState.DPad.Up = ButtonState.Pressed, Command.Up)
+        CheckForGamePadCommand(result, newState.DPad.Down = ButtonState.Pressed, Command.Down)
+        CheckForGamePadCommand(result, newState.DPad.Left = ButtonState.Pressed, Command.Left)
+        CheckForGamePadCommand(result, newState.DPad.Right = ButtonState.Pressed, Command.Right)
+        Return result.ToArray
     End Function
     Private Function BufferCreator(texture As Texture2D) As IDisplayBuffer(Of Hue)
         Return New DisplayBuffer(Of Hue)(texture, AddressOf TransformHue)
