@@ -1,12 +1,13 @@
 ﻿Friend Class InventoryState
     Inherits BasePickerState
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
-        MyBase.New(parent, setState, "Yer's Inventory", "Space/(A) - Select | Esc/(B) - Go Back", GameState.Neutral)
+        MyBase.New(parent, setState, "Yer's Inventory", ControlsText("Select", "Cancel"), GameState.Neutral)
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         Context.ItemName = value.Item2
-        SetState(GameState.ChooseInventoryItem)
+        Context.ItemId = World.Avatar.Items.First(Function(x) x.Name = value.Item2).Id
+        SetState(GameState.InteractInventoryItem)
     End Sub
 
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
