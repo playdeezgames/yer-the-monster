@@ -6,7 +6,6 @@
             setState,
             ActionMenuTitle,
             {
-                GoBackText,
                 InventoryText,
                 PickUpItemText
             },
@@ -27,24 +26,7 @@
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         Dim avatar = World.Avatar
         With font
-            Select Case MenuItemText
-                Case GoBackText
-                    ShowStatusBar(displayBuffer, font, "Never mind...", Hue.Black, Hue.LightGray)
-                Case MoveText
-                    ShowStatusBar(displayBuffer, font, "I gotta get out of this place!", Hue.Black, Hue.LightGray)
-                Case InventoryText
-                    If avatar.HasItems Then
-                        ShowStatusBar(displayBuffer, font, "View Yer's Items", Hue.Black, Hue.LightGray)
-                    Else
-                        ShowStatusBar(displayBuffer, font, "Yer has no Items", Hue.Black, Hue.Red)
-                    End If
-                Case PickUpItemText
-                    If avatar.MapCell.HasItem Then
-                        ShowStatusBar(displayBuffer, font, avatar.MapCell.Item.Name, Hue.Black, Hue.LightGray)
-                    Else
-                        ShowStatusBar(displayBuffer, font, "Nothing to pick up!", Hue.Black, Hue.Red)
-                    End If
-            End Select
+            ShowStatusBar(displayBuffer, font, "Space/(A) - Select | Esc/(B) - Go back", Hue.Black, Hue.LightGray)
         End With
     End Sub
 End Class
