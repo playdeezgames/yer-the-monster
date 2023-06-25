@@ -20,12 +20,24 @@ Module Program
             gameController,
             (ViewWidth, ViewHeight),
             AddressOf BufferCreator,
-            AddressOf CommandTransformer,
+            AddressOf KeyboardTransformer,
             AddressOf GamePadTransformer,
             sfxFileNames)
             host.Run()
         End Using
     End Sub
+
+    Private Function KeyboardTransformer(state As KeyboardState) As Command()
+        Dim result As New HashSet(Of Command)
+        CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Space) OrElse state.IsKeyDown(Keys.Enter), Command.A)
+        CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Escape), Command.B)
+        CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Up) OrElse state.IsKeyDown(Keys.NumPad8), Command.Up)
+        CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Down) OrElse state.IsKeyDown(Keys.NumPad2), Command.Down)
+        CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Left) OrElse state.IsKeyDown(Keys.NumPad4), Command.Left)
+        CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Right) OrElse state.IsKeyDown(Keys.NumPad6), Command.Right)
+        Return result.ToArray
+    End Function
+
     Private Const ConfigFileName = "config.json"
     Private Function ReadConfig() As YTMConfig
         Try
@@ -43,25 +55,46 @@ Module Program
     Private Sub SaveConfig(windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single)
         File.WriteAllText(ConfigFileName, JsonSerializer.Serialize(New YTMConfig With {.SfxVolume = volume, .WindowHeight = windowSize.Item2, .WindowWidth = windowSize.Item1, .FullScreen = fullScreen}))
     End Sub
-    Private ReadOnly _nextCommandTimes As New Dictionary(Of Command, DateTimeOffset)
-    Private Sub CheckForGamePadCommand(commands As HashSet(Of Command), isPressed As Boolean, command As Command)
+    Private ReadOnly _nextGamePadCommandTimes As New Dictionary(Of Command, DateTimeOffset)
+    Private ReadOnly _nextKeyboardCommandTimes As New Dictionary(Of Command, DateTimeOffset)
+    Private Sub CheckGamePadForCommand(commands As HashSet(Of Command), isPressed As Boolean, command As Command)
         If isPressed Then
-            If Not _nextCommandTimes.ContainsKey(command) OrElse DateTimeOffset.Now > _nextCommandTimes(command) Then
+            If _nextGamePadCommandTimes.ContainsKey(command) Then
+                If DateTimeOffset.Now > _nextGamePadCommandTimes(command) Then
+                    commands.Add(command)
+                    _nextGamePadCommandTimes(command) = DateTimeOffset.Now.AddSeconds(0.3)
+                End If
+            Else
                 commands.Add(command)
-                _nextCommandTimes(command) = DateTimeOffset.Now.AddSeconds(0.5)
+                _nextGamePadCommandTimes(command) = DateTimeOffset.Now.AddSeconds(1.0)
             End If
         Else
-            _nextCommandTimes.Remove(command)
+            _nextGamePadCommandTimes.Remove(command)
         End If
     End Sub
-    Private Function GamePadTransformer(oldState As GamePadState, newState As GamePadState) As Command()
+    Private Sub CheckKeyboardForCommand(commands As HashSet(Of Command), isPressed As Boolean, command As Command)
+        If isPressed Then
+            If _nextKeyboardCommandTimes.ContainsKey(command) Then
+                If DateTimeOffset.Now > _nextKeyboardCommandTimes(command) Then
+                    commands.Add(command)
+                    _nextKeyboardCommandTimes(command) = DateTimeOffset.Now.AddSeconds(0.3)
+                End If
+            Else
+                commands.Add(command)
+                _nextKeyboardCommandTimes(command) = DateTimeOffset.Now.AddSeconds(1.0)
+            End If
+        Else
+            _nextKeyboardCommandTimes.Remove(command)
+        End If
+    End Sub
+    Private Function GamePadTransformer(newState As GamePadState) As Command()
         Dim result As New HashSet(Of Command)
-        CheckForGamePadCommand(result, newState.IsButtonDown(Buttons.A), Command.A)
-        CheckForGamePadCommand(result, newState.IsButtonDown(Buttons.B), Command.B)
-        CheckForGamePadCommand(result, newState.DPad.Up = ButtonState.Pressed, Command.Up)
-        CheckForGamePadCommand(result, newState.DPad.Down = ButtonState.Pressed, Command.Down)
-        CheckForGamePadCommand(result, newState.DPad.Left = ButtonState.Pressed, Command.Left)
-        CheckForGamePadCommand(result, newState.DPad.Right = ButtonState.Pressed, Command.Right)
+        CheckGamePadForCommand(result, newState.IsButtonDown(Buttons.A), Command.A)
+        CheckGamePadForCommand(result, newState.IsButtonDown(Buttons.B), Command.B)
+        CheckGamePadForCommand(result, newState.DPad.Up = ButtonState.Pressed, Command.Up)
+        CheckGamePadForCommand(result, newState.DPad.Down = ButtonState.Pressed, Command.Down)
+        CheckGamePadForCommand(result, newState.DPad.Left = ButtonState.Pressed, Command.Left)
+        CheckGamePadForCommand(result, newState.DPad.Right = ButtonState.Pressed, Command.Right)
         Return result.ToArray
     End Function
     Private Function BufferCreator(texture As Texture2D) As IDisplayBuffer(Of Hue)
@@ -89,24 +122,6 @@ Module Program
         }
     Private Function TransformHue(hue As Hue) As Color
         Return hueTable(hue)
-    End Function
-    Private Function CommandTransformer(keys As Keys) As Command?
-        Select Case keys
-            Case Keys.Up, Keys.NumPad8
-                Return Command.Up
-            Case Keys.Down, Keys.NumPad2
-                Return Command.Down
-            Case Keys.Right, Keys.NumPad6
-                Return Command.Right
-            Case Keys.Left, Keys.NumPad4
-                Return Command.Left
-            Case Keys.Space, Keys.Enter
-                Return Command.A
-            Case Keys.Escape
-                Return Command.B
-            Case Else
-                Return Nothing
-        End Select
     End Function
     Private ReadOnly sfxFileNames As IReadOnlyDictionary(Of Sfx, String) =
         New Dictionary(Of Sfx, String) From
