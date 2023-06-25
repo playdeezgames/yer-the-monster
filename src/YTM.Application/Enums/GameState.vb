@@ -19,4 +19,6 @@
     Navigation
     PickUpItem
     InventoryDetail
+    Fight
+    Run
 End Enum

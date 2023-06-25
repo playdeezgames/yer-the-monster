@@ -6,21 +6,21 @@ Public Module CharacterExtensions
         item.ItemType.ToItemTypeDescriptor.Verbs(verbType).Invoke(character, item)
     End Sub
     <Extension>
-    Public Sub Move(character As ICharacter, deltaX As Integer, deltaY As Integer)
+    Public Function Move(character As ICharacter, deltaX As Integer, deltaY As Integer) As ICharacter
         Dim mapCell = character.MapCell
         Dim nextColumn = mapCell.Column + deltaX
         Dim nextRow = mapCell.Row + deltaY
         Dim map = mapCell.Map
         If nextColumn < 0 OrElse nextRow < 0 OrElse nextColumn >= map.Columns OrElse nextRow >= map.Rows Then
-            Return
+            Return Nothing
         End If
         Dim nextMapCell = map.Cell(nextColumn, nextRow)
         If Not nextMapCell.TerrainType.ToTerrainTypeDescriptor.Tenable Then
             nextMapCell.Bump(character)
-            Return
+            Return Nothing
         End If
         If nextMapCell.HasCharacter Then
-            Return
+            Return nextMapCell.Character
         End If
         character.ApplyHunger(1)
         mapCell.Character = Nothing
@@ -28,7 +28,8 @@ Public Module CharacterExtensions
         mapCell.Character = character
         character.MapCell = mapCell
         character.OnEnter()
-    End Sub
+        Return Nothing
+    End Function
     <Extension>
     Friend Sub OnEnter(character As ICharacter)
         Dim mapCell = character.MapCell

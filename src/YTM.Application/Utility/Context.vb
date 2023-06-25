@@ -2,6 +2,7 @@
     Friend Property World As IWorld
     Friend Property ItemName As String
     Friend Property ItemId As Integer
+    Friend Property Enemy As ICharacter
 
     Friend Sub Initialize()
         Fonts.Load()
@@ -12,11 +13,14 @@
     Friend Sub Embark()
         World = New World(New WorldData)
         WorldInitializer.Initialize(World)
+        Enemy = Nothing
     End Sub
     Friend Sub LoadFromSlot(index As Integer)
         World = Business.World.Load(SlotFilename(index))
+        Enemy = Nothing
     End Sub
     Friend Sub Abandon()
+        Enemy = Nothing
         World = Nothing
     End Sub
     Function DoesSaveExist(index As Integer) As Boolean

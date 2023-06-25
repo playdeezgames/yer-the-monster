@@ -15,6 +15,8 @@ Public Class GameController
         SetState(GameState.Navigation, New NavigationState(Me, AddressOf SetCurrentState))
         SetState(GameState.PickUpItem, New PickUpItemState(Me, AddressOf SetCurrentState))
         SetState(GameState.InventoryDetail, New InventoryDetailItemState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Fight, New FightState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Run, New RunState(Me, AddressOf SetCurrentState))
 
         SetCurrentState(GameState.Splash, True)
     End Sub

@@ -1,9 +1,19 @@
-﻿Friend Class NavigationState
+﻿Imports System.ComponentModel.Design
+
+Friend Class NavigationState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
+    Private ReadOnly commandDeltas As IReadOnlyDictionary(Of Command, (Integer, Integer)) =
+        New Dictionary(Of Command, (Integer, Integer)) From
+        {
+            {Command.Up, (0, -1)},
+            {Command.Down, (0, 1)},
+            {Command.Left, (-1, 0)},
+            {Command.Right, (1, 0)}
+        }
 
     Public Overrides Sub HandleCommand(command As Command)
         Dim avatar = World.Avatar
@@ -12,17 +22,9 @@
                 SetState(GameState.GameMenu)
             Case Command.A
                 SetState(GameState.ActionMenu)
-            Case Command.Up
-                avatar.Move(0, -1)
-                SetState(GameState.Neutral)
-            Case Command.Down
-                avatar.Move(0, 1)
-                SetState(GameState.Neutral)
-            Case Command.Left
-                avatar.Move(-1, 0)
-                SetState(GameState.Neutral)
-            Case Command.Right
-                avatar.Move(1, 0)
+            Case Else
+                Dim delta = commandDeltas(command)
+                Context.Enemy = avatar.Move(delta.Item1, delta.Item2)
                 SetState(GameState.Neutral)
         End Select
     End Sub
