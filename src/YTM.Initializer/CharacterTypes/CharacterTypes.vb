@@ -2,6 +2,8 @@
 
 Public Module CharacterTypes
     Friend Const Monster = "Monster"
+    Friend Const Badger = "Badger"
+    Friend Const Snake = "Snake"
     Friend ReadOnly Descriptors As IReadOnlyDictionary(Of String, CharacterTypeDescriptor) =
         New Dictionary(Of String, CharacterTypeDescriptor) From
         {
