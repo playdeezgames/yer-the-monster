@@ -19,6 +19,9 @@ Public Module CharacterExtensions
             nextMapCell.Bump(character)
             Return
         End If
+        If nextMapCell.HasCharacter Then
+            Return
+        End If
         character.ApplyHunger(1)
         mapCell.Character = Nothing
         mapCell = nextMapCell

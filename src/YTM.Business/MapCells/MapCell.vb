@@ -79,6 +79,12 @@
         End Set
     End Property
 
+    Public ReadOnly Property HasCharacter As Boolean Implements IMapCell.HasCharacter
+        Get
+            Return MapCellData.CharacterId.HasValue
+        End Get
+    End Property
+
     Private ReadOnly Property IMapCell_Column As Integer Implements IMapCell.Column
         Get
             Return Column

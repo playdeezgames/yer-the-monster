@@ -4,6 +4,7 @@ Public Module WorldInitializer
         Dim lair = LairInitializer.Initialize(world)
         TerrainInitializer.Initialize(world)
         ItemInitializer.Initialize(world)
+        CharacterInitializer.Initialize(world)
         StitchSwampToLair(world, swamp, lair)
     End Sub
 

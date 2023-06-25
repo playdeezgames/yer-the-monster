@@ -9,4 +9,5 @@
     Sub Bump(character As ICharacter)
     ReadOnly Property HasItem As Boolean
     Property Item As IItem
+    ReadOnly Property HasCharacter As Boolean
 End Interface

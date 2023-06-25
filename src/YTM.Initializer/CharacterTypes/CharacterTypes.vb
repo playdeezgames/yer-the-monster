@@ -20,6 +20,47 @@ Public Module CharacterTypes
                         {StatisticTypes.Health, 100},
                         {StatisticTypes.Satiety, 100},
                         {StatisticTypes.Energy, 100}
+                    },
+                    New List(Of String) From
+                    {
+                        TerrainTypes.Lair
+                    })
+            }, {
+                Badger,
+                New CharacterTypeDescriptor(
+                    "+"c,
+                    Hue.LightGray,
+                    New Dictionary(Of String, Integer) From
+                    {
+                        {StatisticTypes.MaximumHealth, 100},
+                        {StatisticTypes.MaximumSatiety, 100},
+                        {StatisticTypes.MaximumEnergy, 100},
+                        {StatisticTypes.Health, 100},
+                        {StatisticTypes.Satiety, 100},
+                        {StatisticTypes.Energy, 100}
+                    },
+                    New List(Of String) From
+                    {
+                        TerrainTypes.Empty
+                    })
+            },
+            {
+                Snake,
+                New CharacterTypeDescriptor(
+                    "*"c,
+                    Hue.Green,
+                    New Dictionary(Of String, Integer) From
+                    {
+                        {StatisticTypes.MaximumHealth, 100},
+                        {StatisticTypes.MaximumSatiety, 100},
+                        {StatisticTypes.MaximumEnergy, 100},
+                        {StatisticTypes.Health, 100},
+                        {StatisticTypes.Satiety, 100},
+                        {StatisticTypes.Energy, 100}
+                    },
+                    New List(Of String) From
+                    {
+                        TerrainTypes.Empty
                     })
             }
         }

@@ -1,4 +1,4 @@
-﻿Friend Module ItemInitializer
+﻿Friend Module CharacterInitializer
     Friend Sub Initialize(world As IWorld)
         For Each map In world.Maps
             InitializeMap(world, map)
@@ -6,13 +6,13 @@
     End Sub
     Private Sub InitializeMap(world As IWorld, map As IMap)
         Dim mapTypeDescriptor = map.MapType.ToMapTypeDescriptor
-        For Each entry In mapTypeDescriptor.ItemSpawns
-            Dim itemTypeDescriptor = entry.Key.ToItemTypeDescriptor
-            Dim candidates = map.Cells.Where(Function(x) itemTypeDescriptor.SpawnTerrainTypes.Contains(x.TerrainType) AndAlso Not x.HasItem).ToList
+        For Each entry In mapTypeDescriptor.CharacterSpawns
+            Dim characterTypeDescriptor = entry.Key.ToCharacterTypeDescriptor
+            Dim candidates = map.Cells.Where(Function(x) characterTypeDescriptor.SpawnTerrainTypes.Contains(x.TerrainType) AndAlso Not x.HasCharacter).ToList
             Dim count = entry.Value
             While candidates.Any AndAlso count > 0
                 Dim candidate = RNG.FromEnumerable(candidates)
-                candidate.Item = InitializerUtility.CreateItem(world, entry.Key)
+                InitializerUtility.CreateCharacter(candidate, entry.Key, entry.Key)
                 candidates.Remove(candidate)
                 count -= 1
             End While

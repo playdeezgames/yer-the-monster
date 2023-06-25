@@ -13,6 +13,7 @@ Friend Module MapTypes
                     5,
                     TerrainTypes.Lair,
                     New Dictionary(Of String, Integer),
+                    New Dictionary(Of String, Integer),
                     New Dictionary(Of String, Integer))
             },
             {
@@ -28,6 +29,11 @@ Friend Module MapTypes
                     New Dictionary(Of String, Integer) From
                     {
                         {TerrainTypes.DeadTree, 100}
+                    },
+                    New Dictionary(Of String, Integer) From
+                    {
+                        {CharacterTypes.Badger, 25},
+                        {CharacterTypes.Snake, 25}
                     })
             }
         }
