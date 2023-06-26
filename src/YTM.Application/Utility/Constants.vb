@@ -7,6 +7,7 @@
     Friend Const About5Text = "Art: https://vurmux.itch.io/urizen-onebit-tilesets"
     Friend Const AboutText = "About..."
     Friend Const AboutTitle = "About YTM:"
+    Friend Const AttackText = "Attack!"
     Friend Const ActionMenuTitle = "Actions:"
     Friend Const ConfirmAbandonTitle = "Are you sure you want to abandon the game?"
     Friend Const ConfirmQuitTitle = "Are you sure you want to quit?"

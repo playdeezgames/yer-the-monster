@@ -5,8 +5,49 @@ Public Module CharacterExtensions
     Public Sub UseItem(character As ICharacter, item As IItem, verbType As String)
         item.ItemType.ToItemTypeDescriptor.Verbs(verbType).Invoke(character, item)
     End Sub
+    Private Sub AddCombatMessage(attacker As ICharacter, defender As ICharacter, ParamArray lines As String())
+        attacker.AddMessage(lines)
+        defender.AddMessage(lines)
+    End Sub
     <Extension>
-    Public Function Move(character As ICharacter, deltaX As Integer, deltaY As Integer) As ICharacter
+    Private Function RollAttack(character As ICharacter) As Integer
+        Return RNG.FromRange(character.Statistic(StatisticTypes.MinimumAttack), character.Statistic(StatisticTypes.MaximumAttack))
+    End Function
+    <Extension>
+    Private Function RollDefend(character As ICharacter) As Integer
+        Return RNG.FromRange(character.Statistic(StatisticTypes.MinimumDefend), character.Statistic(StatisticTypes.MaximumDefend))
+    End Function
+    <Extension>
+    Public Sub Attack(attacker As ICharacter, defender As ICharacter, counterAttack As Boolean)
+        Dim message As New List(Of String)
+        message.Add($"{attacker.Name} attacks {defender.Name}.")
+        Dim attackRoll = attacker.RollAttack
+        message.Add($"{attacker.Name} rolls an attack of {attackRoll}.")
+        Dim defendRoll = defender.RollDefend
+        message.Add($"{defender.Name} rolls an defend of {defendRoll}.")
+        Dim damage = Math.Max(0, attackRoll - defendRoll)
+        If damage > 0 Then
+            message.Add($"{attacker.Name} hits for {damage} damage!")
+            defender.SetHealth(defender.Health - damage)
+        Else
+            message.Add($"{attacker.Name} misses!")
+        End If
+        If defender.IsDead Then
+            message.Add($"{attacker.Name} kills {defender.Name}.")
+        Else
+            message.Add($"{defender.Name} has {defender.Health}/{defender.MaximumHealth} health.")
+        End If
+        AddCombatMessage(attacker, defender, message.ToArray)
+        If defender.IsDead Then
+            defender.Recycle()
+        Else
+            If counterAttack Then
+                defender.Attack(attacker, False)
+            End If
+        End If
+    End Sub
+    <Extension>
+    Public Function Move(character As ICharacter, deltaX As Integer, deltaY As Integer) As IMapCell
         Dim mapCell = character.MapCell
         Dim nextColumn = mapCell.Column + deltaX
         Dim nextRow = mapCell.Row + deltaY
@@ -20,7 +61,7 @@ Public Module CharacterExtensions
             Return Nothing
         End If
         If nextMapCell.HasCharacter Then
-            Return nextMapCell.Character
+            Return nextMapCell
         End If
         character.ApplyHunger(1)
         mapCell.Character = Nothing

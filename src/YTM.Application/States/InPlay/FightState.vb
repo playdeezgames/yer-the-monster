@@ -9,6 +9,8 @@
         Select Case value.Item2
             Case RunText
                 SetState(GameState.Run)
+            Case AttackText
+                SetState(GameState.Attack)
             Case Else
                 Throw New NotImplementedException
         End Select
@@ -18,8 +20,10 @@
         Dim avatar = World.Avatar
         Dim enemy = Context.Enemy
         HeaderText = $"{avatar.Name}({avatar.Health}/{avatar.MaximumHealth}) is fighting {enemy.Name}({enemy.Health}/{enemy.MaximumHealth})."
-        Dim result As New List(Of (String, String))
-        result.Add((RunText, RunText))
+        Dim result As New List(Of (String, String)) From {
+            (AttackText, AttackText),
+            (RunText, RunText)
+        }
         Return result
     End Function
 

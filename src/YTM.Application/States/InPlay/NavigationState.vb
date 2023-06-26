@@ -24,7 +24,7 @@ Friend Class NavigationState
                 SetState(GameState.ActionMenu)
             Case Else
                 Dim delta = commandDeltas(command)
-                Context.Enemy = avatar.Move(delta.Item1, delta.Item2)
+                Context.AttackTarget = avatar.Move(delta.Item1, delta.Item2)
                 SetState(GameState.Neutral)
         End Select
     End Sub

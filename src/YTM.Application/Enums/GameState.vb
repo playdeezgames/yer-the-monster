@@ -21,4 +21,5 @@
     InventoryDetail
     Fight
     Run
+    Attack
 End Enum

@@ -9,4 +9,6 @@
     Property MapCell As IMapCell
     ReadOnly Property CharacterType As String
     Sub RemoveItem(item As IItem)
+    ReadOnly Property IsAvatar As Boolean
+    Sub Recycle()
 End Interface

@@ -1,4 +1,4 @@
-﻿Friend Class RunState
+﻿Friend Class AttackState
     Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
 
     Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
@@ -12,10 +12,9 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
         Throw New NotImplementedException()
     End Sub
-
     Public Overrides Sub OnStart()
         MyBase.OnStart()
-        Context.AttackTarget = Nothing
+        World.Avatar.Attack(Context.Enemy, True)
         SetState(GameState.Neutral)
     End Sub
 End Class

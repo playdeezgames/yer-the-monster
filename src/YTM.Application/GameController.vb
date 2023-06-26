@@ -17,6 +17,7 @@ Public Class GameController
         SetState(GameState.InventoryDetail, New InventoryDetailItemState(Me, AddressOf SetCurrentState))
         SetState(GameState.Fight, New FightState(Me, AddressOf SetCurrentState))
         SetState(GameState.Run, New RunState(Me, AddressOf SetCurrentState))
+        SetState(GameState.Attack, New AttackState(Me, AddressOf SetCurrentState))
 
         SetCurrentState(GameState.Splash, True)
     End Sub

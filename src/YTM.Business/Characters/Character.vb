@@ -52,6 +52,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property IsAvatar As Boolean Implements ICharacter.IsAvatar
+        Get
+            Return WorldData.AvatarCharacterId.HasValue AndAlso WorldData.AvatarCharacterId.Value = Id
+        End Get
+    End Property
+
     Public Sub AddItem(item As IItem) Implements ICharacter.AddItem
         CharacterData.ItemIds.Add(item.Id)
     End Sub
@@ -68,5 +74,12 @@
 
     Public Sub RemoveItem(item As IItem) Implements ICharacter.RemoveItem
         CharacterData.ItemIds.Remove(item.Id)
+    End Sub
+
+    Public Sub Recycle() Implements ICharacter.Recycle
+        If Not IsAvatar Then
+            Me.MapCell.Character = Nothing
+            CharacterData.Recycled = True
+        End If
     End Sub
 End Class

@@ -19,7 +19,11 @@ Public Module CharacterTypes
                         {StatisticTypes.MaximumEnergy, 100},
                         {StatisticTypes.Health, 100},
                         {StatisticTypes.Satiety, 100},
-                        {StatisticTypes.Energy, 100}
+                        {StatisticTypes.Energy, 100},
+                        {StatisticTypes.MinimumAttack, 25},
+                        {StatisticTypes.MaximumAttack, 50},
+                        {StatisticTypes.MinimumDefend, 10},
+                        {StatisticTypes.MaximumDefend, 20}
                     },
                     New List(Of String) From
                     {
@@ -32,12 +36,16 @@ Public Module CharacterTypes
                     Hue.LightGray,
                     New Dictionary(Of String, Integer) From
                     {
-                        {StatisticTypes.MaximumHealth, 100},
-                        {StatisticTypes.MaximumSatiety, 100},
-                        {StatisticTypes.MaximumEnergy, 100},
-                        {StatisticTypes.Health, 100},
-                        {StatisticTypes.Satiety, 100},
-                        {StatisticTypes.Energy, 100}
+                        {StatisticTypes.MaximumHealth, 50},
+                        {StatisticTypes.MaximumSatiety, 50},
+                        {StatisticTypes.MaximumEnergy, 50},
+                        {StatisticTypes.Health, 50},
+                        {StatisticTypes.Satiety, 50},
+                        {StatisticTypes.Energy, 50},
+                        {StatisticTypes.MinimumAttack, 15},
+                        {StatisticTypes.MaximumAttack, 30},
+                        {StatisticTypes.MinimumDefend, 5},
+                        {StatisticTypes.MaximumDefend, 10}
                     },
                     New List(Of String) From
                     {
@@ -51,12 +59,16 @@ Public Module CharacterTypes
                     Hue.Green,
                     New Dictionary(Of String, Integer) From
                     {
-                        {StatisticTypes.MaximumHealth, 100},
-                        {StatisticTypes.MaximumSatiety, 100},
-                        {StatisticTypes.MaximumEnergy, 100},
-                        {StatisticTypes.Health, 100},
-                        {StatisticTypes.Satiety, 100},
-                        {StatisticTypes.Energy, 100}
+                        {StatisticTypes.MaximumHealth, 25},
+                        {StatisticTypes.MaximumSatiety, 25},
+                        {StatisticTypes.MaximumEnergy, 25},
+                        {StatisticTypes.Health, 25},
+                        {StatisticTypes.Satiety, 25},
+                        {StatisticTypes.Energy, 25},
+                        {StatisticTypes.MinimumAttack, 10},
+                        {StatisticTypes.MaximumAttack, 20},
+                        {StatisticTypes.MinimumDefend, 20},
+                        {StatisticTypes.MaximumDefend, 40}
                     },
                     New List(Of String) From
                     {
