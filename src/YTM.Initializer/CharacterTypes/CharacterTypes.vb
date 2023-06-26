@@ -23,7 +23,9 @@ Public Module CharacterTypes
                         {StatisticTypes.MinimumAttack, 25},
                         {StatisticTypes.MaximumAttack, 50},
                         {StatisticTypes.MinimumDefend, 10},
-                        {StatisticTypes.MaximumDefend, 20}
+                        {StatisticTypes.MaximumDefend, 20},
+                        {StatisticTypes.MoveSatietyCost, 1},
+                        {StatisticTypes.AttackEnergyCost, 5}
                     },
                     New List(Of String) From
                     {
@@ -45,7 +47,9 @@ Public Module CharacterTypes
                         {StatisticTypes.MinimumAttack, 15},
                         {StatisticTypes.MaximumAttack, 30},
                         {StatisticTypes.MinimumDefend, 5},
-                        {StatisticTypes.MaximumDefend, 10}
+                        {StatisticTypes.MaximumDefend, 10},
+                        {StatisticTypes.MoveSatietyCost, 0},
+                        {StatisticTypes.AttackEnergyCost, 0}
                     },
                     New List(Of String) From
                     {
@@ -68,7 +72,9 @@ Public Module CharacterTypes
                         {StatisticTypes.MinimumAttack, 10},
                         {StatisticTypes.MaximumAttack, 20},
                         {StatisticTypes.MinimumDefend, 20},
-                        {StatisticTypes.MaximumDefend, 40}
+                        {StatisticTypes.MaximumDefend, 40},
+                        {StatisticTypes.MoveSatietyCost, 0},
+                        {StatisticTypes.AttackEnergyCost, 0}
                     },
                     New List(Of String) From
                     {

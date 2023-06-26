@@ -20,22 +20,28 @@ Public Module CharacterExtensions
     <Extension>
     Public Sub Attack(attacker As ICharacter, defender As ICharacter, counterAttack As Boolean)
         Dim message As New List(Of String)
-        message.Add($"{attacker.Name} attacks {defender.Name}.")
-        Dim attackRoll = attacker.RollAttack
-        message.Add($"{attacker.Name} rolls an attack of {attackRoll}.")
-        Dim defendRoll = defender.RollDefend
-        message.Add($"{defender.Name} rolls an defend of {defendRoll}.")
-        Dim damage = Math.Max(0, attackRoll - defendRoll)
-        If damage > 0 Then
-            message.Add($"{attacker.Name} hits for {damage} damage!")
-            defender.SetHealth(defender.Health - damage)
+        Dim energyCost = attacker.Statistic(StatisticTypes.AttackEnergyCost)
+        If attacker.Energy >= energyCost Then
+            attacker.SetEnergy(attacker.Energy - energyCost)
+            message.Add($"{attacker.Name} attacks {defender.Name}.")
+            Dim attackRoll = attacker.RollAttack
+            message.Add($"{attacker.Name} rolls an attack of {attackRoll}.")
+            Dim defendRoll = defender.RollDefend
+            message.Add($"{defender.Name} rolls an defend of {defendRoll}.")
+            Dim damage = Math.Max(0, attackRoll - defendRoll)
+            If damage > 0 Then
+                message.Add($"{attacker.Name} hits for {damage} damage!")
+                defender.SetHealth(defender.Health - damage)
+            Else
+                message.Add($"{attacker.Name} misses!")
+            End If
+            If defender.IsDead Then
+                message.Add($"{attacker.Name} kills {defender.Name}.")
+            Else
+                message.Add($"{defender.Name} has {defender.Health}/{defender.MaximumHealth} health.")
+            End If
         Else
-            message.Add($"{attacker.Name} misses!")
-        End If
-        If defender.IsDead Then
-            message.Add($"{attacker.Name} kills {defender.Name}.")
-        Else
-            message.Add($"{defender.Name} has {defender.Health}/{defender.MaximumHealth} health.")
+            message.Add($"{attacker.Name} doesn't have the energy to attack!")
         End If
         AddCombatMessage(attacker, defender, message.ToArray)
         If defender.IsDead Then
@@ -63,7 +69,7 @@ Public Module CharacterExtensions
         If nextMapCell.HasCharacter Then
             Return nextMapCell
         End If
-        character.ApplyHunger(1)
+        character.ApplyHunger(character.Statistic(StatisticTypes.MoveSatietyCost))
         mapCell.Character = Nothing
         mapCell = nextMapCell
         mapCell.Character = character
