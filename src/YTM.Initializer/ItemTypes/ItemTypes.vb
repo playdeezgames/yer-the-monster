@@ -3,6 +3,8 @@
 Public Module ItemTypes
     Friend Const Nihil = "Nihil"
     Friend Const BigShroom = "BigShroom"
+    Friend Const SnakeSkin = "SnakeSkin"
+    Friend Const BadgerSkin = "BadgerSkin"
     Friend ReadOnly Descriptors As IReadOnlyDictionary(Of String, ItemTypeDescriptor) =
         New Dictionary(Of String, ItemTypeDescriptor) From
         {
@@ -33,8 +35,52 @@ Public Module ItemTypes
                         {VerbTypes.Eat, AddressOf EatBigShroom},
                         {VerbTypes.Drop, AddressOf StandardDrop}
                     })
+            },
+            {
+                SnakeSkin,
+                New ItemTypeDescriptor(
+                    "Snake Skin",
+                    "0"c,
+                    Hue.Green,
+                    {
+                        TerrainTypes.Empty
+                    },
+                    New Dictionary(Of String, Action(Of ICharacter, IItem)) From
+                    {
+                        {VerbTypes.Eat, AddressOf EatSnakeSkin},
+                        {VerbTypes.Drop, AddressOf StandardDrop}
+                    })
+            },
+            {
+                Badger,
+                New ItemTypeDescriptor(
+                    "Badger Skin",
+                    "0"c,
+                    Hue.LightGray,
+                    {
+                        TerrainTypes.Empty
+                    },
+                    New Dictionary(Of String, Action(Of ICharacter, IItem)) From
+                    {
+                        {VerbTypes.Eat, AddressOf EatBadgerSkin},
+                        {VerbTypes.Drop, AddressOf StandardDrop}
+                    })
             }
         }
+
+    Private Sub EatBadgerSkin(character As ICharacter, item As IItem)
+        character.SetHealth(character.Health + 20)
+        character.RemoveItem(item)
+        character.AddMessage($"{character.Name} eats {item.Name}.")
+        item.Recycle()
+    End Sub
+
+    Private Sub EatSnakeSkin(character As ICharacter, item As IItem)
+        character.SetHealth(character.Health + 10)
+        character.RemoveItem(item)
+        character.AddMessage($"{character.Name} eats {item.Name}.")
+        item.Recycle()
+    End Sub
 
     Private Sub DropNothing(character As ICharacter, item As IItem)
         character.AddMessage(

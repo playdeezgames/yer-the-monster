@@ -58,6 +58,12 @@
         End Get
     End Property
 
+    Public ReadOnly Property World As IWorld Implements ICharacter.World
+        Get
+            Return New World(WorldData)
+        End Get
+    End Property
+
     Public Sub AddItem(item As IItem) Implements ICharacter.AddItem
         CharacterData.ItemIds.Add(item.Id)
     End Sub

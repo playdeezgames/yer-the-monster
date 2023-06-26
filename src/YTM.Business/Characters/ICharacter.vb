@@ -11,4 +11,5 @@
     Sub RemoveItem(item As IItem)
     ReadOnly Property IsAvatar As Boolean
     Sub Recycle()
+    ReadOnly Property World As IWorld
 End Interface

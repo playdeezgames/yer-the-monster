@@ -45,10 +45,20 @@ Public Module CharacterExtensions
         End If
         AddCombatMessage(attacker, defender, message.ToArray)
         If defender.IsDead Then
+            defender.DropLootItem()
             defender.Recycle()
         Else
             If counterAttack Then
                 defender.Attack(attacker, False)
+            End If
+        End If
+    End Sub
+    <Extension>
+    Private Sub DropLootItem(character As ICharacter)
+        If character.MapCell.Item Is Nothing Then
+            Dim itemType = RNG.FromGenerator(character.CharacterType.ToCharacterTypeDescriptor.ItemTypeDrops)
+            If Not String.IsNullOrEmpty(itemType) Then
+                character.MapCell.Item = InitializerUtility.CreateItem(character.World, itemType)
             End If
         End If
     End Sub

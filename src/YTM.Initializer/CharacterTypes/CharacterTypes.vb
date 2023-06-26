@@ -30,6 +30,10 @@ Public Module CharacterTypes
                     New List(Of String) From
                     {
                         TerrainTypes.Lair
+                    },
+                    New Dictionary(Of String, Integer) From
+                    {
+                        {String.Empty, 1}
                     })
             }, {
                 Badger,
@@ -54,6 +58,11 @@ Public Module CharacterTypes
                     New List(Of String) From
                     {
                         TerrainTypes.Empty
+                    },
+                    New Dictionary(Of String, Integer) From
+                    {
+                        {String.Empty, 1},
+                        {ItemTypes.BadgerSkin, 1}
                     })
             },
             {
@@ -79,6 +88,11 @@ Public Module CharacterTypes
                     New List(Of String) From
                     {
                         TerrainTypes.Empty
+                    },
+                    New Dictionary(Of String, Integer) From
+                    {
+                        {String.Empty, 1},
+                        {ItemTypes.SnakeSkin, 1}
                     })
             }
         }
