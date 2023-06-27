@@ -17,7 +17,6 @@ Module Program
             "Yer, The Monster",
             gameController,
             (ViewWidth, ViewHeight),
-            AddressOf TransformHue,
             hueTable,
             AddressOf KeyboardTransformer,
             AddressOf GamePadTransformer,
@@ -116,9 +115,6 @@ Module Program
             {Hue.Pink, New Color(255, 205, 243)},
             {Hue.Green, New Color(29, 105, 20)}
         }
-    Private Function TransformHue(hue As Integer) As Color
-        Return hueTable(hue)
-    End Function
     Private ReadOnly sfxFileNames As IReadOnlyDictionary(Of String, String) =
         New Dictionary(Of String, String) From
         {
