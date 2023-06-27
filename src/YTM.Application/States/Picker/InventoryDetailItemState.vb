@@ -1,8 +1,8 @@
 ﻿Friend Class InventoryDetailItemState
     Inherits BasePickerState
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
-        MyBase.New(parent, setState, "<placeholder>", ControlsText("Select", "Cancel"), GameState.Inventory)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
+        MyBase.New(parent, setState, fontSource, "<placeholder>", ControlsText("Select", "Cancel"), GameState.Inventory)
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))

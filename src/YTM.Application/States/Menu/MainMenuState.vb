@@ -1,9 +1,13 @@
 ﻿Friend Class MainMenuState
     Inherits BaseMenuState
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
         MyBase.New(
             parent,
-            setState, MainMenuTitle, {EmbarkText, LoadText, OptionsText, AboutText}, QuitText)
+            setState,
+            fontSource,
+            MainMenuTitle,
+            {EmbarkText, LoadText, OptionsText, AboutText},
+            QuitText)
     End Sub
     Protected Overrides Sub HandleMenuItem(menuItem As String)
         Select Case menuItem

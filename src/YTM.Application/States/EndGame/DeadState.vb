@@ -1,8 +1,8 @@
 ﻿Friend Class DeadState
     Inherits BaseGameState
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
-        MyBase.New(parent, setState)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
+        MyBase.New(parent, setState, fontSource)
     End Sub
 
     Public Overrides Sub HandleCommand(cmd As String)

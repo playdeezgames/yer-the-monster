@@ -1,10 +1,11 @@
 ﻿Friend Class VolumeState
     Inherits BaseMenuState
     Private _saveConfig As Action
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), saveConfig As Action)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource, saveConfig As Action)
         MyBase.New(
             parent,
             setState,
+            fontSource,
             "",
             {
                 Volume0Text,

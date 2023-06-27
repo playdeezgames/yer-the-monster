@@ -1,8 +1,8 @@
 ﻿Friend Class FightState
     Inherits BasePickerState
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
-        MyBase.New(parent, setState, "<placeholder>", ControlsText("Select", "RUN!"), GameState.Run)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
+        MyBase.New(parent, setState, fontSource, "<placeholder>", ControlsText("Select", "RUN!"), GameState.Run)
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))

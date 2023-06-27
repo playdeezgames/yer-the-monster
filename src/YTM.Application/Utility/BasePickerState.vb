@@ -8,10 +8,11 @@
     Public Sub New(
                   parent As IGameController,
                   setState As Action(Of String, Boolean),
+                  fontSource As IFontSource,
                   headerText As String,
                   statusBarText As String,
                   cancelGameState As String)
-        MyBase.New(parent, setState)
+        MyBase.New(parent, setState, fontSource)
         _statusBarText = statusBarText
         _cancelGameState = cancelGameState
         Me.HeaderText = headerText

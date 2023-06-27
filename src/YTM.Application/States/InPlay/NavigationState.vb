@@ -3,8 +3,8 @@
 Friend Class NavigationState
     Inherits BaseGameState
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
-        MyBase.New(parent, setState)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
+        MyBase.New(parent, setState, fontSource)
     End Sub
     Private ReadOnly commandDeltas As IReadOnlyDictionary(Of String, (Integer, Integer)) =
         New Dictionary(Of String, (Integer, Integer)) From

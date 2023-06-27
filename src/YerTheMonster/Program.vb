@@ -1,3 +1,4 @@
+Imports AOS.UI
 Imports Microsoft.Xna.Framework
 Imports Microsoft.Xna.Framework.Input
 Module Program
@@ -5,7 +6,9 @@ Module Program
     Sub Main(args As String())
         Using host As New Host(
             GameTitle,
-            New GameController(New YTMSettings),
+            New GameController(
+                New YTMSettings,
+                New FontSource),
             (ViewWidth, ViewHeight),
             hueTable,
             commandTable,

@@ -1,9 +1,10 @@
 ﻿Friend Class LoadState
     Inherits BaseMenuState
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
         MyBase.New(
             parent,
             setState,
+            fontSource,
             LoadTitle,
             {
                 Slot1Text,

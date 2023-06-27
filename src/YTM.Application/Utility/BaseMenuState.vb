@@ -17,10 +17,11 @@
     Public Sub New(
                   parent As IGameController,
                   setState As Action(Of String, Boolean),
+                  fontSource As IFontSource,
                   title As String,
                   menuItems As String(),
                   cancelMenuItem As String)
-        MyBase.New(parent, setState)
+        MyBase.New(parent, setState, fontSource)
         Me.Title = title
         Me._menuItems = menuItems
         Me._cancelMenuItem = cancelMenuItem
