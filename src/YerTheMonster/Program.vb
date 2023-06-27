@@ -7,6 +7,7 @@ Module Program
     Sub Main(args As String())
         Dim config As YTMConfig = ReadConfig()
         Dim gameController As New GameController(
+            New YTMSettings,
             (config.WindowWidth, config.WindowHeight),
             config.FullScreen,
             config.SfxVolume,

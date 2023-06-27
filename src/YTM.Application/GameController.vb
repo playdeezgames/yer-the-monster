@@ -1,8 +1,8 @@
 Public Class GameController
     Inherits BaseGameController
     Private ReadOnly _configSink As Action(Of (Integer, Integer), Boolean, Single)
-    Public Sub New(windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single, configSink As Action(Of (Integer, Integer), Boolean, Single))
-        MyBase.New(windowSize, fullScreen, volume)
+    Public Sub New(settings As ISettings, windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single, configSink As Action(Of (Integer, Integer), Boolean, Single))
+        MyBase.New(settings, windowSize, fullScreen, volume)
         _configSink = configSink
         _configSink(Me.Size, Me.FullScreen, Me.Volume)
         Initialize()
