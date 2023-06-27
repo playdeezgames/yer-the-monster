@@ -1,20 +1,11 @@
-Imports System.IO
-Imports System.Text.Json
 Imports Microsoft.Xna.Framework
 Imports Microsoft.Xna.Framework.Input
-
 Module Program
+    Private Const GameTitle = "Yer, The Monster"
     Sub Main(args As String())
-        Dim config As YTMConfig = ReadConfig()
-        Dim gameController As New GameController(
-            New YTMSettings,
-            (config.WindowWidth, config.WindowHeight),
-            config.FullScreen,
-            config.SfxVolume,
-            AddressOf SaveConfig)
         Using host As New Host(
-            "Yer, The Monster",
-            gameController,
+            GameTitle,
+            New GameController(New YTMSettings),
             (ViewWidth, ViewHeight),
             hueTable,
             commandTable,
@@ -32,23 +23,6 @@ Module Program
             {Command.Left, Function(keyboard, gamePad) keyboard.IsKeyDown(Keys.Left) OrElse keyboard.IsKeyDown(Keys.NumPad4) OrElse gamePad.DPad.Left = ButtonState.Pressed},
             {Command.Right, Function(keyboard, gamePad) keyboard.IsKeyDown(Keys.Right) OrElse keyboard.IsKeyDown(Keys.NumPad6) OrElse gamePad.DPad.Right = ButtonState.Pressed}
         }
-    Private Const ConfigFileName = "config.json"
-    Private Function ReadConfig() As YTMConfig
-        Try
-            Return JsonSerializer.Deserialize(Of YTMConfig)(File.ReadAllText(ConfigFileName))
-        Catch ex As Exception
-            Return New YTMConfig() With
-            {
-                .FullScreen = False,
-                .SfxVolume = 0.5,
-                .WindowHeight = DefaultScreenHeight,
-                .WindowWidth = DefaultScreenWidth
-            }
-        End Try
-    End Function
-    Private Sub SaveConfig(windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single)
-        File.WriteAllText(ConfigFileName, JsonSerializer.Serialize(New YTMConfig With {.SfxVolume = volume, .WindowHeight = windowSize.Item2, .WindowWidth = windowSize.Item1, .FullScreen = fullScreen}))
-    End Sub
     Private ReadOnly hueTable As IReadOnlyDictionary(Of Integer, Color) =
         New Dictionary(Of Integer, Color) From
         {

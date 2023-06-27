@@ -1,10 +1,7 @@
 Public Class GameController
     Inherits BaseGameController
-    Private ReadOnly _configSink As Action(Of (Integer, Integer), Boolean, Single)
-    Public Sub New(settings As ISettings, windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single, configSink As Action(Of (Integer, Integer), Boolean, Single))
-        MyBase.New(settings, windowSize, fullScreen, volume)
-        _configSink = configSink
-        _configSink(Me.Size, Me.FullScreen, Me.Volume)
+    Public Sub New(settings As ISettings)
+        MyBase.New(settings)
         Initialize()
         CreateBoilerplateStates()
         SetState(GameState.Neutral, New NeutralState(Me, AddressOf SetCurrentState))
@@ -38,6 +35,6 @@ Public Class GameController
     End Sub
 
     Private Sub SaveConfig()
-        _configSink(Size, FullScreen, Volume)
+        Settings.Save()
     End Sub
 End Class
