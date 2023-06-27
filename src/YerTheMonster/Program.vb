@@ -16,7 +16,6 @@ Module Program
             gameController,
             (ViewWidth, ViewHeight),
             hueTable,
-            AddressOf CommandTransformer,
             commandTable,
             sfxFileNames)
             host.Run()
@@ -32,14 +31,6 @@ Module Program
             {Command.Left, Function(keyboard, gamePad) keyboard.IsKeyDown(Keys.Left) OrElse keyboard.IsKeyDown(Keys.NumPad4) OrElse gamePad.DPad.Left = ButtonState.Pressed},
             {Command.Right, Function(keyboard, gamePad) keyboard.IsKeyDown(Keys.Right) OrElse keyboard.IsKeyDown(Keys.NumPad6) OrElse gamePad.DPad.Right = ButtonState.Pressed}
         }
-    Private Function CommandTransformer(keyboard As KeyboardState, gamePad As GamePadState) As String()
-        Dim result As New HashSet(Of String)
-        For Each entry In commandTable
-            CheckForCommands(result, entry.Value(keyboard, gamePad), entry.Key)
-        Next
-        Return result.ToArray
-    End Function
-
     Private Const ConfigFileName = "config.json"
     Private Function ReadConfig() As YTMConfig
         Try
@@ -56,22 +47,6 @@ Module Program
     End Function
     Private Sub SaveConfig(windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single)
         File.WriteAllText(ConfigFileName, JsonSerializer.Serialize(New YTMConfig With {.SfxVolume = volume, .WindowHeight = windowSize.Item2, .WindowWidth = windowSize.Item1, .FullScreen = fullScreen}))
-    End Sub
-    Private ReadOnly _nextCommandTimes As New Dictionary(Of String, DateTimeOffset)
-    Private Sub CheckForCommands(commands As HashSet(Of String), isPressed As Boolean, command As String)
-        If isPressed Then
-            If _nextCommandTimes.ContainsKey(command) Then
-                If DateTimeOffset.Now > _nextCommandTimes(command) Then
-                    commands.Add(command)
-                    _nextCommandTimes(command) = DateTimeOffset.Now.AddSeconds(0.3)
-                End If
-            Else
-                commands.Add(command)
-                _nextCommandTimes(command) = DateTimeOffset.Now.AddSeconds(1.0)
-            End If
-        Else
-            _nextCommandTimes.Remove(command)
-        End If
     End Sub
     Private ReadOnly hueTable As IReadOnlyDictionary(Of Integer, Color) =
         New Dictionary(Of Integer, Color) From
