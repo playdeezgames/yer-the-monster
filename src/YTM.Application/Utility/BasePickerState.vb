@@ -1,12 +1,12 @@
 ﻿Public MustInherit Class BasePickerState
-    Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Hue, Sfx, GameState)
     Private _menuItems As New List(Of (String, String))
     Private _menuItemIndex As Integer
     Private ReadOnly _statusBarText As String
     Protected Property HeaderText As String
     Private ReadOnly _cancelGameState As GameState
     Public Sub New(
-                  parent As IGameController(Of Hue, Command, Sfx),
+                  parent As IGameController(Of Hue, Sfx),
                   setState As Action(Of GameState?, Boolean),
                   headerText As String,
                   statusBarText As String,
@@ -16,8 +16,8 @@
         _cancelGameState = cancelGameState
         Me.HeaderText = headerText
     End Sub
-    Public Overrides Sub HandleCommand(command As Command)
-        Select Case command
+    Public Overrides Sub HandleCommand(cmd As String)
+        Select Case cmd
             Case Command.B
                 SetState(_cancelGameState)
             Case Command.A

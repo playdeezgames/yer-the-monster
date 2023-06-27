@@ -13,7 +13,7 @@ Module Program
             config.FullScreen,
             config.SfxVolume,
             AddressOf SaveConfig)
-        Using host As New Host(Of Hue, Command, Sfx)(
+        Using host As New Host(Of Hue, Sfx)(
             "Yer, The Monster",
             gameController,
             (ViewWidth, ViewHeight),
@@ -25,8 +25,8 @@ Module Program
         End Using
     End Sub
 
-    Private Function KeyboardTransformer(state As KeyboardState) As Command()
-        Dim result As New HashSet(Of Command)
+    Private Function KeyboardTransformer(state As KeyboardState) As String()
+        Dim result As New HashSet(Of String)
         CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Space) OrElse state.IsKeyDown(Keys.Enter), Command.A)
         CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Escape), Command.B)
         CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Up) OrElse state.IsKeyDown(Keys.NumPad8), Command.Up)
@@ -53,9 +53,9 @@ Module Program
     Private Sub SaveConfig(windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single)
         File.WriteAllText(ConfigFileName, JsonSerializer.Serialize(New YTMConfig With {.SfxVolume = volume, .WindowHeight = windowSize.Item2, .WindowWidth = windowSize.Item1, .FullScreen = fullScreen}))
     End Sub
-    Private ReadOnly _nextGamePadCommandTimes As New Dictionary(Of Command, DateTimeOffset)
-    Private ReadOnly _nextKeyboardCommandTimes As New Dictionary(Of Command, DateTimeOffset)
-    Private Sub CheckGamePadForCommand(commands As HashSet(Of Command), isPressed As Boolean, command As Command)
+    Private ReadOnly _nextGamePadCommandTimes As New Dictionary(Of String, DateTimeOffset)
+    Private ReadOnly _nextKeyboardCommandTimes As New Dictionary(Of String, DateTimeOffset)
+    Private Sub CheckGamePadForCommand(commands As HashSet(Of String), isPressed As Boolean, command As String)
         If isPressed Then
             If _nextGamePadCommandTimes.ContainsKey(command) Then
                 If DateTimeOffset.Now > _nextGamePadCommandTimes(command) Then
@@ -70,7 +70,7 @@ Module Program
             _nextGamePadCommandTimes.Remove(command)
         End If
     End Sub
-    Private Sub CheckKeyboardForCommand(commands As HashSet(Of Command), isPressed As Boolean, command As Command)
+    Private Sub CheckKeyboardForCommand(commands As HashSet(Of String), isPressed As Boolean, command As String)
         If isPressed Then
             If _nextKeyboardCommandTimes.ContainsKey(command) Then
                 If DateTimeOffset.Now > _nextKeyboardCommandTimes(command) Then
@@ -85,8 +85,8 @@ Module Program
             _nextKeyboardCommandTimes.Remove(command)
         End If
     End Sub
-    Private Function GamePadTransformer(newState As GamePadState) As Command()
-        Dim result As New HashSet(Of Command)
+    Private Function GamePadTransformer(newState As GamePadState) As String()
+        Dim result As New HashSet(Of String)
         CheckGamePadForCommand(result, newState.IsButtonDown(Buttons.A), Command.A)
         CheckGamePadForCommand(result, newState.IsButtonDown(Buttons.B), Command.B)
         CheckGamePadForCommand(result, newState.DPad.Up = ButtonState.Pressed, Command.Up)

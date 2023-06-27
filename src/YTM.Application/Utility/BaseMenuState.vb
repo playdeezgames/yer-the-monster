@@ -1,5 +1,5 @@
 ﻿Friend MustInherit Class BaseMenuState
-    Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Hue, Sfx, GameState)
     Private ReadOnly _menuItems As String()
     Private _menuItemIndex As Integer = 0
     Private ReadOnly _cancelMenuItem As String
@@ -15,7 +15,7 @@
         End Get
     End Property
     Public Sub New(
-                  parent As IGameController(Of Hue, Command, Sfx),
+                  parent As IGameController(Of Hue, Sfx),
                   setState As Action(Of GameState?, Boolean),
                   title As String,
                   menuItems As String(),
@@ -25,8 +25,8 @@
         Me._menuItems = menuItems
         Me._cancelMenuItem = cancelMenuItem
     End Sub
-    Public Overrides Sub HandleCommand(command As Command)
-        Select Case command
+    Public Overrides Sub HandleCommand(cmd As String)
+        Select Case cmd
             Case Command.Up
                 _menuItemIndex = (_menuItemIndex + _menuItems.Length - 1) Mod _menuItems.Length
             Case Command.Down

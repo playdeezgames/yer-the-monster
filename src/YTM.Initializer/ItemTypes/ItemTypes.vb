@@ -52,7 +52,7 @@ Public Module ItemTypes
                     })
             },
             {
-                Badger,
+                BadgerSkin,
                 New ItemTypeDescriptor(
                     "Badger Skin",
                     "0"c,

@@ -1,11 +1,11 @@
 ﻿Friend Class ConfirmAbandonState
-    Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Hue, Sfx, GameState)
     Private Confirmation As Boolean = False
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Hue, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
-    Public Overrides Sub HandleCommand(command As Command)
-        Select Case command
+    Public Overrides Sub HandleCommand(cmd As String)
+        Select Case cmd
             Case Command.Up, Command.Down
                 Confirmation = Not Confirmation
             Case Command.A

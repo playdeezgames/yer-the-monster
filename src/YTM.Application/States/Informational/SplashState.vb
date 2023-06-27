@@ -1,11 +1,11 @@
 ﻿Friend Class SplashState
-    Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Inherits BaseGameState(Of Hue, Sfx, GameState)
+    Public Sub New(parent As IGameController(Of Hue, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
-    Public Overrides Sub HandleCommand(command As Command)
-        Select Case command
+    Public Overrides Sub HandleCommand(cmd As String)
+        Select Case cmd
             Case Command.A
                 SetState(GameState.MainMenu)
         End Select

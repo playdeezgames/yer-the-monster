@@ -1,12 +1,12 @@
 ﻿Friend Class DeadState
-    Inherits BaseGameState(Of Hue, Command, Sfx, GameState)
+    Inherits BaseGameState(Of Hue, Sfx, GameState)
 
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Hue, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
-    Public Overrides Sub HandleCommand(command As Command)
-        If command = Command.A Then
+    Public Overrides Sub HandleCommand(cmd As String)
+        If cmd = Command.A Then
             Abandon()
             SetState(GameState.MainMenu)
         End If

@@ -1,6 +1,6 @@
 ﻿Friend Class SaveState
     Inherits BaseMenuState
-    Public Sub New(parent As IGameController(Of Hue, Command, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Hue, Sfx), setState As Action(Of GameState?, Boolean))
         MyBase.New(
             parent,
             setState,
