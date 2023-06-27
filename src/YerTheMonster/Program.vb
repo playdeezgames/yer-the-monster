@@ -17,6 +17,7 @@ Module Program
             (ViewWidth, ViewHeight),
             hueTable,
             AddressOf CommandTransformer,
+            commandTable,
             sfxFileNames)
             host.Run()
         End Using
