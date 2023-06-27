@@ -18,6 +18,7 @@ Module Program
             gameController,
             (ViewWidth, ViewHeight),
             AddressOf BufferCreator,
+            AddressOf TransformHue,
             AddressOf KeyboardTransformer,
             AddressOf GamePadTransformer,
             sfxFileNames)
