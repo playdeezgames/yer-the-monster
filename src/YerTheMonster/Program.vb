@@ -13,7 +13,7 @@ Module Program
             config.FullScreen,
             config.SfxVolume,
             AddressOf SaveConfig)
-        Using host As New Host(Of Hue, Sfx)(
+        Using host As New Host(Of Hue)(
             "Yer, The Monster",
             gameController,
             (ViewWidth, ViewHeight),
@@ -121,8 +121,8 @@ Module Program
     Private Function TransformHue(hue As Hue) As Color
         Return hueTable(hue)
     End Function
-    Private ReadOnly sfxFileNames As IReadOnlyDictionary(Of Sfx, String) =
-        New Dictionary(Of Sfx, String) From
+    Private ReadOnly sfxFileNames As IReadOnlyDictionary(Of String, String) =
+        New Dictionary(Of String, String) From
         {
             {Sfx.PlayerHit, "Content/PlayerHit.wav"},
             {Sfx.Shucks, "Content/Shucks.wav"}

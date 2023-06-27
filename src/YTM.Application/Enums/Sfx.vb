@@ -1,4 +1,4 @@
-﻿Public Enum Sfx
-    PlayerHit
-    Shucks
-End Enum
+﻿Public Module Sfx
+    Public Const PlayerHit = "PlayerHit"
+    Public Const Shucks = "Shucks"
+End Module

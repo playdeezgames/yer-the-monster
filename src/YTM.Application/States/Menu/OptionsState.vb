@@ -1,7 +1,7 @@
 ﻿Friend Class OptionsState
     Inherits BaseMenuState
     Private ReadOnly _saveConfig As Action
-    Public Sub New(parent As IGameController(Of Hue, Sfx), setState As Action(Of GameState?, Boolean), saveConfig As Action)
+    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of GameState?, Boolean), saveConfig As Action)
         MyBase.New(
             parent,
             setState,

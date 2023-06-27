@@ -1,9 +1,9 @@
 ﻿Imports System.ComponentModel.Design
 
 Friend Class NavigationState
-    Inherits BaseGameState(Of Hue, Sfx, GameState)
+    Inherits BaseGameState(Of Hue, GameState)
 
-    Public Sub New(parent As IGameController(Of Hue, Sfx), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of GameState?, Boolean))
         MyBase.New(parent, setState)
     End Sub
     Private ReadOnly commandDeltas As IReadOnlyDictionary(Of String, (Integer, Integer)) =

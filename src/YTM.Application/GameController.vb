@@ -1,5 +1,5 @@
 Public Class GameController
-    Inherits BaseGameController(Of Hue, Sfx, GameState)
+    Inherits BaseGameController(Of Hue, GameState)
     Private ReadOnly _configSink As Action(Of (Integer, Integer), Boolean, Single)
     Public Sub New(windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single, configSink As Action(Of (Integer, Integer), Boolean, Single))
         MyBase.New(windowSize, fullScreen, volume)
