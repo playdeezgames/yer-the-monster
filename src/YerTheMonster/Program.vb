@@ -17,7 +17,6 @@ Module Program
             "Yer, The Monster",
             gameController,
             (ViewWidth, ViewHeight),
-            AddressOf BufferCreator,
             AddressOf TransformHue,
             AddressOf KeyboardTransformer,
             AddressOf GamePadTransformer,
@@ -95,9 +94,6 @@ Module Program
         CheckGamePadForCommand(result, newState.DPad.Left = ButtonState.Pressed, Command.Left)
         CheckGamePadForCommand(result, newState.DPad.Right = ButtonState.Pressed, Command.Right)
         Return result.ToArray
-    End Function
-    Private Function BufferCreator(texture As Texture2D) As IDisplayBuffer
-        Return New DisplayBuffer(texture, AddressOf TransformHue)
     End Function
     Private ReadOnly hueTable As IReadOnlyDictionary(Of Integer, Color) =
         New Dictionary(Of Integer, Color) From
