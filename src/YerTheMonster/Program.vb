@@ -1,8 +1,6 @@
 Imports System.IO
 Imports System.Text.Json
-Imports AOS.UI
 Imports Microsoft.Xna.Framework
-Imports Microsoft.Xna.Framework.Graphics
 Imports Microsoft.Xna.Framework.Input
 
 Module Program
@@ -19,7 +17,6 @@ Module Program
             (ViewWidth, ViewHeight),
             hueTable,
             AddressOf CommandTransformer,
-            AddressOf GamePadTransformer,
             sfxFileNames)
             host.Run()
         End Using
@@ -34,12 +31,10 @@ Module Program
             {Command.Left, Function(keyboard, gamePad) keyboard.IsKeyDown(Keys.Left) OrElse keyboard.IsKeyDown(Keys.NumPad4) OrElse gamePad.DPad.Left = ButtonState.Pressed},
             {Command.Right, Function(keyboard, gamePad) keyboard.IsKeyDown(Keys.Right) OrElse keyboard.IsKeyDown(Keys.NumPad6) OrElse gamePad.DPad.Right = ButtonState.Pressed}
         }
-    Private ReadOnly gamePadCommandtable As IReadOnlyDictionary(Of String, Func(Of GamePadState, Boolean)) =
-        New Dictionary(Of String, Func(Of GamePadState, Boolean))
     Private Function CommandTransformer(keyboard As KeyboardState, gamePad As GamePadState) As String()
         Dim result As New HashSet(Of String)
         For Each entry In commandTable
-            CheckKeyboardForCommand(result, entry.Value(keyboard, gamePad), entry.Key)
+            CheckForCommands(result, entry.Value(keyboard, gamePad), entry.Key)
         Next
         Return result.ToArray
     End Function
@@ -61,45 +56,22 @@ Module Program
     Private Sub SaveConfig(windowSize As (Integer, Integer), fullScreen As Boolean, volume As Single)
         File.WriteAllText(ConfigFileName, JsonSerializer.Serialize(New YTMConfig With {.SfxVolume = volume, .WindowHeight = windowSize.Item2, .WindowWidth = windowSize.Item1, .FullScreen = fullScreen}))
     End Sub
-    Private ReadOnly _nextGamePadCommandTimes As New Dictionary(Of String, DateTimeOffset)
-    Private ReadOnly _nextKeyboardCommandTimes As New Dictionary(Of String, DateTimeOffset)
-    Private Sub CheckGamePadForCommand(commands As HashSet(Of String), isPressed As Boolean, command As String)
+    Private ReadOnly _nextCommandTimes As New Dictionary(Of String, DateTimeOffset)
+    Private Sub CheckForCommands(commands As HashSet(Of String), isPressed As Boolean, command As String)
         If isPressed Then
-            If _nextGamePadCommandTimes.ContainsKey(command) Then
-                If DateTimeOffset.Now > _nextGamePadCommandTimes(command) Then
+            If _nextCommandTimes.ContainsKey(command) Then
+                If DateTimeOffset.Now > _nextCommandTimes(command) Then
                     commands.Add(command)
-                    _nextGamePadCommandTimes(command) = DateTimeOffset.Now.AddSeconds(0.3)
+                    _nextCommandTimes(command) = DateTimeOffset.Now.AddSeconds(0.3)
                 End If
             Else
                 commands.Add(command)
-                _nextGamePadCommandTimes(command) = DateTimeOffset.Now.AddSeconds(1.0)
+                _nextCommandTimes(command) = DateTimeOffset.Now.AddSeconds(1.0)
             End If
         Else
-            _nextGamePadCommandTimes.Remove(command)
+            _nextCommandTimes.Remove(command)
         End If
     End Sub
-    Private Sub CheckKeyboardForCommand(commands As HashSet(Of String), isPressed As Boolean, command As String)
-        If isPressed Then
-            If _nextKeyboardCommandTimes.ContainsKey(command) Then
-                If DateTimeOffset.Now > _nextKeyboardCommandTimes(command) Then
-                    commands.Add(command)
-                    _nextKeyboardCommandTimes(command) = DateTimeOffset.Now.AddSeconds(0.3)
-                End If
-            Else
-                commands.Add(command)
-                _nextKeyboardCommandTimes(command) = DateTimeOffset.Now.AddSeconds(1.0)
-            End If
-        Else
-            _nextKeyboardCommandTimes.Remove(command)
-        End If
-    End Sub
-    Private Function GamePadTransformer(state As GamePadState) As String()
-        Dim result As New HashSet(Of String)
-        For Each entry In gamePadCommandtable
-            CheckGamePadForCommand(result, entry.Value(state), entry.Key)
-        Next
-        Return result.ToArray
-    End Function
     Private ReadOnly hueTable As IReadOnlyDictionary(Of Integer, Color) =
         New Dictionary(Of Integer, Color) From
         {
