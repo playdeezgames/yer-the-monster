@@ -1,7 +1,7 @@
 ﻿Friend Class MessageState
-    Inherits BaseGameState(Of Hue)
+    Inherits BaseGameState
 
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
@@ -13,7 +13,7 @@
         End If
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim message = World.CurrentMessage
         Dim font = UIFont()

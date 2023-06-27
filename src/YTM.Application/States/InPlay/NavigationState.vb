@@ -1,9 +1,9 @@
 ﻿Imports System.ComponentModel.Design
 
 Friend Class NavigationState
-    Inherits BaseGameState(Of Hue)
+    Inherits BaseGameState
 
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
         MyBase.New(parent, setState)
     End Sub
     Private ReadOnly commandDeltas As IReadOnlyDictionary(Of String, (Integer, Integer)) =
@@ -29,7 +29,7 @@ Friend Class NavigationState
         End Select
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim map As IMap = RenderMap(displayBuffer)
         ShowStatistics(displayBuffer, World.Avatar)
@@ -37,7 +37,7 @@ Friend Class NavigationState
         ShowStatusBar(displayBuffer, UIFont, "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.LightGray)
     End Sub
 
-    Private Sub ShowStatistics(displayBuffer As IPixelSink(Of Hue), avatar As ICharacter)
+    Private Sub ShowStatistics(displayBuffer As IPixelSink, avatar As ICharacter)
         Dim font = UIFont()
         Dim text = $"H={(avatar.Health / avatar.MaximumHealth * 100),3:f0}%"
         font.WriteText(displayBuffer, (ViewWidth - font.TextWidth(text), font.Height), text, Hue.Pink)
@@ -49,7 +49,7 @@ Friend Class NavigationState
         font.WriteText(displayBuffer, (ViewWidth - font.TextWidth(text), font.Height * 3), text, Hue.Yellow)
     End Sub
 
-    Private Shared Function RenderMap(displayBuffer As IPixelSink(Of Hue)) As IMap
+    Private Shared Function RenderMap(displayBuffer As IPixelSink) As IMap
         Dim avatar = World.Avatar
         Dim avatarColumn = avatar.MapCell.Column
         Dim avatarRow = avatar.MapCell.Row

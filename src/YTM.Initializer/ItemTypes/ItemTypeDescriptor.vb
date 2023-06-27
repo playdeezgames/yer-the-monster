@@ -1,14 +1,14 @@
 ﻿Public Class ItemTypeDescriptor
     ReadOnly Property ItemName As String
     ReadOnly Property Character As Char
-    ReadOnly Property Hue As Hue
+    ReadOnly Property Hue As Integer
     ReadOnly Property SpawnTerrainTypes As HashSet(Of String)
     ReadOnly Property PickUpEnergyCost As Integer
     ReadOnly Property Verbs As IReadOnlyDictionary(Of String, Action(Of ICharacter, IItem))
     Sub New(
            name As String,
            character As Char,
-           hue As Hue,
+           hue As Integer,
            spawnTerrainTypes As IEnumerable(Of String),
            verbs As IReadOnlyDictionary(Of String, Action(Of ICharacter, IItem)),
            Optional pickUpEnergyCost As Integer = 1)

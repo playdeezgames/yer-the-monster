@@ -1,7 +1,7 @@
 ﻿Friend Class VolumeState
     Inherits BaseMenuState
     Private _saveConfig As Action
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean), saveConfig As Action)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), saveConfig As Action)
         MyBase.New(
             parent,
             setState,
@@ -55,7 +55,7 @@
         PlaySfx(Sfx.PlayerHit)
         _saveConfig()
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         MyBase.Render(displayBuffer)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         Title = $"Current Volume: {Parent.Volume * 100.0F:F0}%"

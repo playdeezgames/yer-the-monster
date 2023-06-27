@@ -1,6 +1,6 @@
 ﻿Friend Class SplashState
-    Inherits BaseGameState(Of Hue)
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
+    Inherits BaseGameState
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
@@ -10,7 +10,7 @@
                 SetState(GameState.MainMenu)
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = UIFont()
         With font

@@ -1,7 +1,7 @@
 ﻿Friend Class ConfirmQuitState
-    Inherits BaseGameState(Of Hue)
+    Inherits BaseGameState
     Private Confirmation As Boolean = False
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
@@ -21,7 +21,7 @@
         End Select
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         With font

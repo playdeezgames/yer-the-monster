@@ -1,7 +1,7 @@
 ﻿Friend Class WindowSizeState
     Inherits BaseMenuState
     Private _saveConfig As Action
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean), saveConfig As Action)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), saveConfig As Action)
         MyBase.New(
             parent,
             setState,
@@ -35,7 +35,7 @@
                 _saveConfig()
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         MyBase.Render(displayBuffer)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         Title = $"Window Size: {Parent.Size.Item1}x{Parent.Size.Item2}"

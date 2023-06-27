@@ -1,12 +1,12 @@
 ﻿Public Class CharacterTypeDescriptor
     Public ReadOnly Character As Char
-    Public ReadOnly Hue As Hue
+    Public ReadOnly Hue As Integer
     Public ReadOnly Property Statistics As IReadOnlyDictionary(Of String, Integer)
     Public ReadOnly Property SpawnTerrainTypes As HashSet(Of String)
     Public ReadOnly Property ItemTypeDrops As IReadOnlyDictionary(Of String, Integer)
     Sub New(
            character As Char,
-           hue As Hue,
+           hue As Integer,
            statistics As IReadOnlyDictionary(Of String, Integer),
            spawnTerrainTypes As IEnumerable(Of String),
            itemTypeDrops As IReadOnlyDictionary(Of String, Integer))

@@ -1,10 +1,10 @@
 ﻿Public Class TerrainTypeDescriptor
     ReadOnly Property Character As Char
-    ReadOnly Property Hue As Hue
+    ReadOnly Property Hue As Integer
     ReadOnly Property Tenable As Boolean
     ReadOnly Property OnEnter As Action(Of ICharacter)
     ReadOnly Property SpawnTerrainTypes As HashSet(Of String)
-    Sub New(character As Char, hue As Hue, tenable As Boolean, spawnTerrainTypes As IEnumerable(Of String), Optional onEnter As Action(Of ICharacter) = Nothing)
+    Sub New(character As Char, hue As Integer, tenable As Boolean, spawnTerrainTypes As IEnumerable(Of String), Optional onEnter As Action(Of ICharacter) = Nothing)
         Me.Character = character
         Me.Hue = hue
         Me.Tenable = tenable

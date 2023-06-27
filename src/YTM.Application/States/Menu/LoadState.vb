@@ -1,6 +1,6 @@
 ﻿Friend Class LoadState
     Inherits BaseMenuState
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
         MyBase.New(
             parent,
             setState,
@@ -32,7 +32,7 @@
                 End If
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         MyBase.Render(displayBuffer)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         If DoesSaveExist(SlotIndex) Then

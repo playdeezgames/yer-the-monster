@@ -1,7 +1,7 @@
 ﻿Friend Class FightState
     Inherits BasePickerState
 
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
         MyBase.New(parent, setState, "<placeholder>", ControlsText("Select", "RUN!"), GameState.Run)
     End Sub
 
@@ -27,7 +27,7 @@
         Return result
     End Function
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         MyBase.Render(displayBuffer)
     End Sub
 End Class

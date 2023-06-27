@@ -1,7 +1,7 @@
 ﻿Friend Class RunState
-    Inherits BaseGameState(Of Hue)
+    Inherits BaseGameState
 
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
         MyBase.New(parent, setState)
     End Sub
 
@@ -9,7 +9,7 @@
         Throw New NotImplementedException()
     End Sub
 
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         Throw New NotImplementedException()
     End Sub
 

@@ -1,12 +1,12 @@
 ﻿Friend Class NeutralState
-    Inherits BaseGameState(Of Hue)
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
+    Inherits BaseGameState
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
         MyBase.New(parent, setState)
     End Sub
     Public Overrides Sub HandleCommand(cmd As String)
         Throw New NotImplementedException()
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         Throw New NotImplementedException
     End Sub
     Public Overrides Sub OnStart()

@@ -1,6 +1,6 @@
 ﻿Friend Class MainMenuState
     Inherits BaseMenuState
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
         MyBase.New(
             parent,
             setState, MainMenuTitle, {EmbarkText, LoadText, OptionsText, AboutText}, QuitText)
@@ -21,7 +21,7 @@
                 Throw New NotImplementedException()
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         MyBase.Render(displayBuffer)
         Select Case MenuItemText
             Case EmbarkText

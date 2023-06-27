@@ -1,7 +1,7 @@
 ﻿Friend Class OptionsState
     Inherits BaseMenuState
     Private ReadOnly _saveConfig As Action
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean), saveConfig As Action)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), saveConfig As Action)
         MyBase.New(
             parent,
             setState,
@@ -29,7 +29,7 @@
                 Throw New NotImplementedException
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         Title = _table(MenuItemText)
         MyBase.Render(displayBuffer)
         ShowStatusBar(displayBuffer, Context.UIFont, ControlsText("Select", "Cancel"), Hue.Black, Hue.LightGray)

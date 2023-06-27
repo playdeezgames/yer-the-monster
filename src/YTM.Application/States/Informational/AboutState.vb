@@ -1,12 +1,12 @@
 ﻿Friend Class AboutState
-    Inherits BaseGameState(Of Hue)
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
+    Inherits BaseGameState
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
         MyBase.New(parent, setState)
     End Sub
     Public Overrides Sub HandleCommand(cmd As String)
         SetState(GameState.MainMenu)
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         With font

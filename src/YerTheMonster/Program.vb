@@ -13,7 +13,7 @@ Module Program
             config.FullScreen,
             config.SfxVolume,
             AddressOf SaveConfig)
-        Using host As New Host(Of Hue)(
+        Using host As New Host(
             "Yer, The Monster",
             gameController,
             (ViewWidth, ViewHeight),
@@ -95,11 +95,11 @@ Module Program
         CheckGamePadForCommand(result, newState.DPad.Right = ButtonState.Pressed, Command.Right)
         Return result.ToArray
     End Function
-    Private Function BufferCreator(texture As Texture2D) As IDisplayBuffer(Of Hue)
-        Return New DisplayBuffer(Of Hue)(texture, AddressOf TransformHue)
+    Private Function BufferCreator(texture As Texture2D) As IDisplayBuffer
+        Return New DisplayBuffer(texture, AddressOf TransformHue)
     End Function
-    Private ReadOnly hueTable As IReadOnlyDictionary(Of Hue, Color) =
-        New Dictionary(Of Hue, Color) From
+    Private ReadOnly hueTable As IReadOnlyDictionary(Of Integer, Color) =
+        New Dictionary(Of Integer, Color) From
         {
             {Hue.Black, New Color(0, 0, 0)},
             {Hue.Cyan, New Color(41, 208, 208)},
@@ -118,7 +118,7 @@ Module Program
             {Hue.Pink, New Color(255, 205, 243)},
             {Hue.Green, New Color(29, 105, 20)}
         }
-    Private Function TransformHue(hue As Hue) As Color
+    Private Function TransformHue(hue As Integer) As Color
         Return hueTable(hue)
     End Function
     Private ReadOnly sfxFileNames As IReadOnlyDictionary(Of String, String) =

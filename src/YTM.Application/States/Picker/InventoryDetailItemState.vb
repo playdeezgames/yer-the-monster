@@ -1,7 +1,7 @@
 ﻿Friend Class InventoryDetailItemState
     Inherits BasePickerState
 
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean))
         MyBase.New(parent, setState, "<placeholder>", ControlsText("Select", "Cancel"), GameState.Inventory)
     End Sub
 

@@ -1,5 +1,5 @@
 ﻿Friend MustInherit Class BaseMenuState
-    Inherits BaseGameState(Of Hue)
+    Inherits BaseGameState
     Private ReadOnly _menuItems As String()
     Private _menuItemIndex As Integer = 0
     Private ReadOnly _cancelMenuItem As String
@@ -15,7 +15,7 @@
         End Get
     End Property
     Public Sub New(
-                  parent As IGameController(Of Hue),
+                  parent As IGameController,
                   setState As Action(Of String, Boolean),
                   title As String,
                   menuItems As String(),
@@ -38,7 +38,7 @@
         End Select
     End Sub
     Protected MustOverride Sub HandleMenuItem(menuItem As String)
-    Public Overrides Sub Render(displayBuffer As IPixelSink(Of Hue))
+    Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = Fonts.GetFont(GameFont.Font5x7)
         With font
