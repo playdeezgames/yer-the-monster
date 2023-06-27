@@ -18,26 +18,28 @@ Module Program
             gameController,
             (ViewWidth, ViewHeight),
             hueTable,
-            AddressOf KeyboardTransformer,
+            AddressOf CommandTransformer,
             AddressOf GamePadTransformer,
             sfxFileNames)
             host.Run()
         End Using
     End Sub
-    Private ReadOnly keyboardCommandTable As IReadOnlyDictionary(Of String, Func(Of KeyboardState, Boolean)) =
-        New Dictionary(Of String, Func(Of KeyboardState, Boolean)) From
+    Private ReadOnly commandTable As IReadOnlyDictionary(Of String, Func(Of KeyboardState, GamePadState, Boolean)) =
+        New Dictionary(Of String, Func(Of KeyboardState, GamePadState, Boolean)) From
         {
-            {Command.A, Function(state) state.IsKeyDown(Keys.Space) OrElse state.IsKeyDown(Keys.Enter)},
-            {Command.B, Function(state) state.IsKeyDown(Keys.Escape)},
-            {Command.Up, Function(state) state.IsKeyDown(Keys.Up) OrElse state.IsKeyDown(Keys.NumPad8)},
-            {Command.Down, Function(state) state.IsKeyDown(Keys.Down) OrElse state.IsKeyDown(Keys.NumPad2)},
-            {Command.Left, Function(state) state.IsKeyDown(Keys.Left) OrElse state.IsKeyDown(Keys.NumPad4)},
-            {Command.Right, Function(state) state.IsKeyDown(Keys.Right) OrElse state.IsKeyDown(Keys.NumPad6)}
+            {Command.A, Function(keyboard, gamePad) keyboard.IsKeyDown(Keys.Space) OrElse keyboard.IsKeyDown(Keys.Enter) OrElse gamePad.IsButtonDown(Buttons.A)},
+            {Command.B, Function(keyboard, gamePad) keyboard.IsKeyDown(Keys.Escape) OrElse gamePad.IsButtonDown(Buttons.B)},
+            {Command.Up, Function(keyboard, gamePad) keyboard.IsKeyDown(Keys.Up) OrElse keyboard.IsKeyDown(Keys.NumPad8) OrElse gamePad.DPad.Up = ButtonState.Pressed},
+            {Command.Down, Function(keyboard, gamePad) keyboard.IsKeyDown(Keys.Down) OrElse keyboard.IsKeyDown(Keys.NumPad2) OrElse gamePad.DPad.Down = ButtonState.Pressed},
+            {Command.Left, Function(keyboard, gamePad) keyboard.IsKeyDown(Keys.Left) OrElse keyboard.IsKeyDown(Keys.NumPad4) OrElse gamePad.DPad.Left = ButtonState.Pressed},
+            {Command.Right, Function(keyboard, gamePad) keyboard.IsKeyDown(Keys.Right) OrElse keyboard.IsKeyDown(Keys.NumPad6) OrElse gamePad.DPad.Right = ButtonState.Pressed}
         }
-    Private Function KeyboardTransformer(state As KeyboardState) As String()
+    Private ReadOnly gamePadCommandtable As IReadOnlyDictionary(Of String, Func(Of GamePadState, Boolean)) =
+        New Dictionary(Of String, Func(Of GamePadState, Boolean))
+    Private Function CommandTransformer(keyboard As KeyboardState, gamePad As GamePadState) As String()
         Dim result As New HashSet(Of String)
-        For Each entry In keyboardCommandTable
-            CheckKeyboardForCommand(result, entry.Value(state), entry.Key)
+        For Each entry In commandTable
+            CheckKeyboardForCommand(result, entry.Value(keyboard, gamePad), entry.Key)
         Next
         Return result.ToArray
     End Function
@@ -91,16 +93,6 @@ Module Program
             _nextKeyboardCommandTimes.Remove(command)
         End If
     End Sub
-    Private ReadOnly gamePadCommandtable As IReadOnlyDictionary(Of String, Func(Of GamePadState, Boolean)) =
-        New Dictionary(Of String, Func(Of GamePadState, Boolean)) From
-        {
-            {Command.A, Function(state) state.IsButtonDown(Buttons.A)},
-            {Command.B, Function(state) state.IsButtonDown(Buttons.B)},
-            {Command.Up, Function(state) state.DPad.Up = ButtonState.Pressed},
-            {Command.Down, Function(state) state.DPad.Down = ButtonState.Pressed},
-            {Command.Left, Function(state) state.DPad.Left = ButtonState.Pressed},
-            {Command.Right, Function(state) state.DPad.Right = ButtonState.Pressed}
-        }
     Private Function GamePadTransformer(state As GamePadState) As String()
         Dim result As New HashSet(Of String)
         For Each entry In gamePadCommandtable
