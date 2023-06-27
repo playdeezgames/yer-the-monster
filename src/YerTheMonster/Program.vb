@@ -18,6 +18,7 @@ Module Program
             gameController,
             (ViewWidth, ViewHeight),
             AddressOf TransformHue,
+            hueTable,
             AddressOf KeyboardTransformer,
             AddressOf GamePadTransformer,
             sfxFileNames)
