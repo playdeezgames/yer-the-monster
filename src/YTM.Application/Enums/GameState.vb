@@ -1,25 +1,25 @@
-﻿Public Enum GameState
-    Splash
-    MainMenu
-    ConfirmQuit
-    Options
-    WindowSize
-    Volume
-    About
-    Embark
-    Load
-    Neutral
-    GameMenu
-    Save
-    Abandon
-    ActionMenu
-    Inventory
-    Dead
-    Message
-    Navigation
-    PickUpItem
-    InventoryDetail
-    Fight
-    Run
-    Attack
-End Enum
+﻿Public Module GameState
+    Public Const Splash = "Splash"
+    Public Const MainMenu = "MainMenu"
+    Public Const ConfirmQuit = "ConfirmQuit"
+    Public Const Options = "Options"
+    Public Const WindowSize = "WindowSize"
+    Public Const Volume = "Volume"
+    Public Const About = "About"
+    Public Const Embark = "Embark"
+    Public Const Load = "Load"
+    Public Const Neutral = "Neutral"
+    Public Const GameMenu = "GameMenu"
+    Public Const Save = "Save"
+    Public Const Abandon = "Abandon"
+    Public Const ActionMenu = "ActionMenu"
+    Public Const Inventory = "Inventory"
+    Public Const Dead = "Dead"
+    Public Const Message = "Message"
+    Public Const Navigation = "Navigation"
+    Public Const PickUpItem = "PickUpItem"
+    Public Const InventoryDetail = "InventoryDetail"
+    Public Const Fight = "Fight"
+    Public Const Run = "Run"
+    Public Const Attack = "Attack"
+End Module

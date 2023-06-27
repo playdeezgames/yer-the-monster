@@ -1,16 +1,16 @@
 ﻿Public MustInherit Class BasePickerState
-    Inherits BaseGameState(Of Hue, GameState)
+    Inherits BaseGameState(Of Hue)
     Private _menuItems As New List(Of (String, String))
     Private _menuItemIndex As Integer
     Private ReadOnly _statusBarText As String
     Protected Property HeaderText As String
-    Private ReadOnly _cancelGameState As GameState
+    Private ReadOnly _cancelGameState As String
     Public Sub New(
                   parent As IGameController(Of Hue),
-                  setState As Action(Of GameState?, Boolean),
+                  setState As Action(Of String, Boolean),
                   headerText As String,
                   statusBarText As String,
-                  cancelGameState As GameState)
+                  cancelGameState As String)
         MyBase.New(parent, setState)
         _statusBarText = statusBarText
         _cancelGameState = cancelGameState

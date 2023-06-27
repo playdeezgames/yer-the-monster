@@ -1,7 +1,7 @@
 ﻿Friend Class ConfirmQuitState
-    Inherits BaseGameState(Of Hue, GameState)
+    Inherits BaseGameState(Of Hue)
     Private Confirmation As Boolean = False
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
         MyBase.New(parent, setState)
     End Sub
 

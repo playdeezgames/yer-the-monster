@@ -1,6 +1,6 @@
 ﻿Friend Class GameMenuState
     Inherits BaseMenuState
-    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of GameState?, Boolean))
+    Public Sub New(parent As IGameController(Of Hue), setState As Action(Of String, Boolean))
         MyBase.New(
             parent,
             setState,

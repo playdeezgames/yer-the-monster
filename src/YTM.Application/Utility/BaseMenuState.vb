@@ -1,5 +1,5 @@
 ﻿Friend MustInherit Class BaseMenuState
-    Inherits BaseGameState(Of Hue, GameState)
+    Inherits BaseGameState(Of Hue)
     Private ReadOnly _menuItems As String()
     Private _menuItemIndex As Integer = 0
     Private ReadOnly _cancelMenuItem As String
@@ -16,7 +16,7 @@
     End Property
     Public Sub New(
                   parent As IGameController(Of Hue),
-                  setState As Action(Of GameState?, Boolean),
+                  setState As Action(Of String, Boolean),
                   title As String,
                   menuItems As String(),
                   cancelMenuItem As String)
