@@ -24,15 +24,21 @@ Module Program
             host.Run()
         End Using
     End Sub
-
+    Private ReadOnly keyboardCommandTable As IReadOnlyDictionary(Of String, Func(Of KeyboardState, Boolean)) =
+        New Dictionary(Of String, Func(Of KeyboardState, Boolean)) From
+        {
+            {Command.A, Function(state) state.IsKeyDown(Keys.Space) OrElse state.IsKeyDown(Keys.Enter)},
+            {Command.B, Function(state) state.IsKeyDown(Keys.Escape)},
+            {Command.Up, Function(state) state.IsKeyDown(Keys.Up) OrElse state.IsKeyDown(Keys.NumPad8)},
+            {Command.Down, Function(state) state.IsKeyDown(Keys.Down) OrElse state.IsKeyDown(Keys.NumPad2)},
+            {Command.Left, Function(state) state.IsKeyDown(Keys.Left) OrElse state.IsKeyDown(Keys.NumPad4)},
+            {Command.Right, Function(state) state.IsKeyDown(Keys.Right) OrElse state.IsKeyDown(Keys.NumPad6)}
+        }
     Private Function KeyboardTransformer(state As KeyboardState) As String()
         Dim result As New HashSet(Of String)
-        CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Space) OrElse state.IsKeyDown(Keys.Enter), Command.A)
-        CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Escape), Command.B)
-        CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Up) OrElse state.IsKeyDown(Keys.NumPad8), Command.Up)
-        CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Down) OrElse state.IsKeyDown(Keys.NumPad2), Command.Down)
-        CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Left) OrElse state.IsKeyDown(Keys.NumPad4), Command.Left)
-        CheckKeyboardForCommand(result, state.IsKeyDown(Keys.Right) OrElse state.IsKeyDown(Keys.NumPad6), Command.Right)
+        For Each entry In keyboardCommandTable
+            CheckKeyboardForCommand(result, entry.Value(state), entry.Key)
+        Next
         Return result.ToArray
     End Function
 
@@ -85,14 +91,21 @@ Module Program
             _nextKeyboardCommandTimes.Remove(command)
         End If
     End Sub
-    Private Function GamePadTransformer(newState As GamePadState) As String()
+    Private ReadOnly gamePadCommandtable As IReadOnlyDictionary(Of String, Func(Of GamePadState, Boolean)) =
+        New Dictionary(Of String, Func(Of GamePadState, Boolean)) From
+        {
+            {Command.A, Function(state) state.IsButtonDown(Buttons.A)},
+            {Command.B, Function(state) state.IsButtonDown(Buttons.B)},
+            {Command.Up, Function(state) state.DPad.Up = ButtonState.Pressed},
+            {Command.Down, Function(state) state.DPad.Down = ButtonState.Pressed},
+            {Command.Left, Function(state) state.DPad.Left = ButtonState.Pressed},
+            {Command.Right, Function(state) state.DPad.Right = ButtonState.Pressed}
+        }
+    Private Function GamePadTransformer(state As GamePadState) As String()
         Dim result As New HashSet(Of String)
-        CheckGamePadForCommand(result, newState.IsButtonDown(Buttons.A), Command.A)
-        CheckGamePadForCommand(result, newState.IsButtonDown(Buttons.B), Command.B)
-        CheckGamePadForCommand(result, newState.DPad.Up = ButtonState.Pressed, Command.Up)
-        CheckGamePadForCommand(result, newState.DPad.Down = ButtonState.Pressed, Command.Down)
-        CheckGamePadForCommand(result, newState.DPad.Left = ButtonState.Pressed, Command.Left)
-        CheckGamePadForCommand(result, newState.DPad.Right = ButtonState.Pressed, Command.Right)
+        For Each entry In gamePadCommandtable
+            CheckGamePadForCommand(result, entry.Value(state), entry.Key)
+        Next
         Return result.ToArray
     End Function
     Private ReadOnly hueTable As IReadOnlyDictionary(Of Integer, Color) =
