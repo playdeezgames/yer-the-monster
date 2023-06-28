@@ -1,21 +1,10 @@
 ﻿Friend Class GameMenuState
-    Inherits BaseMenuState
+    Inherits BasePickerState
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
-        MyBase.New(
-            parent,
-            setState,
-            fontSource,
-            GameMenuTitle,
-            {
-                ContinueGameText,
-                SaveGameText,
-                OptionsText,
-                AbandonGameText
-            },
-            ContinueGameText)
+        MyBase.New(parent, setState, fontSource, "Game Menu", ControlsText("Select", "Cancel"), GameState.Neutral)
     End Sub
-    Protected Overrides Sub HandleMenuItem(menuItem As String)
-        Select Case menuItem
+    Protected Overrides Sub OnActivateMenuItem(value As (String, String))
+        Select Case value.Item2
             Case ContinueGameText
                 SetState(GameState.Neutral)
             Case SaveGameText
@@ -26,8 +15,13 @@
                 SetState(GameState.Abandon)
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink)
-        MyBase.Render(displayBuffer)
-        ShowStatusBar(displayBuffer, FontSource.GetFont(GameFont.Font5x7), ControlsText("Select", "Cancel"), Hue.Black, Hue.LightGray)
-    End Sub
+    Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
+        Return New List(Of (String, String)) From
+            {
+                (ContinueGameText, ContinueGameText),
+                (SaveGameText, SaveGameText),
+                (OptionsText, OptionsText),
+                (AbandonGameText, AbandonGameText)
+            }
+    End Function
 End Class
