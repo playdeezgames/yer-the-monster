@@ -11,7 +11,7 @@ Friend Class YTMSettings
     End Sub
     Public Property WindowSize As (Integer, Integer) Implements ISettings.WindowSize
     Public Property FullScreen As Boolean Implements ISettings.FullScreen
-    Public ReadOnly Property Volume As Single Implements ISettings.Volume
+    Public Property Volume As Single Implements ISettings.Volume
     Private Const ConfigFileName = "config.json"
     Private Shared Function ReadConfig() As YTMConfig
         Try
