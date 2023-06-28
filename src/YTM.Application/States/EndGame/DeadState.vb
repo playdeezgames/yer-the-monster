@@ -14,7 +14,7 @@
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim font = UIFont()
+        Dim font = FontSource.GetFont(GameFont.Font5x7)
         font.WriteText(displayBuffer, (0, 0), "Yer Dead!", Hue.Red)
         ShowStatusBar(displayBuffer, font, "Space/(A) - Main Menu", Hue.Black, Hue.LightGray)
     End Sub

@@ -37,7 +37,7 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         Title = _table(MenuItemText)
         MyBase.Render(displayBuffer)
-        ShowStatusBar(displayBuffer, Context.UIFont, ControlsText("Select", "Cancel"), Hue.Black, Hue.LightGray)
+        ShowStatusBar(displayBuffer, FontSource.GetFont(GameFont.Font5x7), ControlsText("Select", "Cancel"), Hue.Black, Hue.LightGray)
     End Sub
     Private ReadOnly _table As IReadOnlyDictionary(Of String, String) =
         New Dictionary(Of String, String) From

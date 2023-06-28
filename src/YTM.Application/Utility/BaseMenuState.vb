@@ -41,7 +41,7 @@
     Protected MustOverride Sub HandleMenuItem(menuItem As String)
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim font = Fonts.GetFont(GameFont.Font5x7)
+        Dim font = FontSource.GetFont(GameFont.Font5x7)
         With font
             .WriteText(displayBuffer, (0, 0), Title, Hue.Orange)
             Dim y = font.Height

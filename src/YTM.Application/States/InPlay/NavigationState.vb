@@ -31,14 +31,14 @@ Friend Class NavigationState
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim map As IMap = RenderMap(displayBuffer)
+        Dim map As IMap = RenderMap(displayBuffer, FontSource.GetFont(GameFont.YTM))
         ShowStatistics(displayBuffer, World.Avatar)
-        ShowHeader(displayBuffer, UIFont, map.DisplayName, Hue.Orange, Hue.Black)
-        ShowStatusBar(displayBuffer, UIFont, "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.LightGray)
+        ShowHeader(displayBuffer, FontSource.GetFont(GameFont.Font5x7), map.DisplayName, Hue.Orange, Hue.Black)
+        ShowStatusBar(displayBuffer, FontSource.GetFont(GameFont.Font5x7), "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.LightGray)
     End Sub
 
     Private Sub ShowStatistics(displayBuffer As IPixelSink, avatar As ICharacter)
-        Dim font = UIFont()
+        Dim font = FontSource.GetFont(GameFont.Font5x7)
         Dim text = $"H={(avatar.Health / avatar.MaximumHealth * 100),3:f0}%"
         font.WriteText(displayBuffer, (ViewWidth - font.TextWidth(text), font.Height), text, Hue.Pink)
 
@@ -49,12 +49,11 @@ Friend Class NavigationState
         font.WriteText(displayBuffer, (ViewWidth - font.TextWidth(text), font.Height * 3), text, Hue.Yellow)
     End Sub
 
-    Private Shared Function RenderMap(displayBuffer As IPixelSink) As IMap
+    Private Shared Function RenderMap(displayBuffer As IPixelSink, ytmFont As Font) As IMap
         Dim avatar = World.Avatar
         Dim avatarColumn = avatar.MapCell.Column
         Dim avatarRow = avatar.MapCell.Row
         Dim map = avatar.MapCell.Map
-        Dim ytmFont = Fonts.GetFont(GameFont.YTM)
         For column = 0 To map.Columns - 1
             For row = 0 To map.Rows - 1
                 Dim x = CenterMapCellX + (column - avatarColumn) * MapCellWidth

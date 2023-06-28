@@ -31,7 +31,7 @@
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         MyBase.Render(displayBuffer)
-        Dim font = Fonts.GetFont(GameFont.Font5x7)
+        Dim font = FontSource.GetFont(GameFont.Font5x7)
         If Context.DoesSaveExist(SlotIndex) Then
             ShowHeader(displayBuffer, font, "Will overwrite!", Hue.Black, Hue.Red)
         Else

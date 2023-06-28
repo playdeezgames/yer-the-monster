@@ -12,7 +12,7 @@
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim font = UIFont()
+        Dim font = FontSource.GetFont(GameFont.Font5x7)
         With font
             .WriteText(displayBuffer, (0, 0), "A Game in VB.NET About", Hue.Orange)
             .WriteText(displayBuffer, (0, font.Height), "Yer, the Monster,", Hue.Orange)
@@ -22,6 +22,5 @@
 
             ShowStatusBar(displayBuffer, font, "Space/(A)", Hue.Black, Hue.LightGray)
         End With
-        font = Fonts.GetFont(GameFont.YTM)
     End Sub
 End Class

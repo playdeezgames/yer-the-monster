@@ -39,6 +39,6 @@
             Case OptionsText
                 Title = "Change Window Size and Volume!"
         End Select
-        ShowStatusBar(displayBuffer, UIFont, ControlsText("Select", "Quit Game"), Hue.Black, Hue.LightGray)
+        ShowStatusBar(displayBuffer, FontSource.GetFont(GameFont.Font5x7), ControlsText("Select", "Quit Game"), Hue.Black, Hue.LightGray)
     End Sub
 End Class

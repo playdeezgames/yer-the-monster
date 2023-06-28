@@ -24,7 +24,7 @@
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         MyBase.Render(displayBuffer)
-        Dim font = Fonts.GetFont(GameFont.Font5x7)
+        Dim font = FontSource.GetFont(GameFont.Font5x7)
         Dim avatar = World.Avatar
         With font
             ShowStatusBar(displayBuffer, font, "Space/(A) - Select | Esc/(B) - Go back", Hue.Black, Hue.LightGray)

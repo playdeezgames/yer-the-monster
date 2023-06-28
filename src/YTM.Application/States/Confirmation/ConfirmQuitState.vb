@@ -23,7 +23,7 @@
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim font = Fonts.GetFont(GameFont.Font5x7)
+        Dim font = FontSource.GetFont(GameFont.Font5x7)
         With font
             .WriteText(displayBuffer, (0, 0), ConfirmQuitTitle, Hue.Red)
             .WriteText(displayBuffer, (0, font.Height), NoText, If(Confirmation, Hue.Blue, Hue.LightBlue))
