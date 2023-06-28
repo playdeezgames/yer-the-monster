@@ -1,37 +1,22 @@
 ﻿Friend Class ConfirmAbandonState
-    Inherits BaseGameState
-    Private Confirmation As Boolean = False
+    Inherits BasePickerState
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
-        MyBase.New(parent, setState, fontSource)
+        MyBase.New(parent, setState, fontSource, "Are you sure you want to abandon the game?", ControlsText("Select", "Cancel"), GameState.GameMenu)
     End Sub
-    Public Overrides Sub HandleCommand(cmd As String)
-        Select Case cmd
-            Case Command.Up, Command.Down
-                Confirmation = Not Confirmation
-            Case Command.A
-                If Confirmation Then
-                    Context.Abandon()
-                    SetState(GameState.MainMenu)
-                Else
-                    SetState(GameState.GameMenu)
-                End If
-            Case Command.B
-                Confirmation = False
+    Protected Overrides Sub OnActivateMenuItem(value As (String, String))
+        Select Case value.Item2
+            Case NoText
                 SetState(GameState.GameMenu)
+            Case YesText
+                Context.Abandon()
+                SetState(GameState.MainMenu)
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink)
-        displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim font = FontSource.GetFont(GameFont.Font5x7)
-        With font
-            .WriteText(displayBuffer, (0, 0), ConfirmAbandonTitle, Hue.Red)
-            .WriteText(displayBuffer, (0, font.Height), NoText, If(Confirmation, Hue.Blue, Hue.LightBlue))
-            .WriteText(displayBuffer, (0, font.Height * 2), YesText, If(Confirmation, Hue.LightBlue, Hue.Blue))
-        End With
-        If Confirmation Then
-            ShowStatusBar(displayBuffer, font, "You can't! You mustn't!", Hue.Black, Hue.Red)
-        Else
-            ShowStatusBar(displayBuffer, font, "There's so much left to do!", Hue.Black, Hue.LightGray)
-        End If
-    End Sub
+    Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
+        Return New List(Of (String, String)) From
+            {
+                (NoText, NoText),
+                (YesText, YesText)
+            }
+    End Function
 End Class
