@@ -1,42 +1,20 @@
 ﻿Friend Class SaveState
-    Inherits BaseMenuState
+    Inherits BasePickerState
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
-        MyBase.New(
-            parent,
-            setState,
-            fontSource,
-            "",
-            {
-                Slot1Text,
-                Slot2Text,
-                Slot3Text,
-                Slot4Text,
-                Slot5Text
-            },
-            GoBackText)
+        MyBase.New(parent, setState, fontSource, "Save Game", ControlsText("Select", "Cancel"), GameState.GameMenu)
     End Sub
-    Private ReadOnly Property SlotIndex As Integer
-        Get
-            Return MenuItemIndex + 1
-        End Get
-    End Property
-    Protected Overrides Sub HandleMenuItem(menuItem As String)
-        Select Case menuItem
-            Case GoBackText
-                SetState(GameState.GameMenu)
-            Case Else
-                Context.SaveToSlot(SlotIndex)
-                SetState(GameState.GameMenu)
-        End Select
+
+    Protected Overrides Sub OnActivateMenuItem(value As (String, String))
+        Dim slotIndex = CInt(value.Item2)
+        Context.SaveToSlot(slotIndex)
+        SetState(GameState.GameMenu)
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink)
-        MyBase.Render(displayBuffer)
-        Dim font = FontSource.GetFont(GameFont.Font5x7)
-        If Context.DoesSaveExist(SlotIndex) Then
-            ShowHeader(displayBuffer, font, "Will overwrite!", Hue.Black, Hue.Red)
-        Else
-            ShowHeader(displayBuffer, font, "This slot is empty!", Hue.Black, Hue.LightGray)
-        End If
-        ShowStatusBar(displayBuffer, font, ControlsText("Save/Overwrite", "Cancel"), Hue.Black, Hue.LightGray)
-    End Sub
+
+    Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
+        Dim result As New List(Of (String, String))
+        For slotIndex = 1 To 5
+            result.Add(($"Slot {slotIndex}{If(Context.DoesSaveExist(slotIndex), "(will overwrite)", "")}", $"{slotIndex}"))
+        Next
+        Return result
+    End Function
 End Class
