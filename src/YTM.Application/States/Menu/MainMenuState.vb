@@ -6,7 +6,7 @@
             setState,
             fontSource,
             MainMenuTitle,
-            {EmbarkText, LoadText, OptionsText, AboutText},
+            {EmbarkText, LoadText, OptionsText, AboutText, QuitText},
             QuitText)
     End Sub
     Protected Overrides Sub HandleMenuItem(menuItem As String)
