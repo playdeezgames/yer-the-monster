@@ -1,46 +1,30 @@
 ﻿Friend Class LoadState
-    Inherits BaseMenuState
+    Inherits BasePickerState
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
-        MyBase.New(
-            parent,
-            setState,
-            fontSource,
-            LoadTitle,
-            {
-                Slot1Text,
-                Slot2Text,
-                Slot3Text,
-                Slot4Text,
-                Slot5Text
-            },
-            GoBackText)
+        MyBase.New(parent, setState, fontSource, "Load Game", ControlsText("Select", "Cancel"), GameState.MainMenu)
     End Sub
-    Private ReadOnly Property SlotIndex As Integer
-        Get
-            Return MenuItemIndex + 1
-        End Get
-    End Property
-    Protected Overrides Sub HandleMenuItem(menuItem As String)
-        Select Case menuItem
-            Case GoBackText
-                SetState(GameState.MainMenu)
-            Case Else
-                If DoesSaveExist(SlotIndex) Then
-                    Context.LoadFromSlot(MenuItemIndex)
-                    SetState(GameState.Neutral)
-                Else
-                    PlaySfx(Sfx.Shucks)
-                End If
-        End Select
-    End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink)
-        MyBase.Render(displayBuffer)
-        Dim font = FontSource.GetFont(GameFont.Font5x7)
-        If DoesSaveExist(SlotIndex) Then
-            ShowHeader(displayBuffer, font, SaveSlotExistsText, Hue.Black, Hue.LightGray)
+
+    Protected Overrides Sub OnActivateMenuItem(value As (String, String))
+        Dim slotIndex = CInt(value.Item2)
+        If slotIndex > 0 AndAlso DoesSaveExist(slotIndex) Then
+            Context.LoadFromSlot(slotIndex)
+            SetState(GameState.Neutral)
         Else
-            ShowHeader(displayBuffer, font, SaveSlotDoesNotExistText, Hue.Black, Hue.Red)
+            PlaySfx(Sfx.Shucks)
+            SetState(GameState.MainMenu)
         End If
-        ShowStatusBar(displayBuffer, font, ControlsText("Load", "Cancel"), Hue.Black, Hue.LightGray)
     End Sub
+
+    Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
+        Dim result = New List(Of (String, String))
+        For slotIndex = 1 To 5
+            If Context.DoesSaveExist(slotIndex) Then
+                result.Add(($"Slot {slotIndex}", $"{slotIndex}"))
+            End If
+        Next
+        If Not result.Any() Then
+            result.Add(("No Saves Exist!", "0"))
+        End If
+        Return result
+    End Function
 End Class
