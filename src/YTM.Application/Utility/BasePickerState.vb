@@ -33,11 +33,12 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim font = FontSource.GetFont(GameFont.Font5x7)
+        displayBuffer.Fill((0, ViewHeight \ 2 - font.Height \ 2), (ViewWidth, font.Height), Hue.Blue)
         Dim y = ViewHeight \ 2 - font.Height \ 2 - _menuItemIndex * font.Height
         Dim index = 0
         For Each menuItem In _menuItems
             Dim x = ViewWidth \ 2 - font.TextWidth(menuItem.Item1) \ 2
-            Dim h = If(index = _menuItemIndex, Hue.LightBlue, Hue.Blue)
+            Dim h = If(index = _menuItemIndex, Hue.Black, Hue.Blue)
             font.WriteText(displayBuffer, (x, y), menuItem.Item1, h)
             index += 1
             y += font.Height

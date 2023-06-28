@@ -1,16 +1,11 @@
 ﻿Friend Class MainMenuState
-    Inherits BaseMenuState
+    Inherits BasePickerState
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
-        MyBase.New(
-            parent,
-            setState,
-            fontSource,
-            MainMenuTitle,
-            {EmbarkText, LoadText, OptionsText, AboutText, QuitText},
-            QuitText)
+        MyBase.New(parent, setState, fontSource, "Main Menu", ControlsText("Select", "Quit"), GameState.ConfirmQuit)
     End Sub
-    Protected Overrides Sub HandleMenuItem(menuItem As String)
-        Select Case menuItem
+
+    Protected Overrides Sub OnActivateMenuItem(value As (String, String))
+        Select Case value.Item2
             Case QuitText
                 SetState(GameState.ConfirmQuit)
             Case OptionsText
@@ -25,20 +20,15 @@
                 Throw New NotImplementedException()
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink)
-        MyBase.Render(displayBuffer)
-        Select Case MenuItemText
-            Case EmbarkText
-                Title = "Start a new game!"
-            Case LoadText
-                Title = "Continue a game!"
-            Case QuitText
-                Title = "I'll miss you! <3"
-            Case AboutText
-                Title = "Learn all the things about this fine game!"
-            Case OptionsText
-                Title = "Change Window Size and Volume!"
-        End Select
-        ShowStatusBar(displayBuffer, FontSource.GetFont(GameFont.Font5x7), ControlsText("Select", "Quit Game"), Hue.Black, Hue.LightGray)
-    End Sub
+
+    Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
+        Return New List(Of (String, String)) From
+            {
+                (EmbarkText, EmbarkText),
+                (LoadText, LoadText),
+                (OptionsText, OptionsText),
+                (AboutText, AboutText),
+                (QuitText, QuitText)
+            }
+    End Function
 End Class
