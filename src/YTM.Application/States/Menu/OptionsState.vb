@@ -1,28 +1,17 @@
 ﻿Friend Class OptionsState
-    Inherits BaseMenuState
+    Inherits BasePickerState
     Private ReadOnly _saveConfig As Action
     Public Sub New(
                   parent As IGameController,
                   setState As Action(Of String, Boolean),
                   fontSource As IFontSource,
                   saveConfig As Action)
-        MyBase.New(
-            parent,
-            setState,
-            fontSource,
-            OptionsTitle,
-            {
-                ToggleFullScreenText,
-                SetWindowSizeText,
-                SetVolumeText
-            },
-            GoBackText)
+        MyBase.New(parent, setState, fontSource, "Options", ControlsText("Select", "Cancel"), Nothing)
         _saveConfig = saveConfig
     End Sub
-    Protected Overrides Sub HandleMenuItem(menuItem As String)
-        Select Case menuItem
-            Case GoBackText
-                PopState()
+
+    Protected Overrides Sub OnActivateMenuItem(value As (String, String))
+        Select Case value.Item2
             Case ToggleFullScreenText
                 Parent.FullScreen = Not Parent.FullScreen
                 _saveConfig()
@@ -34,16 +23,12 @@
                 Throw New NotImplementedException
         End Select
     End Sub
-    Public Overrides Sub Render(displayBuffer As IPixelSink)
-        Title = _table(MenuItemText)
-        MyBase.Render(displayBuffer)
-        ShowStatusBar(displayBuffer, FontSource.GetFont(GameFont.Font5x7), ControlsText("Select", "Cancel"), Hue.Black, Hue.LightGray)
-    End Sub
-    Private ReadOnly _table As IReadOnlyDictionary(Of String, String) =
-        New Dictionary(Of String, String) From
-        {
-                {ToggleFullScreenText, "Beware of non-standard display modes!"},
-                {SetWindowSizeText, "Mebbe just make the window bigger?"},
-                {SetVolumeText, "If it is too loud, yer too old!"}
-        }
+    Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
+        Return New List(Of (String, String)) From
+            {
+                (ToggleFullScreenText, ToggleFullScreenText),
+                (SetWindowSizeText, SetWindowSizeText),
+                (SetVolumeText, SetVolumeText)
+            }
+    End Function
 End Class
