@@ -1,6 +1,4 @@
 ﻿Public Module GameState
-    Public Const WindowSize = "WindowSize"
-    Public Const Volume = "Volume"
     Public Const Neutral = "Neutral"
     Public Const GameMenu = "GameMenu"
     Public Const Save = "Save"

@@ -5,6 +5,24 @@
         MyBase.New(fontFilenames, viewSize)
     End Sub
 
+    Public Overrides ReadOnly Property AvailableWindowSizes As IEnumerable(Of (Integer, Integer))
+        Get
+            Return {
+                 (640, 360),
+                (1280, 720),
+                (1920, 1080),
+                (2560, 1440),
+                (3200, 1800),
+                (3840, 2160),
+                (4480, 2520),
+                (5120, 2880),
+                (5760, 3240),
+                (6400, 3600),
+                (7040, 3960),
+                (7680, 4320)}
+        End Get
+    End Property
+
     Public Overrides Sub ShowSplashContent(displayBuffer As IPixelSink, font As Font)
         With font
             .WriteText(displayBuffer, (0, 0), "A Game in VB.NET About", Hue.Orange)
