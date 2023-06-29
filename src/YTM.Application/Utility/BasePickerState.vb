@@ -32,7 +32,7 @@
     Protected MustOverride Sub OnActivateMenuItem(value As (String, String))
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim font = Context.Font(GameFont.Font5x7)
+        Dim font = Context.Font(UIFont)
         displayBuffer.Fill((0, ViewHeight \ 2 - font.Height \ 2), (ViewWidth, font.Height), Hue.Blue)
         Dim y = ViewHeight \ 2 - font.Height \ 2 - _menuItemIndex * font.Height
         Dim index = 0

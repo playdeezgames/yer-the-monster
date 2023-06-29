@@ -33,12 +33,12 @@ Friend Class NavigationState
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim map As IMap = RenderMap(displayBuffer, Context.Font(GameFont.YTM))
         ShowStatistics(displayBuffer, World.Avatar)
-        ShowHeader(displayBuffer, Context.Font(GameFont.Font5x7), map.DisplayName, Hue.Orange, Hue.Black)
-        ShowStatusBar(displayBuffer, Context.Font(GameFont.Font5x7), "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.LightGray)
+        ShowHeader(displayBuffer, Context.Font(UIFont), map.DisplayName, Hue.Orange, Hue.Black)
+        ShowStatusBar(displayBuffer, Context.Font(UIFont), "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.LightGray)
     End Sub
 
     Private Sub ShowStatistics(displayBuffer As IPixelSink, avatar As ICharacter)
-        Dim font = Context.Font(GameFont.Font5x7)
+        Dim font = Context.Font(UIFont)
         Dim text = $"H={(avatar.Health / avatar.MaximumHealth * 100),3:f0}%"
         font.WriteText(displayBuffer, (ViewWidth - font.TextWidth(text), font.Height), text, Hue.Pink)
 

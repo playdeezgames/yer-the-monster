@@ -8,7 +8,7 @@
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim font = Context.Font(GameFont.Font5x7)
+        Dim font = Context.Font(UIFont)
         With font
             .WriteText(displayBuffer, (0, 0), AboutTitle, Hue.Orange)
             .WriteText(displayBuffer, (0, font.Height * 2), About1Text, Hue.Tan)

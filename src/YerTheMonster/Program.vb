@@ -19,10 +19,7 @@ Module Program
     Private ReadOnly fontFilenames As IReadOnlyDictionary(Of String, String) =
         New Dictionary(Of String, String) From
         {
-            {GameFont.Font3x5, "Content/CyFont3x5.json"},
-            {GameFont.Font4x6, "Content/CyFont4x6.json"},
-            {GameFont.Font5x7, "Content/CyFont5x7.json"},
-            {GameFont.Font8x8, "Content/CyFont8x8.json"},
+            {UIFont, "Content/CyFont5x7.json"},
             {GameFont.YTM, "Content/ytm.json"}
         }
     Private ReadOnly commandTable As IReadOnlyDictionary(Of String, Func(Of KeyboardState, GamePadState, Boolean)) =

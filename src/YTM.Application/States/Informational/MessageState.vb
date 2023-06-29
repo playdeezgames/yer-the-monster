@@ -16,7 +16,7 @@
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
         Dim message = World.CurrentMessage
-        Dim font = Context.Font(GameFont.Font5x7)
+        Dim font = Context.Font(UIFont)
         Dim y = 0
         For Each line In message.Lines
             font.WriteText(displayBuffer, (0, y), line, Hue.LightGray)
