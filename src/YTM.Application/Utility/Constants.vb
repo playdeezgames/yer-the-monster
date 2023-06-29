@@ -12,6 +12,8 @@
     Friend Const ConfirmAbandonTitle = "Are you sure you want to abandon the game?"
     Friend Const ConfirmQuitTitle = "Are you sure you want to quit?"
     Friend Const ContinueGameText = "Continue Game"
+    Friend Const DefaultScreenWidth = ViewWidth * 4
+    Friend Const DefaultScreenHeight = ViewHeight * 4
     Friend Const EmbarkText = "Embark!"
     Friend Const GameMenuTitle = "Game Menu:"
     Friend Const GoBackText = "Go Back"

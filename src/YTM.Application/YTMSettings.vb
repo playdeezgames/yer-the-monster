@@ -1,7 +1,7 @@
 ﻿Public Class YTMSettings
     Implements ISettings
-    Sub New(defaultWindowSize As (Integer, Integer))
-        Dim cfg = ReadConfig(defaultWindowSize)
+    Sub New()
+        Dim cfg = ReadConfig()
         WindowSize = (cfg.WindowWidth, cfg.WindowHeight)
         FullScreen = cfg.FullScreen
         Volume = cfg.SfxVolume
@@ -10,7 +10,7 @@
     Public Property FullScreen As Boolean Implements ISettings.FullScreen
     Public Property Volume As Single Implements ISettings.Volume
     Private Const ConfigFileName = "config.json"
-    Private Shared Function ReadConfig(defaultWindowSize As (Integer, Integer)) As YTMConfig
+    Private Shared Function ReadConfig() As YTMConfig
         Try
             Return JsonSerializer.Deserialize(Of YTMConfig)(File.ReadAllText(ConfigFileName))
         Catch ex As Exception
@@ -18,8 +18,8 @@
             {
                 .FullScreen = False,
                 .SfxVolume = 0.5,
-                .WindowHeight = defaultWindowSize.Item2,
-                .WindowWidth = defaultWindowSize.Item1
+                .WindowHeight = DefaultScreenHeight,
+                .WindowWidth = DefaultScreenWidth
             }
         End Try
     End Function
