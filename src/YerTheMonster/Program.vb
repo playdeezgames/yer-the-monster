@@ -8,7 +8,7 @@ Module Program
             GameTitle,
             New GameController(
                 New YTMSettings,
-                New UIContext(fontFilenames, (ViewWidth, ViewHeight))),
+                New YTMContext(fontFilenames, (ViewWidth, ViewHeight))),
             (ViewWidth, ViewHeight),
             hueTable,
             commandTable,
