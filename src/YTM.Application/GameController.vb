@@ -22,6 +22,5 @@ Public Class GameController
     Private Sub CreateBoilerplateStates(context As IUIContext)
 
         SetState(BoilerplateState.Embark, New EmbarkState(Me, AddressOf SetCurrentState, context))
-        SetState(BoilerplateState.GameMenu, New GameMenuState(Me, AddressOf SetCurrentState, context))
     End Sub
 End Class
