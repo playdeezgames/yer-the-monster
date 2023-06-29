@@ -11,11 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_STUFF", "_STUFF", "{2C9743
 		..\shippit.sh = ..\shippit.sh
 	EndProjectSection
 EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "SPLORR.Game", "..\..\GwensGame\abettor-of-splorr\src\SPLORR.Game\SPLORR.Game.vbproj", "{E740FEA5-DB61-4E84-8294-45BA6D7D335C}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "SPLORR.Game", "..\abettor-of-splorr\src\SPLORR.Game\SPLORR.Game.vbproj", "{E740FEA5-DB61-4E84-8294-45BA6D7D335C}"
 EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "AOS.UI", "..\..\GwensGame\abettor-of-splorr\src\AOS.UI\AOS.UI.vbproj", "{2B6AB1C1-B7BA-4DE6-AFA0-05A515A72F7C}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "AOS.UI", "..\abettor-of-splorr\src\AOS.UI\AOS.UI.vbproj", "{2B6AB1C1-B7BA-4DE6-AFA0-05A515A72F7C}"
 EndProject
-Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "AOS.Presentation", "..\..\GwensGame\abettor-of-splorr\src\AOS.Presentation\AOS.Presentation.vbproj", "{B01ADB69-2E68-4D38-AD12-5F8779E3FC76}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "AOS.Presentation", "..\abettor-of-splorr\src\AOS.Presentation\AOS.Presentation.vbproj", "{B01ADB69-2E68-4D38-AD12-5F8779E3FC76}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Submodule", "Submodule", "{89AB71A0-CD94-4800-816D-D67ED7E79E26}"
 EndProject
