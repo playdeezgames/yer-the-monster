@@ -3,7 +3,7 @@
 Friend Class NavigationState
     Inherits BaseGameState
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IUIContext)
         MyBase.New(parent, setState, fontSource)
     End Sub
     Private ReadOnly commandDeltas As IReadOnlyDictionary(Of String, (Integer, Integer)) =
@@ -31,14 +31,14 @@ Friend Class NavigationState
 
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim map As IMap = RenderMap(displayBuffer, FontSource.GetFont(GameFont.YTM))
+        Dim map As IMap = RenderMap(displayBuffer, FontSource.Font(GameFont.YTM))
         ShowStatistics(displayBuffer, World.Avatar)
-        ShowHeader(displayBuffer, FontSource.GetFont(GameFont.Font5x7), map.DisplayName, Hue.Orange, Hue.Black)
-        ShowStatusBar(displayBuffer, FontSource.GetFont(GameFont.Font5x7), "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.LightGray)
+        ShowHeader(displayBuffer, FontSource.Font(GameFont.Font5x7), map.DisplayName, Hue.Orange, Hue.Black)
+        ShowStatusBar(displayBuffer, FontSource.Font(GameFont.Font5x7), "Space/(A) - Actions | Esc/(B) - Game Menu", Hue.Black, Hue.LightGray)
     End Sub
 
     Private Sub ShowStatistics(displayBuffer As IPixelSink, avatar As ICharacter)
-        Dim font = FontSource.GetFont(GameFont.Font5x7)
+        Dim font = FontSource.Font(GameFont.Font5x7)
         Dim text = $"H={(avatar.Health / avatar.MaximumHealth * 100),3:f0}%"
         font.WriteText(displayBuffer, (ViewWidth - font.TextWidth(text), font.Height), text, Hue.Pink)
 

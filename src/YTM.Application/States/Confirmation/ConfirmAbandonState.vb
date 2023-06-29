@@ -1,6 +1,6 @@
 ﻿Friend Class ConfirmAbandonState
     Inherits BasePickerState
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IUIContext)
         MyBase.New(parent, setState, fontSource, "Are you sure you want to abandon the game?", ControlsText("Select", "Cancel"), GameState.GameMenu)
     End Sub
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))

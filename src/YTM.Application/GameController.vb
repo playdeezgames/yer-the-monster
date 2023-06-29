@@ -1,6 +1,6 @@
 Public Class GameController
     Inherits BaseGameController
-    Public Sub New(settings As ISettings, fontSource As IFontSource)
+    Public Sub New(settings As ISettings, fontSource As IUIContext)
         MyBase.New(settings)
         Initialize()
         CreateBoilerplateStates(fontSource)
@@ -19,7 +19,7 @@ Public Class GameController
         SetCurrentState(GameState.Splash, True)
     End Sub
 
-    Private Sub CreateBoilerplateStates(fontSource As IFontSource)
+    Private Sub CreateBoilerplateStates(fontSource As IUIContext)
         SetState(GameState.Splash, New SplashState(Me, AddressOf SetCurrentState, fontSource))
         SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState, fontSource))
         SetState(GameState.ConfirmQuit, New ConfirmQuitState(Me, AddressOf SetCurrentState, fontSource))

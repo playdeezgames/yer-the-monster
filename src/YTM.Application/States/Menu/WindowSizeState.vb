@@ -1,6 +1,6 @@
 ﻿Friend Class WindowSizeState
     Inherits BasePickerState
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IUIContext)
         MyBase.New(parent, setState, fontSource, "<placeholder>", ControlsText("Select", "Cancel"), GameState.Options)
     End Sub
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))

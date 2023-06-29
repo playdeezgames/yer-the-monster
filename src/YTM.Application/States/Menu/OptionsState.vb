@@ -3,7 +3,7 @@
     Public Sub New(
                   parent As IGameController,
                   setState As Action(Of String, Boolean),
-                  fontSource As IFontSource)
+                  fontSource As IUIContext)
         MyBase.New(parent, setState, fontSource, "Options", ControlsText("Select", "Cancel"), Nothing)
     End Sub
 
