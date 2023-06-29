@@ -16,6 +16,6 @@
     Public Overrides Sub OnStart()
         MyBase.OnStart()
         Application.AttackTarget = Nothing
-        SetState(GameState.Neutral)
+        SetState(BoilerplateState.Neutral)
     End Sub
 End Class

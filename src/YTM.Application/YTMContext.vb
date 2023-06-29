@@ -8,7 +8,7 @@
     Public Overrides ReadOnly Property AvailableWindowSizes As IEnumerable(Of (Integer, Integer))
         Get
             Return {
-                 (640, 360),
+                (640, 360),
                 (1280, 720),
                 (1920, 1080),
                 (2560, 1440),

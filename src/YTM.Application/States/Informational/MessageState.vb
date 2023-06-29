@@ -8,7 +8,7 @@
     Public Overrides Sub HandleCommand(cmd As String)
         If cmd = Command.A Then
             World.NextMessage()
-            SetState(GameState.Neutral)
+            SetState(BoilerplateState.Neutral)
             Return
         End If
     End Sub

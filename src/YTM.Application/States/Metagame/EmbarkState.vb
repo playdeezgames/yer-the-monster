@@ -12,6 +12,6 @@
     Public Overrides Sub OnStart()
         MyBase.OnStart()
         Application.Context.Embark()
-        SetState(GameState.Neutral)
+        SetState(BoilerplateState.Neutral)
     End Sub
 End Class

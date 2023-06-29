@@ -1,7 +1,4 @@
 ﻿Public Module GameState
-    Public Const Neutral = "Neutral"
-    Public Const GameMenu = "GameMenu"
-    Public Const Save = "Save"
     Public Const Abandon = "Abandon"
     Public Const ActionMenu = "ActionMenu"
     Public Const Inventory = "Inventory"

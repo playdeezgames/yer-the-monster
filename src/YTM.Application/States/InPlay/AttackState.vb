@@ -15,6 +15,6 @@
     Public Overrides Sub OnStart()
         MyBase.OnStart()
         World.Avatar.Attack(Application.Enemy, True)
-        SetState(GameState.Neutral)
+        SetState(BoilerplateState.Neutral)
     End Sub
 End Class

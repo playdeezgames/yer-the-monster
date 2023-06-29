@@ -4,7 +4,7 @@ Public Class GameController
         MyBase.New(settings, context)
         Initialize()
         CreateBoilerplateStates(context)
-        SetState(GameState.Neutral, New NeutralState(Me, AddressOf SetCurrentState, context))
+        SetState(BoilerplateState.Neutral, New NeutralState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.ActionMenu, New ActionMenuState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Inventory, New InventoryState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Dead, New DeadState(Me, AddressOf SetCurrentState, context))
@@ -22,9 +22,7 @@ Public Class GameController
     Private Sub CreateBoilerplateStates(context As IUIContext)
 
         SetState(BoilerplateState.Embark, New EmbarkState(Me, AddressOf SetCurrentState, context))
-        SetState(BoilerplateState.Load, New LoadState(Me, AddressOf SetCurrentState, context))
-        SetState(GameState.GameMenu, New GameMenuState(Me, AddressOf SetCurrentState, context))
+        SetState(BoilerplateState.GameMenu, New GameMenuState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Abandon, New ConfirmAbandonState(Me, AddressOf SetCurrentState, context))
-        SetState(GameState.Save, New SaveState(Me, AddressOf SetCurrentState, context))
     End Sub
 End Class

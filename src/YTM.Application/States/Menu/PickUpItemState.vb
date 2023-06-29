@@ -16,6 +16,6 @@
     Public Overrides Sub OnStart()
         MyBase.OnStart()
         World.Avatar.PickUpItem()
-        SetState(GameState.Neutral)
+        SetState(BoilerplateState.Neutral)
     End Sub
 End Class

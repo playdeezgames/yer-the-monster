@@ -8,7 +8,7 @@
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         Dim item = World.Item(Application.ItemId)
         World.Avatar.UseItem(item, value.Item1)
-        SetState(GameState.Neutral)
+        SetState(BoilerplateState.Neutral)
     End Sub
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
         Dim item = World.Item(Application.ItemId)

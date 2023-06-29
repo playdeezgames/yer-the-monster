@@ -19,13 +19,13 @@ Friend Class NavigationState
         Dim avatar = World.Avatar
         Select Case cmd
             Case Command.B
-                SetState(GameState.GameMenu)
+                SetState(BoilerplateState.GameMenu)
             Case Command.A
                 SetState(GameState.ActionMenu)
             Case Else
                 Dim delta = commandDeltas(cmd)
                 Application.AttackTarget = avatar.Move(delta.Item1, delta.Item2)
-                SetState(GameState.Neutral)
+                SetState(BoilerplateState.Neutral)
         End Select
     End Sub
 

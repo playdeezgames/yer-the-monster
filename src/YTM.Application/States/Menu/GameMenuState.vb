@@ -1,16 +1,16 @@
 ﻿Friend Class GameMenuState
     Inherits BasePickerState
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
-        MyBase.New(parent, setState, context, "Game Menu", ControlsText("Select", "Cancel"), GameState.Neutral)
+        MyBase.New(parent, setState, context, "Game Menu", ControlsText("Select", "Cancel"), BoilerplateState.Neutral)
     End Sub
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         Select Case value.Item2
             Case ContinueGameText
-                SetState(GameState.Neutral)
+                SetState(BoilerplateState.Neutral)
             Case SaveGameText
-                SetState(GameState.Save)
+                SetState(BoilerplateState.Save)
             Case OptionsText
-                SetStates(BoilerplateState.Options, GameState.GameMenu)
+                SetStates(BoilerplateState.Options, BoilerplateState.GameMenu)
             Case AbandonGameText
                 SetState(GameState.Abandon)
         End Select
