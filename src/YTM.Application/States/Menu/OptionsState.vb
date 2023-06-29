@@ -1,20 +1,17 @@
 ﻿Friend Class OptionsState
     Inherits BasePickerState
-    Private ReadOnly _saveConfig As Action
     Public Sub New(
                   parent As IGameController,
                   setState As Action(Of String, Boolean),
-                  fontSource As IFontSource,
-                  saveConfig As Action)
+                  fontSource As IFontSource)
         MyBase.New(parent, setState, fontSource, "Options", ControlsText("Select", "Cancel"), Nothing)
-        _saveConfig = saveConfig
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         Select Case value.Item2
             Case ToggleFullScreenText
                 Parent.FullScreen = Not Parent.FullScreen
-                _saveConfig()
+                SaveConfig()
             Case SetWindowSizeText
                 SetState(GameState.WindowSize)
             Case SetVolumeText

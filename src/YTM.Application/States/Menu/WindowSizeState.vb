@@ -1,16 +1,14 @@
 ﻿Friend Class WindowSizeState
     Inherits BasePickerState
-    Private ReadOnly _saveConfig As Action
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource, saveConfig As Action)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
         MyBase.New(parent, setState, fontSource, "<placeholder>", ControlsText("Select", "Cancel"), GameState.Options)
-        _saveConfig = saveConfig
     End Sub
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         Dim tokens = value.Item2.Split("x"c)
         Dim width = CInt(tokens(0))
         Dim height = CInt(tokens(1))
         Parent.Size = (width, height)
-        _saveConfig()
+        SaveConfig()
         HeaderText = $"Current Size: {Size.Item1}x{Size.Item2}"
     End Sub
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))

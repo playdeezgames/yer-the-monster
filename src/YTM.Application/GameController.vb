@@ -23,18 +23,14 @@ Public Class GameController
         SetState(GameState.Splash, New SplashState(Me, AddressOf SetCurrentState, fontSource))
         SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState, fontSource))
         SetState(GameState.ConfirmQuit, New ConfirmQuitState(Me, AddressOf SetCurrentState, fontSource))
-        SetState(GameState.Options, New OptionsState(Me, AddressOf SetCurrentState, fontSource, AddressOf SaveConfig))
-        SetState(GameState.WindowSize, New WindowSizeState(Me, AddressOf SetCurrentState, fontSource, AddressOf SaveConfig))
-        SetState(GameState.Volume, New VolumeState(Me, AddressOf SetCurrentState, fontSource, AddressOf SaveConfig))
+        SetState(GameState.Options, New OptionsState(Me, AddressOf SetCurrentState, fontSource))
+        SetState(GameState.WindowSize, New WindowSizeState(Me, AddressOf SetCurrentState, fontSource))
+        SetState(GameState.Volume, New VolumeState(Me, AddressOf SetCurrentState, fontSource))
         SetState(GameState.About, New AboutState(Me, AddressOf SetCurrentState, fontSource))
         SetState(GameState.Embark, New EmbarkState(Me, AddressOf SetCurrentState, fontSource))
         SetState(GameState.Load, New LoadState(Me, AddressOf SetCurrentState, fontSource))
         SetState(GameState.GameMenu, New GameMenuState(Me, AddressOf SetCurrentState, fontSource))
         SetState(GameState.Abandon, New ConfirmAbandonState(Me, AddressOf SetCurrentState, fontSource))
         SetState(GameState.Save, New SaveState(Me, AddressOf SetCurrentState, fontSource))
-    End Sub
-
-    Private Sub SaveConfig()
-        Settings.Save()
     End Sub
 End Class

@@ -1,15 +1,13 @@
 ﻿Friend Class VolumeState
     Inherits BasePickerState
-    Private ReadOnly _saveConfig As Action
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource, saveConfig As Action)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IFontSource)
         MyBase.New(parent, setState, fontSource, "<placeholder>", ControlsText("Select", "Cancel"), GameState.Options)
-        _saveConfig = saveConfig
     End Sub
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         Dim percent = CInt(value.Item2)
         Volume = percent * 0.01F
         PlaySfx(Sfx.PlayerHit)
-        _saveConfig()
+        SaveConfig()
         HeaderText = $"Volume (Currently: {Volume * 100:f0}%)"
     End Sub
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
