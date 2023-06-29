@@ -10,7 +10,7 @@
             Case SaveGameText
                 SetState(GameState.Save)
             Case OptionsText
-                SetStates(GameState.Options, GameState.GameMenu)
+                SetStates(BoilerplateState.Options, GameState.GameMenu)
             Case AbandonGameText
                 SetState(GameState.Abandon)
         End Select
