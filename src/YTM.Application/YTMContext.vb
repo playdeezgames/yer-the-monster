@@ -1,6 +1,4 @@
-﻿Imports AOS.UI
-
-Friend Class YTMContext
+﻿Public Class YTMContext
     Inherits UIContext
 
     Public Sub New(fontFilenames As IReadOnlyDictionary(Of String, String), viewSize As (Integer, Integer))

@@ -7,7 +7,7 @@ Module Program
         Using host As New Host(
             GameTitle,
             New GameController(
-                New YTMSettings,
+                New YTMSettings((DefaultScreenWidth, DefaultScreenHeight)),
                 New YTMContext(fontFilenames, (ViewWidth, ViewHeight))),
             (ViewWidth, ViewHeight),
             hueTable,

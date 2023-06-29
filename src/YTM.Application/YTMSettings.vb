@@ -1,10 +1,7 @@
-﻿Imports System.IO
-Imports System.Text.Json
-Imports AOS.UI
-Friend Class YTMSettings
+﻿Public Class YTMSettings
     Implements ISettings
-    Sub New()
-        Dim cfg = ReadConfig()
+    Sub New(defaultWindowSize As (Integer, Integer))
+        Dim cfg = ReadConfig(defaultWindowSize)
         WindowSize = (cfg.WindowWidth, cfg.WindowHeight)
         FullScreen = cfg.FullScreen
         Volume = cfg.SfxVolume
@@ -13,7 +10,7 @@ Friend Class YTMSettings
     Public Property FullScreen As Boolean Implements ISettings.FullScreen
     Public Property Volume As Single Implements ISettings.Volume
     Private Const ConfigFileName = "config.json"
-    Private Shared Function ReadConfig() As YTMConfig
+    Private Shared Function ReadConfig(defaultWindowSize As (Integer, Integer)) As YTMConfig
         Try
             Return JsonSerializer.Deserialize(Of YTMConfig)(File.ReadAllText(ConfigFileName))
         Catch ex As Exception
@@ -21,8 +18,8 @@ Friend Class YTMSettings
             {
                 .FullScreen = False,
                 .SfxVolume = 0.5,
-                .WindowHeight = DefaultScreenHeight,
-                .WindowWidth = DefaultScreenWidth
+                .WindowHeight = defaultWindowSize.Item2,
+                .WindowWidth = defaultWindowSize.Item1
             }
         End Try
     End Function
