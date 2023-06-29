@@ -56,7 +56,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\GwensGame\abettor-of-splorr\src\AOS.Presentation\AOS.Presentation.vbproj" />
+    <ProjectReference Include="..\..\abettor-of-splorr\src\AOS.Presentation\AOS.Presentation.vbproj" />
     <ProjectReference Include="..\YTM.Application\YTM.Application.vbproj" />
   </ItemGroup>
 

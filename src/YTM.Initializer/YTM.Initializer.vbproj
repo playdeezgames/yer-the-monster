@@ -16,7 +16,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\GwensGame\abettor-of-splorr\src\SPLORR.Game\SPLORR.Game.vbproj" />
+    <ProjectReference Include="..\..\abettor-of-splorr\src\SPLORR.Game\SPLORR.Game.vbproj" />
     <ProjectReference Include="..\YTM.Business\YTM.Business.vbproj" />
   </ItemGroup>
 

@@ -20,7 +20,7 @@ Public Class GameController
     End Sub
 
     Private Sub CreateBoilerplateStates(context As IUIContext)
-        SetState(BoilerplateState.ConfirmQuit, New ConfirmQuitState(Me, AddressOf SetCurrentState, context))
+
         SetState(BoilerplateState.Options, New OptionsState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.WindowSize, New WindowSizeState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Volume, New VolumeState(Me, AddressOf SetCurrentState, context))
