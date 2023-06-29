@@ -23,6 +23,5 @@ Public Class GameController
 
         SetState(BoilerplateState.Embark, New EmbarkState(Me, AddressOf SetCurrentState, context))
         SetState(BoilerplateState.GameMenu, New GameMenuState(Me, AddressOf SetCurrentState, context))
-        SetState(GameState.Abandon, New ConfirmAbandonState(Me, AddressOf SetCurrentState, context))
     End Sub
 End Class

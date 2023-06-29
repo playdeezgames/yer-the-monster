@@ -1,5 +1,4 @@
 ﻿Public Module GameState
-    Public Const Abandon = "Abandon"
     Public Const ActionMenu = "ActionMenu"
     Public Const Inventory = "Inventory"
     Public Const Dead = "Dead"

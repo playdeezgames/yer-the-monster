@@ -12,7 +12,7 @@
             Case OptionsText
                 SetStates(BoilerplateState.Options, BoilerplateState.GameMenu)
             Case AbandonGameText
-                SetState(GameState.Abandon)
+                SetState(BoilerplateState.Abandon)
         End Select
     End Sub
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))
