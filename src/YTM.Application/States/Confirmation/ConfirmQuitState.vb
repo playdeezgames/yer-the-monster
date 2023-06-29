@@ -1,7 +1,7 @@
 ﻿Friend Class ConfirmQuitState
     Inherits BasePickerState
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IUIContext)
-        MyBase.New(parent, setState, fontSource, "Are you sure you want to quit?", ControlsText("Select", "Cancel"), GameState.MainMenu)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+        MyBase.New(parent, setState, context, "Are you sure you want to quit?", ControlsText("Select", "Cancel"), GameState.MainMenu)
     End Sub
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
         Select Case value.Item2

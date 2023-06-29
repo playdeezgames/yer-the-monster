@@ -1,7 +1,7 @@
 ﻿Friend Class SplashState
     Inherits BaseGameState
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IUIContext)
-        MyBase.New(parent, setState, fontSource)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+        MyBase.New(parent, setState, context)
     End Sub
 
     Public Overrides Sub HandleCommand(cmd As String)
@@ -12,7 +12,7 @@
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim font = FontSource.Font(GameFont.Font5x7)
+        Dim font = Context.Font(GameFont.Font5x7)
         With font
             .WriteText(displayBuffer, (0, 0), "A Game in VB.NET About", Hue.Orange)
             .WriteText(displayBuffer, (0, font.Height), "Yer, the Monster,", Hue.Orange)

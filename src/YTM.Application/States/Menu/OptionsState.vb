@@ -3,8 +3,8 @@
     Public Sub New(
                   parent As IGameController,
                   setState As Action(Of String, Boolean),
-                  fontSource As IUIContext)
-        MyBase.New(parent, setState, fontSource, "Options", ControlsText("Select", "Cancel"), Nothing)
+                  context As IUIContext)
+        MyBase.New(parent, setState, context, "Options", ControlsText("Select", "Cancel"), Nothing)
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))

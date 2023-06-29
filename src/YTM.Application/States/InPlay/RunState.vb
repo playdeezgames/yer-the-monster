@@ -1,8 +1,8 @@
 ﻿Friend Class RunState
     Inherits BaseGameState
 
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IUIContext)
-        MyBase.New(parent, setState, fontSource)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+        MyBase.New(parent, setState, context)
     End Sub
 
     Public Overrides Sub HandleCommand(cmd As String)
@@ -15,7 +15,7 @@
 
     Public Overrides Sub OnStart()
         MyBase.OnStart()
-        Context.AttackTarget = Nothing
+        Application.AttackTarget = Nothing
         SetState(GameState.Neutral)
     End Sub
 End Class

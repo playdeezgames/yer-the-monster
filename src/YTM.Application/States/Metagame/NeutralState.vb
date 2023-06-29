@@ -1,7 +1,7 @@
 ﻿Friend Class NeutralState
     Inherits BaseGameState
-    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), fontSource As IUIContext)
-        MyBase.New(parent, setState, fontSource)
+    Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
+        MyBase.New(parent, setState, context)
     End Sub
     Public Overrides Sub HandleCommand(cmd As String)
         Throw New NotImplementedException()
@@ -20,7 +20,7 @@
             SetState(GameState.Dead)
             Return
         End If
-        If Context.Enemy IsNot Nothing Then
+        If Application.Enemy IsNot Nothing Then
             SetState(GameState.Fight)
             Return
         End If

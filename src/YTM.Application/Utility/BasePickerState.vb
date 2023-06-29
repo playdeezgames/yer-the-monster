@@ -8,11 +8,11 @@
     Public Sub New(
                   parent As IGameController,
                   setState As Action(Of String, Boolean),
-                  fontSource As IUIContext,
+                  context As IUIContext,
                   headerText As String,
                   statusBarText As String,
                   cancelGameState As String)
-        MyBase.New(parent, setState, fontSource)
+        MyBase.New(parent, setState, context)
         _statusBarText = statusBarText
         _cancelGameState = cancelGameState
         Me.HeaderText = headerText
@@ -32,7 +32,7 @@
     Protected MustOverride Sub OnActivateMenuItem(value As (String, String))
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)
-        Dim font = FontSource.Font(GameFont.Font5x7)
+        Dim font = Context.Font(GameFont.Font5x7)
         displayBuffer.Fill((0, ViewHeight \ 2 - font.Height \ 2), (ViewWidth, font.Height), Hue.Blue)
         Dim y = ViewHeight \ 2 - font.Height \ 2 - _menuItemIndex * font.Height
         Dim index = 0
