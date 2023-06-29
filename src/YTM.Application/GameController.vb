@@ -1,7 +1,7 @@
 Public Class GameController
     Inherits BaseGameController
     Public Sub New(settings As ISettings, context As IUIContext)
-        MyBase.New(settings)
+        MyBase.New(settings, context)
         Initialize()
         CreateBoilerplateStates(context)
         SetState(GameState.Neutral, New NeutralState(Me, AddressOf SetCurrentState, context))
@@ -16,12 +16,11 @@ Public Class GameController
         SetState(GameState.Run, New RunState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Attack, New AttackState(Me, AddressOf SetCurrentState, context))
 
-        SetCurrentState(GameState.Splash, True)
+        SetCurrentState(BoilerplateState.Splash, True)
     End Sub
 
     Private Sub CreateBoilerplateStates(context As IUIContext)
-        SetState(GameState.Splash, New SplashState(Me, AddressOf SetCurrentState, context))
-        SetState(GameState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState, context))
+        SetState(BoilerplateState.MainMenu, New MainMenuState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.ConfirmQuit, New ConfirmQuitState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Options, New OptionsState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.WindowSize, New WindowSizeState(Me, AddressOf SetCurrentState, context))

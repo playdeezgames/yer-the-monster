@@ -9,7 +9,7 @@
                 SetState(GameState.GameMenu)
             Case YesText
                 Application.Context.Abandon()
-                SetState(GameState.MainMenu)
+                SetState(BoilerplateState.MainMenu)
         End Select
     End Sub
     Protected Overrides Function InitializeMenuItems() As List(Of (String, String))

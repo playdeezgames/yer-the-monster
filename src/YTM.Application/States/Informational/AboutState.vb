@@ -4,7 +4,7 @@
         MyBase.New(parent, setState, context)
     End Sub
     Public Overrides Sub HandleCommand(cmd As String)
-        SetState(GameState.MainMenu)
+        SetState(BoilerplateState.MainMenu)
     End Sub
     Public Overrides Sub Render(displayBuffer As IPixelSink)
         displayBuffer.Fill((0, 0), (ViewWidth, ViewHeight), Hue.Black)

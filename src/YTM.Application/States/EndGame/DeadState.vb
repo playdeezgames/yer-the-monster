@@ -8,7 +8,7 @@
     Public Overrides Sub HandleCommand(cmd As String)
         If cmd = Command.A Then
             Application.Context.Abandon()
-            SetState(GameState.MainMenu)
+            SetState(BoilerplateState.MainMenu)
         End If
     End Sub
 

@@ -1,6 +1,4 @@
 ﻿Public Module GameState
-    Public Const Splash = "Splash"
-    Public Const MainMenu = "MainMenu"
     Public Const ConfirmQuit = "ConfirmQuit"
     Public Const Options = "Options"
     Public Const WindowSize = "WindowSize"

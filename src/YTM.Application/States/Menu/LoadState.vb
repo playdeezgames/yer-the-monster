@@ -1,7 +1,7 @@
 ﻿Friend Class LoadState
     Inherits BasePickerState
     Public Sub New(parent As IGameController, setState As Action(Of String, Boolean), context As IUIContext)
-        MyBase.New(parent, setState, context, "Load Game", ControlsText("Select", "Cancel"), GameState.MainMenu)
+        MyBase.New(parent, setState, context, "Load Game", ControlsText("Select", "Cancel"), BoilerplateState.MainMenu)
     End Sub
 
     Protected Overrides Sub OnActivateMenuItem(value As (String, String))
@@ -11,7 +11,7 @@
             SetState(GameState.Neutral)
         Else
             PlaySfx(Sfx.Shucks)
-            SetState(GameState.MainMenu)
+            SetState(BoilerplateState.MainMenu)
         End If
     End Sub
 
