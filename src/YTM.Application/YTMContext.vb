@@ -45,4 +45,20 @@
         End With
         ShowStatusBar(displayBuffer, font, "Space/(A) - Return to Main Menu", Hue.Black, Hue.LightGray)
     End Sub
+
+    Public Overrides Sub AbandonGame()
+        Context.Abandon()
+    End Sub
+
+    Public Overrides Sub LoadGame(slot As Integer)
+        Context.LoadFromSlot(slot)
+    End Sub
+
+    Public Overrides Sub SaveGame(slot As Integer)
+        Context.SaveToSlot(slot)
+    End Sub
+
+    Public Overrides Function DoesSlotExist(slot As Integer) As Boolean
+        Return Context.DoesSaveExist(slot)
+    End Function
 End Class
