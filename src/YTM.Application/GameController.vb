@@ -24,7 +24,6 @@ Public Class GameController
         SetState(BoilerplateState.Options, New OptionsState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.WindowSize, New WindowSizeState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.Volume, New VolumeState(Me, AddressOf SetCurrentState, context))
-        SetState(BoilerplateState.About, New AboutState(Me, AddressOf SetCurrentState, context))
         SetState(BoilerplateState.Embark, New EmbarkState(Me, AddressOf SetCurrentState, context))
         SetState(BoilerplateState.Load, New LoadState(Me, AddressOf SetCurrentState, context))
         SetState(GameState.GameMenu, New GameMenuState(Me, AddressOf SetCurrentState, context))

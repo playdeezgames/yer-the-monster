@@ -15,4 +15,16 @@
             ShowStatusBar(displayBuffer, font, "Space/(A)", Hue.Black, Hue.LightGray)
         End With
     End Sub
+
+    Public Overrides Sub ShowAboutContent(displayBuffer As IPixelSink, font As Font)
+        With font
+            .WriteText(displayBuffer, (0, 0), AboutTitle, Hue.Orange)
+            .WriteText(displayBuffer, (0, font.Height * 2), About1Text, Hue.Tan)
+            .WriteText(displayBuffer, (0, font.Height * 4), About2Text, Hue.Tan)
+            .WriteText(displayBuffer, (0, font.Height * 6), About3Text, Hue.Tan)
+            .WriteText(displayBuffer, (0, font.Height * 8), About4Text, Hue.Tan)
+            .WriteText(displayBuffer, (0, font.Height * 12), About5Text, Hue.Tan)
+        End With
+        ShowStatusBar(displayBuffer, font, "Space/(A) - Return to Main Menu", Hue.Black, Hue.LightGray)
+    End Sub
 End Class
